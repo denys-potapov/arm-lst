@@ -1,0 +1,442 @@
+|s|0|0|1 1 0 1 0 0 0 0|Rm       |0 0 0 0 0 0|Rn       |Rd       |  % ADC Wd, Wn, Wm / ADC Xd, Xn, Xm
+|s|0|1|1 1 0 1 0 0 0 0|Rm       |0 0 0 0 0 0|Rn       |Rd       |  % ADCS Wd, Wn, Wm / ADCS Xd, Xn, Xm
+|s|0|0|0 1 0 1 1|0 0|1|Rm       |optio|imm3 |Rn       |Rd       |  % ADD Wd|WSP, Wn|WSP, Wm{, extend {#amount}} / ADD Xd|SP, Xn|SP, Rm{, extend {#amount}}
+|s|0|0|1 0 0 0 1 0|s|imm12                  |Rn       |Rd       |  % ADD Wd|WSP, Wn|WSP, #imm{, shift} / ADD Xd|SP, Xn|SP, #imm{, shift}
+|s|0|0|0 1 0 1 1|shi|0|Rm       |imm6       |Rn       |Rd       |  % ADD Wd, Wn, Wm{, shift #amount} / ADD Xd, Xn, Xm{, shift #amount}
+|1|0|0|1 0 0 0 1 1|0|uimm6      |(0)|uimm4  |Xn       |Xd       |  % ADDG Xd|SP, Xn|SP, #uimm6, #uimm4
+|s|0|1|0 1 0 1 1|0 0|1|Rm       |optio|imm3 |Rn       |Rd       |  % ADDS Wd, Wn|WSP, Wm{, extend {#amount}} / ADDS Xd, Xn|SP, Rm{, extend {#amount}}
+|s|0|1|1 0 0 0 1 0|s|imm12                  |Rn       |Rd       |  % ADDS Wd, Wn|WSP, #imm{, shift} / ADDS Xd, Xn|SP, #imm{, shift}
+|s|0|1|0 1 0 1 1|shi|0|Rm       |imm6       |Rn       |Rd       |  % ADDS Wd, Wn, Wm{, shift #amount} / ADDS Xd, Xn, Xm{, shift #amount}
+|0|imm|1 0 0 0 0|immhi                                |Rd       |  % ADR Xd, label
+|1|imm|1 0 0 0 0|immhi                                |Rd       |  % ADRP Xd, label
+|s|0 0|1 0 0 1 0 0|N|immr       |imms       |Rn       |Rd       |  % AND Wd|WSP, Wn, #imm / AND Xd|SP, Xn, #imm
+|s|0 0|0 1 0 1 0|shi|0|Rm       |imm6       |Rn       |Rd       |  % AND Wd, Wn, Wm{, shift #amount} / AND Xd, Xn, Xm{, shift #amount}
+|s|1 1|1 0 0 1 0 0|N|immr       |imms       |Rn       |Rd       |  % ANDS Wd, Wn, #imm / ANDS Xd, Xn, #imm
+|s|1 1|0 1 0 1 0|shi|0|Rm       |imm6       |Rn       |Rd       |  % ANDS Wd, Wn, Wm{, shift #amount} / ANDS Xd, Xn, Xm{, shift #amount}
+|s|0 0|1 0 0 1 1 0|N|immr       |x 1 1 1 1 1|Rn       |Rd       |  % ASR Wd, Wn, #shift / SBFM Wd, Wn, #shift, #31 / ASR Xd, Xn, #shift / SBFM Xd, Xn, #shift, #63
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 0 1 0|1 0|Rn       |Rd       |  % ASR Wd, Wn, Wm / ASRV Wd, Wn, Wm / ASR Xd, Xn, Xm / ASRV Xd, Xn, Xm
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 0 1 0|1 0|Rn       |Rd       |  % ASRV Wd, Wn, Wm / ASRV Xd, Xn, Xm
+|1 1 0 1 0 1 0 1 0 0|0|0 1|op1  |0 1 1 1|1 0 0 x|op2  |Rt       |  % AT at_op, Xt / SYS #op1, C7, Cm, #op2, Xt
+|1|1|0|1 1 0 1 0 1 1 0|0 0 0 0 1|0|0|Z|1 1 0|Rn       |Rd       |  % AUTDA Xd, Xn|SP / AUTDZA Xd
+|1|1|0|1 1 0 1 0 1 1 0|0 0 0 0 1|0|0|Z|1 1 1|Rn       |Rd       |  % AUTDB Xd, Xn|SP / AUTDZB Xd
+|1|1|0|1 1 0 1 0 1 1 0|0 0 0 0 1|0|0|Z|1 0 0|Rn       |Rd       |  % AUTIA Xd, Xn|SP / AUTIZA Xd
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 x 1|1 0 x|1 1 1 1 1|  % AUTIA1716 / AUTIASP / AUTIAZ
+|1|1|0|1 1 0 1 0 1 1 0|0 0 0 0 1|0|0|Z|1 0 1|Rn       |Rd       |  % AUTIB Xd, Xn|SP / AUTIZB Xd
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 x 1|1 1 x|1 1 1 1 1|  % AUTIB1716 / AUTIBSP / AUTIBZ
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 0 0|0 1 0 0|(0) (0)|0 1 0|1 1 1 1 1|  % AXFLAG
+|0|0 0 1 0 1|imm26                                              |  % B label
+|0 1 0 1 0 1 0|0|imm19                                |0|cond   |  % B.cond label
+|0 1 0 1 0 1 0|0|imm19                                |1|cond   |  % BC.cond label
+|s|0 1|1 0 0 1 1 0|N|immr       |imms       |1 1 1 1 1|Rd       |  % BFC Wd, #lsb, #width / BFM Wd, WZR, #(-lsb MOD 32), #(width-1) / BFC Xd, #lsb, #width / BFM Xd, XZR, #(-lsb MOD 64), #(width-1)
+|s|0 1|1 0 0 1 1 0|N|immr       |imms       |!= 11111 |Rd       |  % BFI Wd, Wn, #lsb, #width / BFM Wd, Wn, #(-lsb MOD 32), #(width-1) / BFI Xd, Xn, #lsb, #width / BFM Xd, Xn, #(-lsb MOD 64), #(width-1)
+|s|0 1|1 0 0 1 1 0|N|immr       |imms       |Rn       |Rd       |  % BFM Wd, Wn, #immr, #imms / BFM Xd, Xn, #immr, #imms
+|s|0 1|1 0 0 1 1 0|N|immr       |imms       |Rn       |Rd       |  % BFXIL Wd, Wn, #lsb, #width / BFM Wd, Wn, #lsb, #(lsb+width-1) / BFXIL Xd, Xn, #lsb, #width / BFM Xd, Xn, #lsb, #(lsb+width-1)
+|s|0 0|0 1 0 1 0|shi|1|Rm       |imm6       |Rn       |Rd       |  % BIC Wd, Wn, Wm{, shift #amount} / BIC Xd, Xn, Xm{, shift #amount}
+|s|1 1|0 1 0 1 0|shi|1|Rm       |imm6       |Rn       |Rd       |  % BICS Wd, Wn, Wm{, shift #amount} / BICS Xd, Xn, Xm{, shift #amount}
+|1|0 0 1 0 1|imm26                                              |  % BL label
+|1 1 0 1 0 1 1|0|0|0 1|1 1 1 1 1|0 0 0 0|0|0|Rn       |0 0 0 0 0|  % BLR Xn
+|1 1 0 1 0 1 1|Z|0|0 1|1 1 1 1 1|0 0 0 0|1|M|Rn       |Rm       |  % BLRAAZ Xn / BLRAA Xn, Xm|SP / BLRABZ Xn / BLRAB Xn, Xm|SP
+|1 1 0 1 0 1 1|0|0|0 0|1 1 1 1 1|0 0 0 0|0|0|Rn       |0 0 0 0 0|  % BR Xn
+|1 1 0 1 0 1 1|Z|0|0 0|1 1 1 1 1|0 0 0 0|1|M|Rn       |Rm       |  % BRAAZ Xn / BRAA Xn, Xm|SP / BRABZ Xn / BRAB Xn, Xm|SP
+|1 1 0 1 0 1 0 1 0 0|0|0 1|0 0 1|0 1 1 1|0 0 1 0|op2  |Rt       |  % BRB brb_op{, Xt} / SYS #1, C7, C2, #op2{, Xt}
+|1 1 0 1 0 1 0 0|0 0 1|imm16                          |0 0 0|0 0|  % BRK #imm
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 1 0 0|x x 0|1 1 1 1 1|  % BTI {targets}
+|1 x|0 0 1 0 0 0 1|L|1|Rs       |o|1 1 1 1 1|Rn       |Rt       |  % CAS Ws, Wt, [Xn|SP{,#0}] / CASA Ws, Wt, [Xn|SP{,#0}] / CASAL Ws, Wt, [Xn|SP{,#0}] / CASL Ws, Wt, [Xn|SP{,#0}] / CAS Xs, Xt, [Xn|SP{,#0}] / CASA Xs, Xt, [Xn|SP{,#0}] / CASAL Xs, Xt, [Xn|SP{,#0}] / CASL Xs, Xt, [Xn|SP{,#0}]
+|0 0|0 0 1 0 0 0 1|L|1|Rs       |o|1 1 1 1 1|Rn       |Rt       |  % CASAB Ws, Wt, [Xn|SP{,#0}] / CASALB Ws, Wt, [Xn|SP{,#0}] / CASB Ws, Wt, [Xn|SP{,#0}] / CASLB Ws, Wt, [Xn|SP{,#0}]
+|0 1|0 0 1 0 0 0 1|L|1|Rs       |o|1 1 1 1 1|Rn       |Rt       |  % CASAH Ws, Wt, [Xn|SP{,#0}] / CASALH Ws, Wt, [Xn|SP{,#0}] / CASH Ws, Wt, [Xn|SP{,#0}] / CASLH Ws, Wt, [Xn|SP{,#0}]
+|0|s|0 0 1 0 0 0|0|L|1|Rs       |o|1 1 1 1 1|Rn       |Rt       |  % CASP Ws, W(s+1), Wt, W(t+1), [Xn|SP{,#0}] / CASPA Ws, W(s+1), Wt, W(t+1), [Xn|SP{,#0}] / CASPAL Ws, W(s+1), Wt, W(t+1), [Xn|SP{,#0}] / CASPL Ws, W(s+1), Wt, W(t+1), [Xn|SP{,#0}] / CASP Xs, X(s+1), Xt, X(t+1), [Xn|SP{,#0}] / CASPA Xs, X(s+1), Xt, X(t+1), [Xn|SP{,#0}] / CASPAL Xs, X(s+1), Xt, X(t+1), [Xn|SP{,#0}] / CASPL Xs, X(s+1), Xt, X(t+1), [Xn|SP{,#0}]
+|s|0 1 1 0 1 0|1|imm19                                |Rt       |  % CBNZ Wt, label / CBNZ Xt, label
+|s|0 1 1 0 1 0|0|imm19                                |Rt       |  % CBZ Wt, label / CBZ Xt, label
+|s|0|1|1 1 0 1 0 0 1 0|imm5     |cond   |1|0|Rn       |0|nzcv   |  % CCMN Wn, #imm, #nzcv, cond / CCMN Xn, #imm, #nzcv, cond
+|s|0|1|1 1 0 1 0 0 1 0|Rm       |cond   |0|0|Rn       |0|nzcv   |  % CCMN Wn, Wm, #nzcv, cond / CCMN Xn, Xm, #nzcv, cond
+|s|1|1|1 1 0 1 0 0 1 0|imm5     |cond   |1|0|Rn       |0|nzcv   |  % CCMP Wn, #imm, #nzcv, cond / CCMP Xn, #imm, #nzcv, cond
+|s|1|1|1 1 0 1 0 0 1 0|Rm       |cond   |0|0|Rn       |0|nzcv   |  % CCMP Wn, Wm, #nzcv, cond / CCMP Xn, Xm, #nzcv, cond
+|1 1 0 1 0 1 0 1 0 0|0|0|0|0 0 0|0 1 0 0|(0) (0)|0 0 0|1 1 1 1 1|  % CFINV
+|1 1 0 1 0 1 0 1 0 0|0|0 1|0 1 1|0 1 1 1|0 0 1 1|1 0 0|Rt       |  % CFP RCTX, Xt / SYS #3, C7, C3, #4, Xt
+|s|0|0|1 1 0 1 0 1 0 0|!= 11111 |!= 111x|0|1|!= 11111 |Rd       |  % CINC Wd, Wn, cond / CSINC Wd, Wn, Wn, invert(cond) / CINC Xd, Xn, cond / CSINC Xd, Xn, Xn, invert(cond)
+|s|1|0|1 1 0 1 0 1 0 0|!= 11111 |!= 111x|0|0|!= 11111 |Rd       |  % CINV Wd, Wn, cond / CSINV Wd, Wn, Wn, invert(cond) / CINV Xd, Xn, cond / CSINV Xd, Xn, Xn, invert(cond)
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 1|CRm    |0 1 0|1 1 1 1 1|  % CLREX {#imm}
+|s|1|0|1 1 0 1 0 1 1 0|0 0 0 0 0|0 0 0 1 0|1|Rn       |Rd       |  % CLS Wd, Wn / CLS Xd, Xn
+|s|1|0|1 1 0 1 0 1 1 0|0 0 0 0 0|0 0 0 1 0|0|Rn       |Rd       |  % CLZ Wd, Wn / CLZ Xd, Xn
+|s|0|1|0 1 0 1 1|0 0|1|Rm       |optio|imm3 |Rn       |1 1 1 1 1|  % CMN Wn|WSP, Wm{, extend {#amount}} / ADDS WZR, Wn|WSP, Wm{, extend {#amount}} / CMN Xn|SP, Rm{, extend {#amount}} / ADDS XZR, Xn|SP, Rm{, extend {#amount}}
+|s|0|1|1 0 0 0 1 0|s|imm12                  |Rn       |1 1 1 1 1|  % CMN Wn|WSP, #imm{, shift} / ADDS WZR, Wn|WSP, #imm {, shift} / CMN Xn|SP, #imm{, shift} / ADDS XZR, Xn|SP, #imm {, shift}
+|s|0|1|0 1 0 1 1|shi|0|Rm       |imm6       |Rn       |1 1 1 1 1|  % CMN Wn, Wm{, shift #amount} / ADDS WZR, Wn, Wm {, shift #amount} / CMN Xn, Xm{, shift #amount} / ADDS XZR, Xn, Xm {, shift #amount}
+|s|1|1|0 1 0 1 1|0 0|1|Rm       |optio|imm3 |Rn       |1 1 1 1 1|  % CMP Wn|WSP, Wm{, extend {#amount}} / SUBS WZR, Wn|WSP, Wm{, extend {#amount}} / CMP Xn|SP, Rm{, extend {#amount}} / SUBS XZR, Xn|SP, Rm{, extend {#amount}}
+|s|1|1|1 0 0 0 1 0|s|imm12                  |Rn       |1 1 1 1 1|  % CMP Wn|WSP, #imm{, shift} / SUBS WZR, Wn|WSP, #imm {, shift} / CMP Xn|SP, #imm{, shift} / SUBS XZR, Xn|SP, #imm {, shift}
+|s|1|1|0 1 0 1 1|shi|0|Rm       |imm6       |Rn       |1 1 1 1 1|  % CMP Wn, Wm{, shift #amount} / SUBS WZR, Wn, Wm {, shift #amount} / CMP Xn, Xm{, shift #amount} / SUBS XZR, Xn, Xm {, shift #amount}
+|1|0|1|1 1 0 1 0 1 1 0|Xm       |0|0|0|0|0|0|Xn       |1 1 1 1 1|  % CMPP Xn|SP, Xm|SP / SUBPS XZR, Xn|SP, Xm|SP
+|s|1|0|1 1 0 1 0 1 0 0|Rm       |!= 111x|0|1|Rn       |Rd       |  % CNEG Wd, Wn, cond / CSNEG Wd, Wn, Wn, invert(cond) / CNEG Xd, Xn, cond / CSNEG Xd, Xn, Xn, invert(cond)
+|1 1 0 1 0 1 0 1 0 0|0|0 1|0 1 1|0 1 1 1|0 0 1 1|1 1 1|Rt       |  % CPP RCTX, Xt / SYS #3, C7, C3, #7, Xt
+|sz |0 1 1|0|0 1|op1|0|Rs       |0 0 0 0|0 1|Rn       |Rd       |  % CPYFE [Xd]!, [Xs]!, Xn! / CPYFM [Xd]!, [Xs]!, Xn! / CPYFP [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |1 1 0 0|0 1|Rn       |Rd       |  % CPYFEN [Xd]!, [Xs]!, Xn! / CPYFMN [Xd]!, [Xs]!, Xn! / CPYFPN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |1 0 0 0|0 1|Rn       |Rd       |  % CPYFERN [Xd]!, [Xs]!, Xn! / CPYFMRN [Xd]!, [Xs]!, Xn! / CPYFPRN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |0 0 1 0|0 1|Rn       |Rd       |  % CPYFERT [Xd]!, [Xs]!, Xn! / CPYFMRT [Xd]!, [Xs]!, Xn! / CPYFPRT [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |1 1 1 0|0 1|Rn       |Rd       |  % CPYFERTN [Xd]!, [Xs]!, Xn! / CPYFMRTN [Xd]!, [Xs]!, Xn! / CPYFPRTN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |1 0 1 0|0 1|Rn       |Rd       |  % CPYFERTRN [Xd]!, [Xs]!, Xn! / CPYFMRTRN [Xd]!, [Xs]!, Xn! / CPYFPRTRN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |0 1 1 0|0 1|Rn       |Rd       |  % CPYFERTWN [Xd]!, [Xs]!, Xn! / CPYFMRTWN [Xd]!, [Xs]!, Xn! / CPYFPRTWN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |0 0 1 1|0 1|Rn       |Rd       |  % CPYFET [Xd]!, [Xs]!, Xn! / CPYFMT [Xd]!, [Xs]!, Xn! / CPYFPT [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |1 1 1 1|0 1|Rn       |Rd       |  % CPYFETN [Xd]!, [Xs]!, Xn! / CPYFMTN [Xd]!, [Xs]!, Xn! / CPYFPTN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |1 0 1 1|0 1|Rn       |Rd       |  % CPYFETRN [Xd]!, [Xs]!, Xn! / CPYFMTRN [Xd]!, [Xs]!, Xn! / CPYFPTRN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |0 1 1 1|0 1|Rn       |Rd       |  % CPYFETWN [Xd]!, [Xs]!, Xn! / CPYFMTWN [Xd]!, [Xs]!, Xn! / CPYFPTWN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |0 1 0 0|0 1|Rn       |Rd       |  % CPYFEWN [Xd]!, [Xs]!, Xn! / CPYFMWN [Xd]!, [Xs]!, Xn! / CPYFPWN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |0 0 0 1|0 1|Rn       |Rd       |  % CPYFEWT [Xd]!, [Xs]!, Xn! / CPYFMWT [Xd]!, [Xs]!, Xn! / CPYFPWT [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |1 1 0 1|0 1|Rn       |Rd       |  % CPYFEWTN [Xd]!, [Xs]!, Xn! / CPYFMWTN [Xd]!, [Xs]!, Xn! / CPYFPWTN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |1 0 0 1|0 1|Rn       |Rd       |  % CPYFEWTRN [Xd]!, [Xs]!, Xn! / CPYFMWTRN [Xd]!, [Xs]!, Xn! / CPYFPWTRN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|0|0 1|op1|0|Rs       |0 1 0 1|0 1|Rn       |Rd       |  % CPYFEWTWN [Xd]!, [Xs]!, Xn! / CPYFMWTWN [Xd]!, [Xs]!, Xn! / CPYFPWTWN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |0 0 0 0|0 1|Rn       |Rd       |  % CPYE [Xd]!, [Xs]!, Xn! / CPYM [Xd]!, [Xs]!, Xn! / CPYP [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |1 1 0 0|0 1|Rn       |Rd       |  % CPYEN [Xd]!, [Xs]!, Xn! / CPYMN [Xd]!, [Xs]!, Xn! / CPYPN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |1 0 0 0|0 1|Rn       |Rd       |  % CPYERN [Xd]!, [Xs]!, Xn! / CPYMRN [Xd]!, [Xs]!, Xn! / CPYPRN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |0 0 1 0|0 1|Rn       |Rd       |  % CPYERT [Xd]!, [Xs]!, Xn! / CPYMRT [Xd]!, [Xs]!, Xn! / CPYPRT [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |1 1 1 0|0 1|Rn       |Rd       |  % CPYERTN [Xd]!, [Xs]!, Xn! / CPYMRTN [Xd]!, [Xs]!, Xn! / CPYPRTN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |1 0 1 0|0 1|Rn       |Rd       |  % CPYERTRN [Xd]!, [Xs]!, Xn! / CPYMRTRN [Xd]!, [Xs]!, Xn! / CPYPRTRN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |0 1 1 0|0 1|Rn       |Rd       |  % CPYERTWN [Xd]!, [Xs]!, Xn! / CPYMRTWN [Xd]!, [Xs]!, Xn! / CPYPRTWN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |0 0 1 1|0 1|Rn       |Rd       |  % CPYET [Xd]!, [Xs]!, Xn! / CPYMT [Xd]!, [Xs]!, Xn! / CPYPT [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |1 1 1 1|0 1|Rn       |Rd       |  % CPYETN [Xd]!, [Xs]!, Xn! / CPYMTN [Xd]!, [Xs]!, Xn! / CPYPTN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |1 0 1 1|0 1|Rn       |Rd       |  % CPYETRN [Xd]!, [Xs]!, Xn! / CPYMTRN [Xd]!, [Xs]!, Xn! / CPYPTRN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |0 1 1 1|0 1|Rn       |Rd       |  % CPYETWN [Xd]!, [Xs]!, Xn! / CPYMTWN [Xd]!, [Xs]!, Xn! / CPYPTWN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |0 1 0 0|0 1|Rn       |Rd       |  % CPYEWN [Xd]!, [Xs]!, Xn! / CPYMWN [Xd]!, [Xs]!, Xn! / CPYPWN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |0 0 0 1|0 1|Rn       |Rd       |  % CPYEWT [Xd]!, [Xs]!, Xn! / CPYMWT [Xd]!, [Xs]!, Xn! / CPYPWT [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |1 1 0 1|0 1|Rn       |Rd       |  % CPYEWTN [Xd]!, [Xs]!, Xn! / CPYMWTN [Xd]!, [Xs]!, Xn! / CPYPWTN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |1 0 0 1|0 1|Rn       |Rd       |  % CPYEWTRN [Xd]!, [Xs]!, Xn! / CPYMWTRN [Xd]!, [Xs]!, Xn! / CPYPWTRN [Xd]!, [Xs]!, Xn!
+|sz |0 1 1|1|0 1|op1|0|Rs       |0 1 0 1|0 1|Rn       |Rd       |  % CPYEWTWN [Xd]!, [Xs]!, Xn! / CPYMWTWN [Xd]!, [Xs]!, Xn! / CPYPWTWN [Xd]!, [Xs]!, Xn!
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 1 0|0|sz |Rn       |Rd       |  % CRC32B Wd, Wn, Wm / CRC32H Wd, Wn, Wm / CRC32W Wd, Wn, Wm / CRC32X Wd, Wn, Xm
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 1 0|1|sz |Rn       |Rd       |  % CRC32CB Wd, Wn, Wm / CRC32CH Wd, Wn, Wm / CRC32CW Wd, Wn, Wm / CRC32CX Wd, Wn, Xm
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 1 0|1 0 0|1 1 1 1 1|  % CSDB
+|s|0|0|1 1 0 1 0 1 0 0|Rm       |cond   |0|0|Rn       |Rd       |  % CSEL Wd, Wn, Wm, cond / CSEL Xd, Xn, Xm, cond
+|s|0|0|1 1 0 1 0 1 0 0|1 1 1 1 1|!= 111x|0|1|1 1 1 1 1|Rd       |  % CSET Wd, cond / CSINC Wd, WZR, WZR, invert(cond) / CSET Xd, cond / CSINC Xd, XZR, XZR, invert(cond)
+|s|1|0|1 1 0 1 0 1 0 0|1 1 1 1 1|!= 111x|0|0|1 1 1 1 1|Rd       |  % CSETM Wd, cond / CSINV Wd, WZR, WZR, invert(cond) / CSETM Xd, cond / CSINV Xd, XZR, XZR, invert(cond)
+|s|0|0|1 1 0 1 0 1 0 0|Rm       |cond   |0|1|Rn       |Rd       |  % CSINC Wd, Wn, Wm, cond / CSINC Xd, Xn, Xm, cond
+|s|1|0|1 1 0 1 0 1 0 0|Rm       |cond   |0|0|Rn       |Rd       |  % CSINV Wd, Wn, Wm, cond / CSINV Xd, Xn, Xm, cond
+|s|1|0|1 1 0 1 0 1 0 0|Rm       |cond   |0|1|Rn       |Rd       |  % CSNEG Wd, Wn, Wm, cond / CSNEG Xd, Xn, Xm, cond
+|1 1 0 1 0 1 0 1 0 0|0|0 1|op1  |0 1 1 1|CRm    |op2  |Rt       |  % DC dc_op, Xt / SYS #op1, C7, Cm, #op2, Xt
+|1 1 0 1 0 1 0 0|1 0 1|imm16                          |0 0 0|0 1|  % DCPS1 {#imm}
+|1 1 0 1 0 1 0 0|1 0 1|imm16                          |0 0 0|1 0|  % DCPS2 {#imm}
+|1 1 0 1 0 1 0 0|1 0 1|imm16                          |0 0 0|1 1|  % DCPS3 {#imm}
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 0 0|1 1 0|1 1 1 1 1|  % DGH
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 1|CRm    |1|0 1|1 1 1 1 1|  % DMB option|#imm
+|1 1 0 1 0 1 1|0 1 0 1|1 1 1 1 1|0 0 0 0 0 0|1 1 1 1 1|0 0 0 0 0|  % DRPS
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 1|CRm    |1|0 0|1 1 1 1 1|  % DSB option|#imm
+|1 1 0 1 0 1 0 1 0 0 0 0 0 0 1 1 0 0 1 1|imm|1 0|0|0 1|1 1 1 1 1|  % DSB optionnXS
+|1 1 0 1 0 1 0 1 0 0|0|0 1|0 1 1|0 1 1 1|0 0 1 1|1 0 1|Rt       |  % DVP RCTX, Xt / SYS #3, C7, C3, #5, Xt
+|s|1 0|0 1 0 1 0|shi|1|Rm       |imm6       |Rn       |Rd       |  % EON Wd, Wn, Wm{, shift #amount} / EON Xd, Xn, Xm{, shift #amount}
+|s|1 0|1 0 0 1 0 0|N|immr       |imms       |Rn       |Rd       |  % EOR Wd|WSP, Wn, #imm / EOR Xd|SP, Xn, #imm
+|s|1 0|0 1 0 1 0|shi|0|Rm       |imm6       |Rn       |Rd       |  % EOR Wd, Wn, Wm{, shift #amount} / EOR Xd, Xn, Xm{, shift #amount}
+|1 1 0 1 0 1 1|0|1 0 0|1 1 1 1 1|0 0 0 0|0|0|1 1 1 1 1|0 0 0 0 0|  % ERET
+|1 1 0 1 0 1 1|0|1 0 0|1 1 1 1 1|0 0 0 0|1|M|1 1 1 1 1|1 1 1 1 1|  % ERETAA / ERETAB
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 1 0|0 0 0|1 1 1 1 1|  % ESB
+|s|0 0|1 0 0 1 1 1|N|0|Rm       |imms       |Rn       |Rd       |  % EXTR Wd, Wn, Wm, #lsb / EXTR Xd, Xn, Xm, #lsb
+|1|0|0|1 1 0 1 0 1 1 0|Xm       |0|0|0|1|0|1|Xn       |Xd       |  % GMI Xd, Xn|SP, Xm
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|CRm    |op2  |1 1 1 1 1|  % HINT #imm
+|1 1 0 1 0 1 0 0|0 1 0|imm16                          |0 0 0|0 0|  % HLT #imm
+|1 1 0 1 0 1 0 0|0 0 0|imm16                          |0 0 0|1 0|  % HVC #imm
+|1 1 0 1 0 1 0 1 0 0|0|0 1|op1  |0 1 1 1|CRm    |op2  |Rt       |  % IC ic_op{, Xt} / SYS #op1, C7, Cm, #op2{, Xt}
+|1|0|0|1 1 0 1 0 1 1 0|Xm       |0|0|0|1|0|0|Xn       |Xd       |  % IRG Xd|SP, Xn|SP{, Xm}
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 1|CRm    |1|1 0|1 1 1 1 1|  % ISB {option|#imm}
+|1 1|1 1 1|0|0 0|0|0|1|1 1 1 1 1|1|1 0 1|0 0|Rn       |Rt       |  % LD64B Xt, [Xn|SP {,#0}]
+|1 x|1 1 1|0|0 0|A|R|1|Rs       |0|0 0 0|0 0|Rn       |Rt       |  % LDADD Ws, Wt, [Xn|SP] / LDADDA Ws, Wt, [Xn|SP] / LDADDAL Ws, Wt, [Xn|SP] / LDADDL Ws, Wt, [Xn|SP] / LDADD Xs, Xt, [Xn|SP] / LDADDA Xs, Xt, [Xn|SP] / LDADDAL Xs, Xt, [Xn|SP] / LDADDL Xs, Xt, [Xn|SP]
+|0 0|1 1 1|0|0 0|A|R|1|Rs       |0|0 0 0|0 0|Rn       |Rt       |  % LDADDAB Ws, Wt, [Xn|SP] / LDADDALB Ws, Wt, [Xn|SP] / LDADDB Ws, Wt, [Xn|SP] / LDADDLB Ws, Wt, [Xn|SP]
+|0 1|1 1 1|0|0 0|A|R|1|Rs       |0|0 0 0|0 0|Rn       |Rt       |  % LDADDAH Ws, Wt, [Xn|SP] / LDADDALH Ws, Wt, [Xn|SP] / LDADDH Ws, Wt, [Xn|SP] / LDADDLH Ws, Wt, [Xn|SP]
+|1 x|1 1 1|0|0 0|1|0|1|(1) (1) (|1|1 0 0|0 0|Rn       |Rt       |  % LDAPR Wt, [Xn|SP {,#0}] / LDAPR Xt, [Xn|SP {,#0}]
+|0 0|1 1 1|0|0 0|1|0|1|(1) (1) (|1|1 0 0|0 0|Rn       |Rt       |  % LDAPRB Wt, [Xn|SP {,#0}]
+|0 1|1 1 1|0|0 0|1|0|1|(1) (1) (|1|1 0 0|0 0|Rn       |Rt       |  % LDAPRH Wt, [Xn|SP {,#0}]
+|1 x|0 1 1 0 0 1|0 1|0|imm9             |0 0|Rn       |Rt       |  % LDAPUR Wt, [Xn|SP{, #simm}] / LDAPUR Xt, [Xn|SP{, #simm}]
+|0 0|0 1 1 0 0 1|0 1|0|imm9             |0 0|Rn       |Rt       |  % LDAPURB Wt, [Xn|SP{, #simm}]
+|0 1|0 1 1 0 0 1|0 1|0|imm9             |0 0|Rn       |Rt       |  % LDAPURH Wt, [Xn|SP{, #simm}]
+|0 0|0 1 1 0 0 1|1 x|0|imm9             |0 0|Rn       |Rt       |  % LDAPURSB Wt, [Xn|SP{, #simm}] / LDAPURSB Xt, [Xn|SP{, #simm}]
+|0 1|0 1 1 0 0 1|1 x|0|imm9             |0 0|Rn       |Rt       |  % LDAPURSH Wt, [Xn|SP{, #simm}] / LDAPURSH Xt, [Xn|SP{, #simm}]
+|1 0|0 1 1 0 0 1|1 0|0|imm9             |0 0|Rn       |Rt       |  % LDAPURSW Xt, [Xn|SP{, #simm}]
+|1 x|0 0 1 0 0 0|1|1|0|(1) (1) (|1|(1) (1) (|Rn       |Rt       |  % LDAR Wt, [Xn|SP{,#0}] / LDAR Xt, [Xn|SP{,#0}]
+|0 0|0 0 1 0 0 0|1|1|0|(1) (1) (|1|(1) (1) (|Rn       |Rt       |  % LDARB Wt, [Xn|SP{,#0}]
+|0 1|0 0 1 0 0 0|1|1|0|(1) (1) (|1|(1) (1) (|Rn       |Rt       |  % LDARH Wt, [Xn|SP{,#0}]
+|1|s|0 0 1 0 0 0|0|1|1|(1) (1) (|1|Rt2      |Rn       |Rt       |  % LDAXP Wt1, Wt2, [Xn|SP{,#0}] / LDAXP Xt1, Xt2, [Xn|SP{,#0}]
+|1 x|0 0 1 0 0 0|0|1|0|(1) (1) (|1|(1) (1) (|Rn       |Rt       |  % LDAXR Wt, [Xn|SP{,#0}] / LDAXR Xt, [Xn|SP{,#0}]
+|0 0|0 0 1 0 0 0|0|1|0|(1) (1) (|1|(1) (1) (|Rn       |Rt       |  % LDAXRB Wt, [Xn|SP{,#0}]
+|0 1|0 0 1 0 0 0|0|1|0|(1) (1) (|1|(1) (1) (|Rn       |Rt       |  % LDAXRH Wt, [Xn|SP{,#0}]
+|1 x|1 1 1|0|0 0|A|R|1|Rs       |0|0 0 1|0 0|Rn       |Rt       |  % LDCLR Ws, Wt, [Xn|SP] / LDCLRA Ws, Wt, [Xn|SP] / LDCLRAL Ws, Wt, [Xn|SP] / LDCLRL Ws, Wt, [Xn|SP] / LDCLR Xs, Xt, [Xn|SP] / LDCLRA Xs, Xt, [Xn|SP] / LDCLRAL Xs, Xt, [Xn|SP] / LDCLRL Xs, Xt, [Xn|SP]
+|0 0|1 1 1|0|0 0|A|R|1|Rs       |0|0 0 1|0 0|Rn       |Rt       |  % LDCLRAB Ws, Wt, [Xn|SP] / LDCLRALB Ws, Wt, [Xn|SP] / LDCLRB Ws, Wt, [Xn|SP] / LDCLRLB Ws, Wt, [Xn|SP]
+|0 1|1 1 1|0|0 0|A|R|1|Rs       |0|0 0 1|0 0|Rn       |Rt       |  % LDCLRAH Ws, Wt, [Xn|SP] / LDCLRALH Ws, Wt, [Xn|SP] / LDCLRH Ws, Wt, [Xn|SP] / LDCLRLH Ws, Wt, [Xn|SP]
+|1 x|1 1 1|0|0 0|A|R|1|Rs       |0|0 1 0|0 0|Rn       |Rt       |  % LDEOR Ws, Wt, [Xn|SP] / LDEORA Ws, Wt, [Xn|SP] / LDEORAL Ws, Wt, [Xn|SP] / LDEORL Ws, Wt, [Xn|SP] / LDEOR Xs, Xt, [Xn|SP] / LDEORA Xs, Xt, [Xn|SP] / LDEORAL Xs, Xt, [Xn|SP] / LDEORL Xs, Xt, [Xn|SP]
+|0 0|1 1 1|0|0 0|A|R|1|Rs       |0|0 1 0|0 0|Rn       |Rt       |  % LDEORAB Ws, Wt, [Xn|SP] / LDEORALB Ws, Wt, [Xn|SP] / LDEORB Ws, Wt, [Xn|SP] / LDEORLB Ws, Wt, [Xn|SP]
+|0 1|1 1 1|0|0 0|A|R|1|Rs       |0|0 1 0|0 0|Rn       |Rt       |  % LDEORAH Ws, Wt, [Xn|SP] / LDEORALH Ws, Wt, [Xn|SP] / LDEORH Ws, Wt, [Xn|SP] / LDEORLH Ws, Wt, [Xn|SP]
+|1 1 0 1 1 0 0 1|0|1|1|imm9             |0|0|Xn       |Xt       |  % LDG Xt, [Xn|SP{, #simm}]
+|1 1 0 1 1 0 0 1|1|1|1|0|0|0|0|0|0|0|0|0|0|0|Xn       |Xt       |  % LDGM Xt, [Xn|SP]
+|1 x|0 0 1 0 0 0|1|1|0|(1) (1) (|0|(1) (1) (|Rn       |Rt       |  % LDLAR Wt, [Xn|SP{,#0}] / LDLAR Xt, [Xn|SP{,#0}]
+|0 0|0 0 1 0 0 0|1|1|0|(1) (1) (|0|(1) (1) (|Rn       |Rt       |  % LDLARB Wt, [Xn|SP{,#0}]
+|0 1|0 0 1 0 0 0|1|1|0|(1) (1) (|0|(1) (1) (|Rn       |Rt       |  % LDLARH Wt, [Xn|SP{,#0}]
+|x 0|1 0 1|0|0 0 0|1|imm7         |Rt2      |Rn       |Rt       |  % LDNP Wt1, Wt2, [Xn|SP{, #imm}] / LDNP Xt1, Xt2, [Xn|SP{, #imm}]
+|x 0|1 0 1|0|0 0 1|1|imm7         |Rt2      |Rn       |Rt       |  % LDP Wt1, Wt2, [Xn|SP], #imm / LDP Xt1, Xt2, [Xn|SP], #imm
+|x 0|1 0 1|0|0 1 1|1|imm7         |Rt2      |Rn       |Rt       |  % LDP Wt1, Wt2, [Xn|SP, #imm]! / LDP Xt1, Xt2, [Xn|SP, #imm]!
+|x 0|1 0 1|0|0 1 0|1|imm7         |Rt2      |Rn       |Rt       |  % LDP Wt1, Wt2, [Xn|SP{, #imm}] / LDP Xt1, Xt2, [Xn|SP{, #imm}]
+|0 1|1 0 1|0|0 0 1|1|imm7         |Rt2      |Rn       |Rt       |  % LDPSW Xt1, Xt2, [Xn|SP], #imm
+|0 1|1 0 1|0|0 1 1|1|imm7         |Rt2      |Rn       |Rt       |  % LDPSW Xt1, Xt2, [Xn|SP, #imm]!
+|0 1|1 0 1|0|0 1 0|1|imm7         |Rt2      |Rn       |Rt       |  % LDPSW Xt1, Xt2, [Xn|SP{, #imm}]
+|1 x|1 1 1|0|0 0|0 1|0|imm9             |0 1|Rn       |Rt       |  % LDR Wt, [Xn|SP], #simm / LDR Xt, [Xn|SP], #simm
+|1 x|1 1 1|0|0 0|0 1|0|imm9             |1 1|Rn       |Rt       |  % LDR Wt, [Xn|SP, #simm]! / LDR Xt, [Xn|SP, #simm]!
+|1 x|1 1 1|0|0 1|0 1|imm12                  |Rn       |Rt       |  % LDR Wt, [Xn|SP{, #pimm}] / LDR Xt, [Xn|SP{, #pimm}]
+|0 x|0 1 1|0|0 0|imm19                                |Rt       |  % LDR Wt, label / LDR Xt, label
+|1 x|1 1 1|0|0 0|0 1|1|Rm       |optio|S|1 0|Rn       |Rt       |  % LDR Wt, [Xn|SP, (Wm|Xm){, extend {amount}}] / LDR Xt, [Xn|SP, (Wm|Xm){, extend {amount}}]
+|1 1|1 1 1|0|0 0|M|S|1|imm9             |W|1|Rn       |Rt       |  % LDRAA Xt, [Xn|SP{, #simm}] / LDRAA Xt, [Xn|SP{, #simm}]! / LDRAB Xt, [Xn|SP{, #simm}] / LDRAB Xt, [Xn|SP{, #simm}]!
+|0 0|1 1 1|0|0 0|0 1|0|imm9             |0 1|Rn       |Rt       |  % LDRB Wt, [Xn|SP], #simm
+|0 0|1 1 1|0|0 0|0 1|0|imm9             |1 1|Rn       |Rt       |  % LDRB Wt, [Xn|SP, #simm]!
+|0 0|1 1 1|0|0 1|0 1|imm12                  |Rn       |Rt       |  % LDRB Wt, [Xn|SP{, #pimm}]
+|0 0|1 1 1|0|0 0|0 1|1|Rm       |optio|S|1 0|Rn       |Rt       |  % LDRB Wt, [Xn|SP, (Wm|Xm), extend {amount}] / LDRB Wt, [Xn|SP, Xm{, LSL amount}]
+|0 1|1 1 1|0|0 0|0 1|0|imm9             |0 1|Rn       |Rt       |  % LDRH Wt, [Xn|SP], #simm
+|0 1|1 1 1|0|0 0|0 1|0|imm9             |1 1|Rn       |Rt       |  % LDRH Wt, [Xn|SP, #simm]!
+|0 1|1 1 1|0|0 1|0 1|imm12                  |Rn       |Rt       |  % LDRH Wt, [Xn|SP{, #pimm}]
+|0 1|1 1 1|0|0 0|0 1|1|Rm       |optio|S|1 0|Rn       |Rt       |  % LDRH Wt, [Xn|SP, (Wm|Xm){, extend {amount}}]
+|0 0|1 1 1|0|0 0|1 x|0|imm9             |0 1|Rn       |Rt       |  % LDRSB Wt, [Xn|SP], #simm / LDRSB Xt, [Xn|SP], #simm
+|0 0|1 1 1|0|0 0|1 x|0|imm9             |1 1|Rn       |Rt       |  % LDRSB Wt, [Xn|SP, #simm]! / LDRSB Xt, [Xn|SP, #simm]!
+|0 0|1 1 1|0|0 1|1 x|imm12                  |Rn       |Rt       |  % LDRSB Wt, [Xn|SP{, #pimm}] / LDRSB Xt, [Xn|SP{, #pimm}]
+|0 0|1 1 1|0|0 0|1 x|1|Rm       |optio|S|1 0|Rn       |Rt       |  % LDRSB Wt, [Xn|SP, (Wm|Xm), extend {amount}] / LDRSB Wt, [Xn|SP, Xm{, LSL amount}] / LDRSB Xt, [Xn|SP, (Wm|Xm), extend {amount}] / LDRSB Xt, [Xn|SP, Xm{, LSL amount}]
+|0 1|1 1 1|0|0 0|1 x|0|imm9             |0 1|Rn       |Rt       |  % LDRSH Wt, [Xn|SP], #simm / LDRSH Xt, [Xn|SP], #simm
+|0 1|1 1 1|0|0 0|1 x|0|imm9             |1 1|Rn       |Rt       |  % LDRSH Wt, [Xn|SP, #simm]! / LDRSH Xt, [Xn|SP, #simm]!
+|0 1|1 1 1|0|0 1|1 x|imm12                  |Rn       |Rt       |  % LDRSH Wt, [Xn|SP{, #pimm}] / LDRSH Xt, [Xn|SP{, #pimm}]
+|0 1|1 1 1|0|0 0|1 x|1|Rm       |optio|S|1 0|Rn       |Rt       |  % LDRSH Wt, [Xn|SP, (Wm|Xm){, extend {amount}}] / LDRSH Xt, [Xn|SP, (Wm|Xm){, extend {amount}}]
+|1 0|1 1 1|0|0 0|1 0|0|imm9             |0 1|Rn       |Rt       |  % LDRSW Xt, [Xn|SP], #simm
+|1 0|1 1 1|0|0 0|1 0|0|imm9             |1 1|Rn       |Rt       |  % LDRSW Xt, [Xn|SP, #simm]!
+|1 0|1 1 1|0|0 1|1 0|imm12                  |Rn       |Rt       |  % LDRSW Xt, [Xn|SP{, #pimm}]
+|1 0|0 1 1|0|0 0|imm19                                |Rt       |  % LDRSW Xt, label
+|1 0|1 1 1|0|0 0|1 0|1|Rm       |optio|S|1 0|Rn       |Rt       |  % LDRSW Xt, [Xn|SP, (Wm|Xm){, extend {amount}}]
+|1 x|1 1 1|0|0 0|A|R|1|Rs       |0|0 1 1|0 0|Rn       |Rt       |  % LDSET Ws, Wt, [Xn|SP] / LDSETA Ws, Wt, [Xn|SP] / LDSETAL Ws, Wt, [Xn|SP] / LDSETL Ws, Wt, [Xn|SP] / LDSET Xs, Xt, [Xn|SP] / LDSETA Xs, Xt, [Xn|SP] / LDSETAL Xs, Xt, [Xn|SP] / LDSETL Xs, Xt, [Xn|SP]
+|0 0|1 1 1|0|0 0|A|R|1|Rs       |0|0 1 1|0 0|Rn       |Rt       |  % LDSETAB Ws, Wt, [Xn|SP] / LDSETALB Ws, Wt, [Xn|SP] / LDSETB Ws, Wt, [Xn|SP] / LDSETLB Ws, Wt, [Xn|SP]
+|0 1|1 1 1|0|0 0|A|R|1|Rs       |0|0 1 1|0 0|Rn       |Rt       |  % LDSETAH Ws, Wt, [Xn|SP] / LDSETALH Ws, Wt, [Xn|SP] / LDSETH Ws, Wt, [Xn|SP] / LDSETLH Ws, Wt, [Xn|SP]
+|1 x|1 1 1|0|0 0|A|R|1|Rs       |0|1 0 0|0 0|Rn       |Rt       |  % LDSMAX Ws, Wt, [Xn|SP] / LDSMAXA Ws, Wt, [Xn|SP] / LDSMAXAL Ws, Wt, [Xn|SP] / LDSMAXL Ws, Wt, [Xn|SP] / LDSMAX Xs, Xt, [Xn|SP] / LDSMAXA Xs, Xt, [Xn|SP] / LDSMAXAL Xs, Xt, [Xn|SP] / LDSMAXL Xs, Xt, [Xn|SP]
+|0 0|1 1 1|0|0 0|A|R|1|Rs       |0|1 0 0|0 0|Rn       |Rt       |  % LDSMAXAB Ws, Wt, [Xn|SP] / LDSMAXALB Ws, Wt, [Xn|SP] / LDSMAXB Ws, Wt, [Xn|SP] / LDSMAXLB Ws, Wt, [Xn|SP]
+|0 1|1 1 1|0|0 0|A|R|1|Rs       |0|1 0 0|0 0|Rn       |Rt       |  % LDSMAXAH Ws, Wt, [Xn|SP] / LDSMAXALH Ws, Wt, [Xn|SP] / LDSMAXH Ws, Wt, [Xn|SP] / LDSMAXLH Ws, Wt, [Xn|SP]
+|1 x|1 1 1|0|0 0|A|R|1|Rs       |0|1 0 1|0 0|Rn       |Rt       |  % LDSMIN Ws, Wt, [Xn|SP] / LDSMINA Ws, Wt, [Xn|SP] / LDSMINAL Ws, Wt, [Xn|SP] / LDSMINL Ws, Wt, [Xn|SP] / LDSMIN Xs, Xt, [Xn|SP] / LDSMINA Xs, Xt, [Xn|SP] / LDSMINAL Xs, Xt, [Xn|SP] / LDSMINL Xs, Xt, [Xn|SP]
+|0 0|1 1 1|0|0 0|A|R|1|Rs       |0|1 0 1|0 0|Rn       |Rt       |  % LDSMINAB Ws, Wt, [Xn|SP] / LDSMINALB Ws, Wt, [Xn|SP] / LDSMINB Ws, Wt, [Xn|SP] / LDSMINLB Ws, Wt, [Xn|SP]
+|0 1|1 1 1|0|0 0|A|R|1|Rs       |0|1 0 1|0 0|Rn       |Rt       |  % LDSMINAH Ws, Wt, [Xn|SP] / LDSMINALH Ws, Wt, [Xn|SP] / LDSMINH Ws, Wt, [Xn|SP] / LDSMINLH Ws, Wt, [Xn|SP]
+|1 x|1 1 1|0|0 0|0 1|0|imm9             |1 0|Rn       |Rt       |  % LDTR Wt, [Xn|SP{, #simm}] / LDTR Xt, [Xn|SP{, #simm}]
+|0 0|1 1 1|0|0 0|0 1|0|imm9             |1 0|Rn       |Rt       |  % LDTRB Wt, [Xn|SP{, #simm}]
+|0 1|1 1 1|0|0 0|0 1|0|imm9             |1 0|Rn       |Rt       |  % LDTRH Wt, [Xn|SP{, #simm}]
+|0 0|1 1 1|0|0 0|1 x|0|imm9             |1 0|Rn       |Rt       |  % LDTRSB Wt, [Xn|SP{, #simm}] / LDTRSB Xt, [Xn|SP{, #simm}]
+|0 1|1 1 1|0|0 0|1 x|0|imm9             |1 0|Rn       |Rt       |  % LDTRSH Wt, [Xn|SP{, #simm}] / LDTRSH Xt, [Xn|SP{, #simm}]
+|1 0|1 1 1|0|0 0|1 0|0|imm9             |1 0|Rn       |Rt       |  % LDTRSW Xt, [Xn|SP{, #simm}]
+|1 x|1 1 1|0|0 0|A|R|1|Rs       |0|1 1 0|0 0|Rn       |Rt       |  % LDUMAX Ws, Wt, [Xn|SP] / LDUMAXA Ws, Wt, [Xn|SP] / LDUMAXAL Ws, Wt, [Xn|SP] / LDUMAXL Ws, Wt, [Xn|SP] / LDUMAX Xs, Xt, [Xn|SP] / LDUMAXA Xs, Xt, [Xn|SP] / LDUMAXAL Xs, Xt, [Xn|SP] / LDUMAXL Xs, Xt, [Xn|SP]
+|0 0|1 1 1|0|0 0|A|R|1|Rs       |0|1 1 0|0 0|Rn       |Rt       |  % LDUMAXAB Ws, Wt, [Xn|SP] / LDUMAXALB Ws, Wt, [Xn|SP] / LDUMAXB Ws, Wt, [Xn|SP] / LDUMAXLB Ws, Wt, [Xn|SP]
+|0 1|1 1 1|0|0 0|A|R|1|Rs       |0|1 1 0|0 0|Rn       |Rt       |  % LDUMAXAH Ws, Wt, [Xn|SP] / LDUMAXALH Ws, Wt, [Xn|SP] / LDUMAXH Ws, Wt, [Xn|SP] / LDUMAXLH Ws, Wt, [Xn|SP]
+|1 x|1 1 1|0|0 0|A|R|1|Rs       |0|1 1 1|0 0|Rn       |Rt       |  % LDUMIN Ws, Wt, [Xn|SP] / LDUMINA Ws, Wt, [Xn|SP] / LDUMINAL Ws, Wt, [Xn|SP] / LDUMINL Ws, Wt, [Xn|SP] / LDUMIN Xs, Xt, [Xn|SP] / LDUMINA Xs, Xt, [Xn|SP] / LDUMINAL Xs, Xt, [Xn|SP] / LDUMINL Xs, Xt, [Xn|SP]
+|0 0|1 1 1|0|0 0|A|R|1|Rs       |0|1 1 1|0 0|Rn       |Rt       |  % LDUMINAB Ws, Wt, [Xn|SP] / LDUMINALB Ws, Wt, [Xn|SP] / LDUMINB Ws, Wt, [Xn|SP] / LDUMINLB Ws, Wt, [Xn|SP]
+|0 1|1 1 1|0|0 0|A|R|1|Rs       |0|1 1 1|0 0|Rn       |Rt       |  % LDUMINAH Ws, Wt, [Xn|SP] / LDUMINALH Ws, Wt, [Xn|SP] / LDUMINH Ws, Wt, [Xn|SP] / LDUMINLH Ws, Wt, [Xn|SP]
+|1 x|1 1 1|0|0 0|0 1|0|imm9             |0 0|Rn       |Rt       |  % LDUR Wt, [Xn|SP{, #simm}] / LDUR Xt, [Xn|SP{, #simm}]
+|0 0|1 1 1|0|0 0|0 1|0|imm9             |0 0|Rn       |Rt       |  % LDURB Wt, [Xn|SP{, #simm}]
+|0 1|1 1 1|0|0 0|0 1|0|imm9             |0 0|Rn       |Rt       |  % LDURH Wt, [Xn|SP{, #simm}]
+|0 0|1 1 1|0|0 0|1 x|0|imm9             |0 0|Rn       |Rt       |  % LDURSB Wt, [Xn|SP{, #simm}] / LDURSB Xt, [Xn|SP{, #simm}]
+|0 1|1 1 1|0|0 0|1 x|0|imm9             |0 0|Rn       |Rt       |  % LDURSH Wt, [Xn|SP{, #simm}] / LDURSH Xt, [Xn|SP{, #simm}]
+|1 0|1 1 1|0|0 0|1 0|0|imm9             |0 0|Rn       |Rt       |  % LDURSW Xt, [Xn|SP{, #simm}]
+|1|s|0 0 1 0 0 0|0|1|1|(1) (1) (|0|Rt2      |Rn       |Rt       |  % LDXP Wt1, Wt2, [Xn|SP{,#0}] / LDXP Xt1, Xt2, [Xn|SP{,#0}]
+|1 x|0 0 1 0 0 0|0|1|0|(1) (1) (|0|(1) (1) (|Rn       |Rt       |  % LDXR Wt, [Xn|SP{,#0}] / LDXR Xt, [Xn|SP{,#0}]
+|0 0|0 0 1 0 0 0|0|1|0|(1) (1) (|0|(1) (1) (|Rn       |Rt       |  % LDXRB Wt, [Xn|SP{,#0}]
+|0 1|0 0 1 0 0 0|0|1|0|(1) (1) (|0|(1) (1) (|Rn       |Rt       |  % LDXRH Wt, [Xn|SP{,#0}]
+|s|1 0|1 0 0 1 1 0|N|immr       |!= x11111  |Rn       |Rd       |  % LSL Wd, Wn, #shift / UBFM Wd, Wn, #(-shift MOD 32), #(31-shift) / LSL Xd, Xn, #shift / UBFM Xd, Xn, #(-shift MOD 64), #(63-shift)
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 0 1 0|0 0|Rn       |Rd       |  % LSL Wd, Wn, Wm / LSLV Wd, Wn, Wm / LSL Xd, Xn, Xm / LSLV Xd, Xn, Xm
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 0 1 0|0 0|Rn       |Rd       |  % LSLV Wd, Wn, Wm / LSLV Xd, Xn, Xm
+|s|1 0|1 0 0 1 1 0|N|immr       |x 1 1 1 1 1|Rn       |Rd       |  % LSR Wd, Wn, #shift / UBFM Wd, Wn, #shift, #31 / LSR Xd, Xn, #shift / UBFM Xd, Xn, #shift, #63
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 0 1 0|0 1|Rn       |Rd       |  % LSR Wd, Wn, Wm / LSRV Wd, Wn, Wm / LSR Xd, Xn, Xm / LSRV Xd, Xn, Xm
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 0 1 0|0 1|Rn       |Rd       |  % LSRV Wd, Wn, Wm / LSRV Xd, Xn, Xm
+|s|0 0|1 1 0 1 1|0 0 0|Rm       |0|Ra       |Rn       |Rd       |  % MADD Wd, Wn, Wm, Wa / MADD Xd, Xn, Xm, Xa
+|s|0 0|1 1 0 1 1|0 0 0|Rm       |1|1 1 1 1 1|Rn       |Rd       |  % MNEG Wd, Wn, Wm / MSUB Wd, Wn, Wm, WZR / MNEG Xd, Xn, Xm / MSUB Xd, Xn, Xm, XZR
+|s|0 1|1 0 0 1 0 0|N|immr       |imms       |1 1 1 1 1|Rd       |  % MOV Wd|WSP, #imm / ORR Wd|WSP, WZR, #imm / MOV Xd|SP, #imm / ORR Xd|SP, XZR, #imm
+|s|0 0|1 0 0 1 0 1|hw |imm16                          |Rd       |  % MOV Wd, #imm / MOVN Wd, #imm16, LSL #shift / MOV Xd, #imm / MOVN Xd, #imm16, LSL #shift
+|s|0 1|0 1 0 1 0|0 0|0|Rm       |0 0 0 0 0 0|1 1 1 1 1|Rd       |  % MOV Wd, Wm / ORR Wd, WZR, Wm / MOV Xd, Xm / ORR Xd, XZR, Xm
+|s|0|0|1 0 0 0 1 0|0|0 0 0 0 0 0 0 0 0 0 0 0|Rn       |Rd       |  % MOV Wd|WSP, Wn|WSP / ADD Wd|WSP, Wn|WSP, #0 / MOV Xd|SP, Xn|SP / ADD Xd|SP, Xn|SP, #0
+|s|1 0|1 0 0 1 0 1|hw |imm16                          |Rd       |  % MOV Wd, #imm / MOVZ Wd, #imm16, LSL #shift / MOV Xd, #imm / MOVZ Xd, #imm16, LSL #shift
+|s|1 1|1 0 0 1 0 1|hw |imm16                          |Rd       |  % MOVK Wd, #imm{, LSL #shift} / MOVK Xd, #imm{, LSL #shift}
+|s|0 0|1 0 0 1 0 1|hw |imm16                          |Rd       |  % MOVN Wd, #imm{, LSL #shift} / MOVN Xd, #imm{, LSL #shift}
+|s|1 0|1 0 0 1 0 1|hw |imm16                          |Rd       |  % MOVZ Wd, #imm{, LSL #shift} / MOVZ Xd, #imm{, LSL #shift}
+|1 1 0 1 0 1 0 1 0 0|1|1|o|op1  |CRn    |CRm    |op2  |Rt       |  % MRS Xt, (systemreg|Sop0_op1_Cn_Cm_op2)
+|1 1 0 1 0 1 0 1 0 0|0|0 0|op1  |0 1 0 0|CRm    |op2  |1 1 1 1 1|  % MSR pstatefield, #imm
+|1 1 0 1 0 1 0 1 0 0|0|1|o|op1  |CRn    |CRm    |op2  |Rt       |  % MSR (systemreg|Sop0_op1_Cn_Cm_op2), Xt
+|s|0 0|1 1 0 1 1|0 0 0|Rm       |1|Ra       |Rn       |Rd       |  % MSUB Wd, Wn, Wm, Wa / MSUB Xd, Xn, Xm, Xa
+|s|0 0|1 1 0 1 1|0 0 0|Rm       |0|1 1 1 1 1|Rn       |Rd       |  % MUL Wd, Wn, Wm / MADD Wd, Wn, Wm, WZR / MUL Xd, Xn, Xm / MADD Xd, Xn, Xm, XZR
+|s|0 1|0 1 0 1 0|shi|1|Rm       |imm6       |1 1 1 1 1|Rd       |  % MVN Wd, Wm{, shift #amount} / ORN Wd, WZR, Wm{, shift #amount} / MVN Xd, Xm{, shift #amount} / ORN Xd, XZR, Xm{, shift #amount}
+|s|1|0|0 1 0 1 1|shi|0|Rm       |imm6       |1 1 1 1 1|Rd       |  % NEG Wd, Wm{, shift #amount} / SUB Wd, WZR, Wm {, shift #amount} / NEG Xd, Xm{, shift #amount} / SUB Xd, XZR, Xm {, shift #amount}
+|s|1|1|0 1 0 1 1|shi|0|Rm       |imm6       |1 1 1 1 1|!= 11111 |  % NEGS Wd, Wm{, shift #amount} / SUBS Wd, WZR, Wm {, shift #amount} / NEGS Xd, Xm{, shift #amount} / SUBS Xd, XZR, Xm {, shift #amount}
+|s|1|0|1 1 0 1 0 0 0 0|Rm       |0 0 0 0 0 0|1 1 1 1 1|Rd       |  % NGC Wd, Wm / SBC Wd, WZR, Wm / NGC Xd, Xm / SBC Xd, XZR, Xm
+|s|1|1|1 1 0 1 0 0 0 0|Rm       |0 0 0 0 0 0|1 1 1 1 1|Rd       |  % NGCS Wd, Wm / SBCS Wd, WZR, Wm / NGCS Xd, Xm / SBCS Xd, XZR, Xm
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 0 0|0 0 0|1 1 1 1 1|  % NOP
+|s|0 1|0 1 0 1 0|shi|1|Rm       |imm6       |Rn       |Rd       |  % ORN Wd, Wn, Wm{, shift #amount} / ORN Xd, Xn, Xm{, shift #amount}
+|s|0 1|1 0 0 1 0 0|N|immr       |imms       |Rn       |Rd       |  % ORR Wd|WSP, Wn, #imm / ORR Xd|SP, Xn, #imm
+|s|0 1|0 1 0 1 0|shi|0|Rm       |imm6       |Rn       |Rd       |  % ORR Wd, Wn, Wm{, shift #amount} / ORR Xd, Xn, Xm{, shift #amount}
+|1|1|0|1 1 0 1 0 1 1 0|0 0 0 0 1|0|0|Z|0 1 0|Rn       |Rd       |  % PACDA Xd, Xn|SP / PACDZA Xd
+|1|1|0|1 1 0 1 0 1 1 0|0 0 0 0 1|0|0|Z|0 1 1|Rn       |Rd       |  % PACDB Xd, Xn|SP / PACDZB Xd
+|1|0|0|1 1 0 1 0 1 1 0|Rm       |0 0 1 1 0 0|Rn       |Rd       |  % PACGA Xd, Xn, Xm|SP
+|1|1|0|1 1 0 1 0 1 1 0|0 0 0 0 1|0|0|Z|0 0 0|Rn       |Rd       |  % PACIA Xd, Xn|SP / PACIZA Xd
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 x 1|0 0 x|1 1 1 1 1|  % PACIA1716 / PACIASP / PACIAZ
+|1|1|0|1 1 0 1 0 1 1 0|0 0 0 0 1|0|0|Z|0 0 1|Rn       |Rd       |  % PACIB Xd, Xn|SP / PACIZB Xd
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 x 1|0 1 x|1 1 1 1 1|  % PACIB1716 / PACIBSP / PACIBZ
+|1 1|1 1 1|0|0 1|1 0|imm12                  |Rn       |Rt       |  % PRFM (prfop|#imm5), [Xn|SP{, #pimm}]
+|1 1|0 1 1|0|0 0|imm19                                |Rt       |  % PRFM (prfop|#imm5), label
+|1 1|1 1 1|0|0 0|1 0|1|Rm       |optio|S|1 0|Rn       |Rt       |  % PRFM (prfop|#imm5), [Xn|SP, (Wm|Xm){, extend {amount}}]
+|1 1|1 1 1|0|0 0|1 0|0|imm9             |0 0|Rn       |Rt       |  % PRFUM (prfop|#imm5), [Xn|SP{, #simm}]
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 1 0|0 0 1|1 1 1 1 1|  % PSB CSYNC
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 1|0 1 0 0|1|0 0|1 1 1 1 1|  % PSSBB / DSB #4
+|s|1|0|1 1 0 1 0 1 1 0|0 0 0 0 0|0 0 0 0|0 0|Rn       |Rd       |  % RBIT Wd, Wn / RBIT Xd, Xn
+|1 1 0 1 0 1 1|0|0|1 0|1 1 1 1 1|0 0 0 0|0|0|Rn       |0 0 0 0 0|  % RET {Xn}
+|1 1 0 1 0 1 1|0|0|1 0|1 1 1 1 1|0 0 0 0|1|M|1 1 1 1 1|1 1 1 1 1|  % RETAA / RETAB
+|s|1|0|1 1 0 1 0 1 1 0|0 0 0 0 0|0 0 0 0|1 x|Rn       |Rd       |  % REV Wd, Wn / REV Xd, Xn
+|s|1|0|1 1 0 1 0 1 1 0|0 0 0 0 0|0 0 0 0|0 1|Rn       |Rd       |  % REV16 Wd, Wn / REV16 Xd, Xn
+|1|1|0|1 1 0 1 0 1 1 0|0 0 0 0 0|0 0 0 0|1 0|Rn       |Rd       |  % REV32 Xd, Xn
+|1|1|0|1 1 0 1 0 1 1 0|0 0 0 0 0|0 0 0 0|1 1|Rn       |Rd       |  % REV64 Xd, Xn / REV Xd, Xn
+|1|0|1|1 1 0 1 0 0 0 0|imm6       |0 0 0 0 1|Rn       |0|mask   |  % RMIF Xn, #shift, #mask
+|s|0 0|1 0 0 1 1 1|N|0|Rm       |imms       |Rn       |Rd       |  % ROR Wd, Ws, #shift / EXTR Wd, Ws, Ws, #shift / ROR Xd, Xs, #shift / EXTR Xd, Xs, Xs, #shift
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 0 1 0|1 1|Rn       |Rd       |  % ROR Wd, Wn, Wm / RORV Wd, Wn, Wm / ROR Xd, Xn, Xm / RORV Xd, Xn, Xm
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 0 1 0|1 1|Rn       |Rd       |  % RORV Wd, Wn, Wm / RORV Xd, Xn, Xm
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 1|(0) (0)|1|1 1|1 1 1 1 1|  % SB
+|s|1|0|1 1 0 1 0 0 0 0|Rm       |0 0 0 0 0 0|Rn       |Rd       |  % SBC Wd, Wn, Wm / SBC Xd, Xn, Xm
+|s|1|1|1 1 0 1 0 0 0 0|Rm       |0 0 0 0 0 0|Rn       |Rd       |  % SBCS Wd, Wn, Wm / SBCS Xd, Xn, Xm
+|s|0 0|1 0 0 1 1 0|N|immr       |imms       |Rn       |Rd       |  % SBFIZ Wd, Wn, #lsb, #width / SBFM Wd, Wn, #(-lsb MOD 32), #(width-1) / SBFIZ Xd, Xn, #lsb, #width / SBFM Xd, Xn, #(-lsb MOD 64), #(width-1)
+|s|0 0|1 0 0 1 1 0|N|immr       |imms       |Rn       |Rd       |  % SBFM Wd, Wn, #immr, #imms / SBFM Xd, Xn, #immr, #imms
+|s|0 0|1 0 0 1 1 0|N|immr       |imms       |Rn       |Rd       |  % SBFX Wd, Wn, #lsb, #width / SBFM Wd, Wn, #lsb, #(lsb+width-1) / SBFX Xd, Xn, #lsb, #width / SBFM Xd, Xn, #lsb, #(lsb+width-1)
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 0 0 0 1|1|Rn       |Rd       |  % SDIV Wd, Wn, Wm / SDIV Xd, Xn, Xm
+|0|0|1|1 1 0 1 0 0 0 0|0 0 0 0 0 0|s|0 0 1 0|Rn       |0|1 1 0 1|  % SETF8 Wn / SETF16 Wn
+|sz |0 1 1|1|0 1|1 1|0|Rs       |x x 0 0|0 1|Rn       |Rd       |  % SETGE [Xd]!, Xn!, Xs / SETGM [Xd]!, Xn!, Xs / SETGP [Xd]!, Xn!, Xs
+|sz |0 1 1|1|0 1|1 1|0|Rs       |x x 1 0|0 1|Rn       |Rd       |  % SETGEN [Xd]!, Xn!, Xs / SETGMN [Xd]!, Xn!, Xs / SETGPN [Xd]!, Xn!, Xs
+|sz |0 1 1|1|0 1|1 1|0|Rs       |x x 0 1|0 1|Rn       |Rd       |  % SETGET [Xd]!, Xn!, Xs / SETGMT [Xd]!, Xn!, Xs / SETGPT [Xd]!, Xn!, Xs
+|sz |0 1 1|1|0 1|1 1|0|Rs       |x x 1 1|0 1|Rn       |Rd       |  % SETGETN [Xd]!, Xn!, Xs / SETGMTN [Xd]!, Xn!, Xs / SETGPTN [Xd]!, Xn!, Xs
+|sz |0 1 1|0|0 1|1 1|0|Rs       |x x 0 0|0 1|Rn       |Rd       |  % SETE [Xd]!, Xn!, Xs / SETM [Xd]!, Xn!, Xs / SETP [Xd]!, Xn!, Xs
+|sz |0 1 1|0|0 1|1 1|0|Rs       |x x 1 0|0 1|Rn       |Rd       |  % SETEN [Xd]!, Xn!, Xs / SETMN [Xd]!, Xn!, Xs / SETPN [Xd]!, Xn!, Xs
+|sz |0 1 1|0|0 1|1 1|0|Rs       |x x 0 1|0 1|Rn       |Rd       |  % SETET [Xd]!, Xn!, Xs / SETMT [Xd]!, Xn!, Xs / SETPT [Xd]!, Xn!, Xs
+|sz |0 1 1|0|0 1|1 1|0|Rs       |x x 1 1|0 1|Rn       |Rd       |  % SETETN [Xd]!, Xn!, Xs / SETMTN [Xd]!, Xn!, Xs / SETPTN [Xd]!, Xn!, Xs
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 0 0|1 0 0|1 1 1 1 1|  % SEV
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 0 0|1 0 1|1 1 1 1 1|  % SEVL
+|1|0 0|1 1 0 1 1|0|0 1|Rm       |0|Ra       |Rn       |Rd       |  % SMADDL Xd, Wn, Wm, Xa
+|1 1 0 1 0 1 0 0|0 0 0|imm16                          |0 0 0|1 1|  % SMC #imm
+|1|0 0|1 1 0 1 1|0|0 1|Rm       |1|1 1 1 1 1|Rn       |Rd       |  % SMNEGL Xd, Wn, Wm / SMSUBL Xd, Wn, Wm, XZR
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 1 0 0|0 x x 1|0 1 1|1 1 1 1 1|  % SMSTART {option} / MSR pstatefield, #1
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 1 0 0|0 x x 0|0 1 1|1 1 1 1 1|  % SMSTOP {option} / MSR pstatefield, #0
+|1|0 0|1 1 0 1 1|0|0 1|Rm       |1|Ra       |Rn       |Rd       |  % SMSUBL Xd, Wn, Wm, Xa
+|1|0 0|1 1 0 1 1|0|1 0|Rm       |0|(1) (1) (|Rn       |Rd       |  % SMULH Xd, Xn, Xm
+|1|0 0|1 1 0 1 1|0|0 1|Rm       |0|1 1 1 1 1|Rn       |Rd       |  % SMULL Xd, Wn, Wm / SMADDL Xd, Wn, Wm, XZR
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 1|0 0 0 0|1|0 0|1 1 1 1 1|  % SSBB / DSB #0
+|1 1 0 1 1 0 0 1|1|0|1|imm9             |0|1|Xn       |Xt       |  % ST2G Xt|SP, [Xn|SP], #simm
+|1 1 0 1 1 0 0 1|1|0|1|imm9             |1|1|Xn       |Xt       |  % ST2G Xt|SP, [Xn|SP, #simm]!
+|1 1 0 1 1 0 0 1|1|0|1|imm9             |1|0|Xn       |Xt       |  % ST2G Xt|SP, [Xn|SP{, #simm}]
+|1 1|1 1 1|0|0 0|0|0|1|1 1 1 1 1|1|0 0 1|0 0|Rn       |Rt       |  % ST64B Xt, [Xn|SP {,#0}]
+|1 1|1 1 1|0|0 0|0|0|1|Rs       |1|0 1 1|0 0|Rn       |Rt       |  % ST64BV Xs, Xt, [Xn|SP]
+|1 1|1 1 1|0|0 0|0|0|1|Rs       |1|0 1 0|0 0|Rn       |Rt       |  % ST64BV0 Xs, Xt, [Xn|SP]
+|1 x|1 1 1|0|0 0|0|R|1|Rs       |0|0 0 0|0 0|Rn       |1 1 1 1 1|  % STADD Ws, [Xn|SP] / LDADD Ws, WZR, [Xn|SP] / STADDL Ws, [Xn|SP] / LDADDL Ws, WZR, [Xn|SP] / STADD Xs, [Xn|SP] / LDADD Xs, XZR, [Xn|SP] / STADDL Xs, [Xn|SP] / LDADDL Xs, XZR, [Xn|SP]
+|0 0|1 1 1|0|0 0|0|R|1|Rs       |0|0 0 0|0 0|Rn       |1 1 1 1 1|  % STADDB Ws, [Xn|SP] / LDADDB Ws, WZR, [Xn|SP] / STADDLB Ws, [Xn|SP] / LDADDLB Ws, WZR, [Xn|SP]
+|0 1|1 1 1|0|0 0|0|R|1|Rs       |0|0 0 0|0 0|Rn       |1 1 1 1 1|  % STADDH Ws, [Xn|SP] / LDADDH Ws, WZR, [Xn|SP] / STADDLH Ws, [Xn|SP] / LDADDLH Ws, WZR, [Xn|SP]
+|1 x|1 1 1|0|0 0|0|R|1|Rs       |0|0 0 1|0 0|Rn       |1 1 1 1 1|  % STCLR Ws, [Xn|SP] / LDCLR Ws, WZR, [Xn|SP] / STCLRL Ws, [Xn|SP] / LDCLRL Ws, WZR, [Xn|SP] / STCLR Xs, [Xn|SP] / LDCLR Xs, XZR, [Xn|SP] / STCLRL Xs, [Xn|SP] / LDCLRL Xs, XZR, [Xn|SP]
+|0 0|1 1 1|0|0 0|0|R|1|Rs       |0|0 0 1|0 0|Rn       |1 1 1 1 1|  % STCLRB Ws, [Xn|SP] / LDCLRB Ws, WZR, [Xn|SP] / STCLRLB Ws, [Xn|SP] / LDCLRLB Ws, WZR, [Xn|SP]
+|0 1|1 1 1|0|0 0|0|R|1|Rs       |0|0 0 1|0 0|Rn       |1 1 1 1 1|  % STCLRH Ws, [Xn|SP] / LDCLRH Ws, WZR, [Xn|SP] / STCLRLH Ws, [Xn|SP] / LDCLRLH Ws, WZR, [Xn|SP]
+|1 x|1 1 1|0|0 0|0|R|1|Rs       |0|0 1 0|0 0|Rn       |1 1 1 1 1|  % STEOR Ws, [Xn|SP] / LDEOR Ws, WZR, [Xn|SP] / STEORL Ws, [Xn|SP] / LDEORL Ws, WZR, [Xn|SP] / STEOR Xs, [Xn|SP] / LDEOR Xs, XZR, [Xn|SP] / STEORL Xs, [Xn|SP] / LDEORL Xs, XZR, [Xn|SP]
+|0 0|1 1 1|0|0 0|0|R|1|Rs       |0|0 1 0|0 0|Rn       |1 1 1 1 1|  % STEORB Ws, [Xn|SP] / LDEORB Ws, WZR, [Xn|SP] / STEORLB Ws, [Xn|SP] / LDEORLB Ws, WZR, [Xn|SP]
+|0 1|1 1 1|0|0 0|0|R|1|Rs       |0|0 1 0|0 0|Rn       |1 1 1 1 1|  % STEORH Ws, [Xn|SP] / LDEORH Ws, WZR, [Xn|SP] / STEORLH Ws, [Xn|SP] / LDEORLH Ws, WZR, [Xn|SP]
+|1 1 0 1 1 0 0 1|0|0|1|imm9             |0|1|Xn       |Xt       |  % STG Xt|SP, [Xn|SP], #simm
+|1 1 0 1 1 0 0 1|0|0|1|imm9             |1|1|Xn       |Xt       |  % STG Xt|SP, [Xn|SP, #simm]!
+|1 1 0 1 1 0 0 1|0|0|1|imm9             |1|0|Xn       |Xt       |  % STG Xt|SP, [Xn|SP{, #simm}]
+|1 1 0 1 1 0 0 1|1|0|1|0|0|0|0|0|0|0|0|0|0|0|Xn       |Xt       |  % STGM Xt, [Xn|SP]
+|0|1|1 0 1|0|0 0 1|0|simm7        |Xt2      |Xn       |Xt       |  % STGP Xt1, Xt2, [Xn|SP], #imm
+|0|1|1 0 1|0|0 1 1|0|simm7        |Xt2      |Xn       |Xt       |  % STGP Xt1, Xt2, [Xn|SP, #imm]!
+|0|1|1 0 1|0|0 1 0|0|simm7        |Xt2      |Xn       |Xt       |  % STGP Xt1, Xt2, [Xn|SP{, #imm}]
+|1 x|0 0 1 0 0 0|1|0|0|(1) (1) (|0|(1) (1) (|Rn       |Rt       |  % STLLR Wt, [Xn|SP{,#0}] / STLLR Xt, [Xn|SP{,#0}]
+|0 0|0 0 1 0 0 0|1|0|0|(1) (1) (|0|(1) (1) (|Rn       |Rt       |  % STLLRB Wt, [Xn|SP{,#0}]
+|0 1|0 0 1 0 0 0|1|0|0|(1) (1) (|0|(1) (1) (|Rn       |Rt       |  % STLLRH Wt, [Xn|SP{,#0}]
+|1 x|0 0 1 0 0 0|1|0|0|(1) (1) (|1|(1) (1) (|Rn       |Rt       |  % STLR Wt, [Xn|SP{,#0}] / STLR Xt, [Xn|SP{,#0}]
+|0 0|0 0 1 0 0 0|1|0|0|(1) (1) (|1|(1) (1) (|Rn       |Rt       |  % STLRB Wt, [Xn|SP{,#0}]
+|0 1|0 0 1 0 0 0|1|0|0|(1) (1) (|1|(1) (1) (|Rn       |Rt       |  % STLRH Wt, [Xn|SP{,#0}]
+|1 x|0 1 1 0 0 1|0 0|0|imm9             |0 0|Rn       |Rt       |  % STLUR Wt, [Xn|SP{, #simm}] / STLUR Xt, [Xn|SP{, #simm}]
+|0 0|0 1 1 0 0 1|0 0|0|imm9             |0 0|Rn       |Rt       |  % STLURB Wt, [Xn|SP{, #simm}]
+|0 1|0 1 1 0 0 1|0 0|0|imm9             |0 0|Rn       |Rt       |  % STLURH Wt, [Xn|SP{, #simm}]
+|1|s|0 0 1 0 0 0|0|0|1|Rs       |1|Rt2      |Rn       |Rt       |  % STLXP Ws, Wt1, Wt2, [Xn|SP{,#0}] / STLXP Ws, Xt1, Xt2, [Xn|SP{,#0}]
+|1 x|0 0 1 0 0 0|0|0|0|Rs       |1|(1) (1) (|Rn       |Rt       |  % STLXR Ws, Wt, [Xn|SP{,#0}] / STLXR Ws, Xt, [Xn|SP{,#0}]
+|0 0|0 0 1 0 0 0|0|0|0|Rs       |1|(1) (1) (|Rn       |Rt       |  % STLXRB Ws, Wt, [Xn|SP{,#0}]
+|0 1|0 0 1 0 0 0|0|0|0|Rs       |1|(1) (1) (|Rn       |Rt       |  % STLXRH Ws, Wt, [Xn|SP{,#0}]
+|x 0|1 0 1|0|0 0 0|0|imm7         |Rt2      |Rn       |Rt       |  % STNP Wt1, Wt2, [Xn|SP{, #imm}] / STNP Xt1, Xt2, [Xn|SP{, #imm}]
+|x 0|1 0 1|0|0 0 1|0|imm7         |Rt2      |Rn       |Rt       |  % STP Wt1, Wt2, [Xn|SP], #imm / STP Xt1, Xt2, [Xn|SP], #imm
+|x 0|1 0 1|0|0 1 1|0|imm7         |Rt2      |Rn       |Rt       |  % STP Wt1, Wt2, [Xn|SP, #imm]! / STP Xt1, Xt2, [Xn|SP, #imm]!
+|x 0|1 0 1|0|0 1 0|0|imm7         |Rt2      |Rn       |Rt       |  % STP Wt1, Wt2, [Xn|SP{, #imm}] / STP Xt1, Xt2, [Xn|SP{, #imm}]
+|1 x|1 1 1|0|0 0|0 0|0|imm9             |0 1|Rn       |Rt       |  % STR Wt, [Xn|SP], #simm / STR Xt, [Xn|SP], #simm
+|1 x|1 1 1|0|0 0|0 0|0|imm9             |1 1|Rn       |Rt       |  % STR Wt, [Xn|SP, #simm]! / STR Xt, [Xn|SP, #simm]!
+|1 x|1 1 1|0|0 1|0 0|imm12                  |Rn       |Rt       |  % STR Wt, [Xn|SP{, #pimm}] / STR Xt, [Xn|SP{, #pimm}]
+|1 x|1 1 1|0|0 0|0 0|1|Rm       |optio|S|1 0|Rn       |Rt       |  % STR Wt, [Xn|SP, (Wm|Xm){, extend {amount}}] / STR Xt, [Xn|SP, (Wm|Xm){, extend {amount}}]
+|0 0|1 1 1|0|0 0|0 0|0|imm9             |0 1|Rn       |Rt       |  % STRB Wt, [Xn|SP], #simm
+|0 0|1 1 1|0|0 0|0 0|0|imm9             |1 1|Rn       |Rt       |  % STRB Wt, [Xn|SP, #simm]!
+|0 0|1 1 1|0|0 1|0 0|imm12                  |Rn       |Rt       |  % STRB Wt, [Xn|SP{, #pimm}]
+|0 0|1 1 1|0|0 0|0 0|1|Rm       |optio|S|1 0|Rn       |Rt       |  % STRB Wt, [Xn|SP, (Wm|Xm), extend {amount}] / STRB Wt, [Xn|SP, Xm{, LSL amount}]
+|0 1|1 1 1|0|0 0|0 0|0|imm9             |0 1|Rn       |Rt       |  % STRH Wt, [Xn|SP], #simm
+|0 1|1 1 1|0|0 0|0 0|0|imm9             |1 1|Rn       |Rt       |  % STRH Wt, [Xn|SP, #simm]!
+|0 1|1 1 1|0|0 1|0 0|imm12                  |Rn       |Rt       |  % STRH Wt, [Xn|SP{, #pimm}]
+|0 1|1 1 1|0|0 0|0 0|1|Rm       |optio|S|1 0|Rn       |Rt       |  % STRH Wt, [Xn|SP, (Wm|Xm){, extend {amount}}]
+|1 x|1 1 1|0|0 0|0|R|1|Rs       |0|0 1 1|0 0|Rn       |1 1 1 1 1|  % STSET Ws, [Xn|SP] / LDSET Ws, WZR, [Xn|SP] / STSETL Ws, [Xn|SP] / LDSETL Ws, WZR, [Xn|SP] / STSET Xs, [Xn|SP] / LDSET Xs, XZR, [Xn|SP] / STSETL Xs, [Xn|SP] / LDSETL Xs, XZR, [Xn|SP]
+|0 0|1 1 1|0|0 0|0|R|1|Rs       |0|0 1 1|0 0|Rn       |1 1 1 1 1|  % STSETB Ws, [Xn|SP] / LDSETB Ws, WZR, [Xn|SP] / STSETLB Ws, [Xn|SP] / LDSETLB Ws, WZR, [Xn|SP]
+|0 1|1 1 1|0|0 0|0|R|1|Rs       |0|0 1 1|0 0|Rn       |1 1 1 1 1|  % STSETH Ws, [Xn|SP] / LDSETH Ws, WZR, [Xn|SP] / STSETLH Ws, [Xn|SP] / LDSETLH Ws, WZR, [Xn|SP]
+|1 x|1 1 1|0|0 0|0|R|1|Rs       |0|1 0 0|0 0|Rn       |1 1 1 1 1|  % STSMAX Ws, [Xn|SP] / LDSMAX Ws, WZR, [Xn|SP] / STSMAXL Ws, [Xn|SP] / LDSMAXL Ws, WZR, [Xn|SP] / STSMAX Xs, [Xn|SP] / LDSMAX Xs, XZR, [Xn|SP] / STSMAXL Xs, [Xn|SP] / LDSMAXL Xs, XZR, [Xn|SP]
+|0 0|1 1 1|0|0 0|0|R|1|Rs       |0|1 0 0|0 0|Rn       |1 1 1 1 1|  % STSMAXB Ws, [Xn|SP] / LDSMAXB Ws, WZR, [Xn|SP] / STSMAXLB Ws, [Xn|SP] / LDSMAXLB Ws, WZR, [Xn|SP]
+|0 1|1 1 1|0|0 0|0|R|1|Rs       |0|1 0 0|0 0|Rn       |1 1 1 1 1|  % STSMAXH Ws, [Xn|SP] / LDSMAXH Ws, WZR, [Xn|SP] / STSMAXLH Ws, [Xn|SP] / LDSMAXLH Ws, WZR, [Xn|SP]
+|1 x|1 1 1|0|0 0|0|R|1|Rs       |0|1 0 1|0 0|Rn       |1 1 1 1 1|  % STSMIN Ws, [Xn|SP] / LDSMIN Ws, WZR, [Xn|SP] / STSMINL Ws, [Xn|SP] / LDSMINL Ws, WZR, [Xn|SP] / STSMIN Xs, [Xn|SP] / LDSMIN Xs, XZR, [Xn|SP] / STSMINL Xs, [Xn|SP] / LDSMINL Xs, XZR, [Xn|SP]
+|0 0|1 1 1|0|0 0|0|R|1|Rs       |0|1 0 1|0 0|Rn       |1 1 1 1 1|  % STSMINB Ws, [Xn|SP] / LDSMINB Ws, WZR, [Xn|SP] / STSMINLB Ws, [Xn|SP] / LDSMINLB Ws, WZR, [Xn|SP]
+|0 1|1 1 1|0|0 0|0|R|1|Rs       |0|1 0 1|0 0|Rn       |1 1 1 1 1|  % STSMINH Ws, [Xn|SP] / LDSMINH Ws, WZR, [Xn|SP] / STSMINLH Ws, [Xn|SP] / LDSMINLH Ws, WZR, [Xn|SP]
+|1 x|1 1 1|0|0 0|0 0|0|imm9             |1 0|Rn       |Rt       |  % STTR Wt, [Xn|SP{, #simm}] / STTR Xt, [Xn|SP{, #simm}]
+|0 0|1 1 1|0|0 0|0 0|0|imm9             |1 0|Rn       |Rt       |  % STTRB Wt, [Xn|SP{, #simm}]
+|0 1|1 1 1|0|0 0|0 0|0|imm9             |1 0|Rn       |Rt       |  % STTRH Wt, [Xn|SP{, #simm}]
+|1 x|1 1 1|0|0 0|0|R|1|Rs       |0|1 1 0|0 0|Rn       |1 1 1 1 1|  % STUMAX Ws, [Xn|SP] / LDUMAX Ws, WZR, [Xn|SP] / STUMAXL Ws, [Xn|SP] / LDUMAXL Ws, WZR, [Xn|SP] / STUMAX Xs, [Xn|SP] / LDUMAX Xs, XZR, [Xn|SP] / STUMAXL Xs, [Xn|SP] / LDUMAXL Xs, XZR, [Xn|SP]
+|0 0|1 1 1|0|0 0|0|R|1|Rs       |0|1 1 0|0 0|Rn       |1 1 1 1 1|  % STUMAXB Ws, [Xn|SP] / LDUMAXB Ws, WZR, [Xn|SP] / STUMAXLB Ws, [Xn|SP] / LDUMAXLB Ws, WZR, [Xn|SP]
+|0 1|1 1 1|0|0 0|0|R|1|Rs       |0|1 1 0|0 0|Rn       |1 1 1 1 1|  % STUMAXH Ws, [Xn|SP] / LDUMAXH Ws, WZR, [Xn|SP] / STUMAXLH Ws, [Xn|SP] / LDUMAXLH Ws, WZR, [Xn|SP]
+|1 x|1 1 1|0|0 0|0|R|1|Rs       |0|1 1 1|0 0|Rn       |1 1 1 1 1|  % STUMIN Ws, [Xn|SP] / LDUMIN Ws, WZR, [Xn|SP] / STUMINL Ws, [Xn|SP] / LDUMINL Ws, WZR, [Xn|SP] / STUMIN Xs, [Xn|SP] / LDUMIN Xs, XZR, [Xn|SP] / STUMINL Xs, [Xn|SP] / LDUMINL Xs, XZR, [Xn|SP]
+|0 0|1 1 1|0|0 0|0|R|1|Rs       |0|1 1 1|0 0|Rn       |1 1 1 1 1|  % STUMINB Ws, [Xn|SP] / LDUMINB Ws, WZR, [Xn|SP] / STUMINLB Ws, [Xn|SP] / LDUMINLB Ws, WZR, [Xn|SP]
+|0 1|1 1 1|0|0 0|0|R|1|Rs       |0|1 1 1|0 0|Rn       |1 1 1 1 1|  % STUMINH Ws, [Xn|SP] / LDUMINH Ws, WZR, [Xn|SP] / STUMINLH Ws, [Xn|SP] / LDUMINLH Ws, WZR, [Xn|SP]
+|1 x|1 1 1|0|0 0|0 0|0|imm9             |0 0|Rn       |Rt       |  % STUR Wt, [Xn|SP{, #simm}] / STUR Xt, [Xn|SP{, #simm}]
+|0 0|1 1 1|0|0 0|0 0|0|imm9             |0 0|Rn       |Rt       |  % STURB Wt, [Xn|SP{, #simm}]
+|0 1|1 1 1|0|0 0|0 0|0|imm9             |0 0|Rn       |Rt       |  % STURH Wt, [Xn|SP{, #simm}]
+|1|s|0 0 1 0 0 0|0|0|1|Rs       |0|Rt2      |Rn       |Rt       |  % STXP Ws, Wt1, Wt2, [Xn|SP{,#0}] / STXP Ws, Xt1, Xt2, [Xn|SP{,#0}]
+|1 x|0 0 1 0 0 0|0|0|0|Rs       |0|(1) (1) (|Rn       |Rt       |  % STXR Ws, Wt, [Xn|SP{,#0}] / STXR Ws, Xt, [Xn|SP{,#0}]
+|0 0|0 0 1 0 0 0|0|0|0|Rs       |0|(1) (1) (|Rn       |Rt       |  % STXRB Ws, Wt, [Xn|SP{,#0}]
+|0 1|0 0 1 0 0 0|0|0|0|Rs       |0|(1) (1) (|Rn       |Rt       |  % STXRH Ws, Wt, [Xn|SP{,#0}]
+|1 1 0 1 1 0 0 1|1|1|1|imm9             |0|1|Xn       |Xt       |  % STZ2G Xt|SP, [Xn|SP], #simm
+|1 1 0 1 1 0 0 1|1|1|1|imm9             |1|1|Xn       |Xt       |  % STZ2G Xt|SP, [Xn|SP, #simm]!
+|1 1 0 1 1 0 0 1|1|1|1|imm9             |1|0|Xn       |Xt       |  % STZ2G Xt|SP, [Xn|SP{, #simm}]
+|1 1 0 1 1 0 0 1|0|1|1|imm9             |0|1|Xn       |Xt       |  % STZG Xt|SP, [Xn|SP], #simm
+|1 1 0 1 1 0 0 1|0|1|1|imm9             |1|1|Xn       |Xt       |  % STZG Xt|SP, [Xn|SP, #simm]!
+|1 1 0 1 1 0 0 1|0|1|1|imm9             |1|0|Xn       |Xt       |  % STZG Xt|SP, [Xn|SP{, #simm}]
+|1 1 0 1 1 0 0 1|0|0|1|0|0|0|0|0|0|0|0|0|0|0|Xn       |Xt       |  % STZGM Xt, [Xn|SP]
+|s|1|0|0 1 0 1 1|0 0|1|Rm       |optio|imm3 |Rn       |Rd       |  % SUB Wd|WSP, Wn|WSP, Wm{, extend {#amount}} / SUB Xd|SP, Xn|SP, Rm{, extend {#amount}}
+|s|1|0|1 0 0 0 1 0|s|imm12                  |Rn       |Rd       |  % SUB Wd|WSP, Wn|WSP, #imm{, shift} / SUB Xd|SP, Xn|SP, #imm{, shift}
+|s|1|0|0 1 0 1 1|shi|0|Rm       |imm6       |Rn       |Rd       |  % SUB Wd, Wn, Wm{, shift #amount} / SUB Xd, Xn, Xm{, shift #amount}
+|1|1|0|1 0 0 0 1 1|0|uimm6      |(0)|uimm4  |Xn       |Xd       |  % SUBG Xd|SP, Xn|SP, #uimm6, #uimm4
+|1|0|0|1 1 0 1 0 1 1 0|Xm       |0|0|0|0|0|0|Xn       |Xd       |  % SUBP Xd, Xn|SP, Xm|SP
+|1|0|1|1 1 0 1 0 1 1 0|Xm       |0|0|0|0|0|0|Xn       |Xd       |  % SUBPS Xd, Xn|SP, Xm|SP
+|s|1|1|0 1 0 1 1|0 0|1|Rm       |optio|imm3 |Rn       |Rd       |  % SUBS Wd, Wn|WSP, Wm{, extend {#amount}} / SUBS Xd, Xn|SP, Rm{, extend {#amount}}
+|s|1|1|1 0 0 0 1 0|s|imm12                  |Rn       |Rd       |  % SUBS Wd, Wn|WSP, #imm{, shift} / SUBS Xd, Xn|SP, #imm{, shift}
+|s|1|1|0 1 0 1 1|shi|0|Rm       |imm6       |Rn       |Rd       |  % SUBS Wd, Wn, Wm{, shift #amount} / SUBS Xd, Xn, Xm{, shift #amount}
+|1 1 0 1 0 1 0 0|0 0 0|imm16                          |0 0 0|0 1|  % SVC #imm
+|1 x|1 1 1|0|0 0|A|R|1|Rs       |1|0 0 0|0 0|Rn       |Rt       |  % SWP Ws, Wt, [Xn|SP] / SWPA Ws, Wt, [Xn|SP] / SWPAL Ws, Wt, [Xn|SP] / SWPL Ws, Wt, [Xn|SP] / SWP Xs, Xt, [Xn|SP] / SWPA Xs, Xt, [Xn|SP] / SWPAL Xs, Xt, [Xn|SP] / SWPL Xs, Xt, [Xn|SP]
+|0 0|1 1 1|0|0 0|A|R|1|Rs       |1|0 0 0|0 0|Rn       |Rt       |  % SWPAB Ws, Wt, [Xn|SP] / SWPALB Ws, Wt, [Xn|SP] / SWPB Ws, Wt, [Xn|SP] / SWPLB Ws, Wt, [Xn|SP]
+|0 1|1 1 1|0|0 0|A|R|1|Rs       |1|0 0 0|0 0|Rn       |Rt       |  % SWPAH Ws, Wt, [Xn|SP] / SWPALH Ws, Wt, [Xn|SP] / SWPH Ws, Wt, [Xn|SP] / SWPLH Ws, Wt, [Xn|SP]
+|s|0 0|1 0 0 1 1 0|N|0 0 0 0 0 0|0 0 0 1 1 1|Rn       |Rd       |  % SXTB Wd, Wn / SBFM Wd, Wn, #0, #7 / SXTB Xd, Wn / SBFM Xd, Xn, #0, #7
+|s|0 0|1 0 0 1 1 0|N|0 0 0 0 0 0|0 0 1 1 1 1|Rn       |Rd       |  % SXTH Wd, Wn / SBFM Wd, Wn, #0, #15 / SXTH Xd, Wn / SBFM Xd, Xn, #0, #15
+|1|0 0|1 0 0 1 1 0|1|0 0 0 0 0 0|0 1 1 1 1 1|Rn       |Rd       |  % SXTW Xd, Wn / SBFM Xd, Xn, #0, #31
+|1 1 0 1 0 1 0 1 0 0|0|0 1|op1  |CRn    |CRm    |op2  |Rt       |  % SYS #op1, Cn, Cm, #op2{, Xt}
+|1 1 0 1 0 1 0 1 0 0|1|0 1|op1  |CRn    |CRm    |op2  |Rt       |  % SYSL Xt, #op1, Cn, Cm, #op2
+|b|0 1 1 0 1 1|1|b40      |imm14                      |Rt       |  % TBNZ Rt, #imm, label
+|b|0 1 1 0 1 1|0|b40      |imm14                      |Rt       |  % TBZ Rt, #imm, label
+|1 1 0 1 0 1 0 0|0 1 1|imm16                          |0 0 0|0 0|  % TCANCEL #imm
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 1|0 0 0 0|0 1 1|1 1 1 1 1|  % TCOMMIT
+|1 1 0 1 0 1 0 1 0 0|0|0 1|op1  |1 0 0 0|CRm    |op2  |Rt       |  % TLBI tlbi_op{, Xt} / SYS #op1, C8, Cm, #op2{, Xt}
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 1 0|0 1 0|1 1 1 1 1|  % TSB CSYNC
+|s|1 1|1 0 0 1 0 0|N|immr       |imms       |Rn       |1 1 1 1 1|  % TST Wn, #imm / ANDS WZR, Wn, #imm / TST Xn, #imm / ANDS XZR, Xn, #imm
+|s|1 1|0 1 0 1 0|shi|0|Rm       |imm6       |Rn       |1 1 1 1 1|  % TST Wn, Wm{, shift #amount} / ANDS WZR, Wn, Wm{, shift #amount} / TST Xn, Xm{, shift #amount} / ANDS XZR, Xn, Xm{, shift #amount}
+|1 1 0 1 0 1 0 1 0 0|1|0 0|0 1 1|0 0 1 1|0 0 0 0|0 1 1|Rt       |  % TSTART Xt
+|1 1 0 1 0 1 0 1 0 0|1|0 0|0 1 1|0 0 1 1|0 0 0 1|0 1 1|Rt       |  % TTEST Xt
+|s|1 0|1 0 0 1 1 0|N|immr       |imms       |Rn       |Rd       |  % UBFIZ Wd, Wn, #lsb, #width / UBFM Wd, Wn, #(-lsb MOD 32), #(width-1) / UBFIZ Xd, Xn, #lsb, #width / UBFM Xd, Xn, #(-lsb MOD 64), #(width-1)
+|s|1 0|1 0 0 1 1 0|N|immr       |imms       |Rn       |Rd       |  % UBFM Wd, Wn, #immr, #imms / UBFM Xd, Xn, #immr, #imms
+|s|1 0|1 0 0 1 1 0|N|immr       |imms       |Rn       |Rd       |  % UBFX Wd, Wn, #lsb, #width / UBFM Wd, Wn, #lsb, #(lsb+width-1) / UBFX Xd, Xn, #lsb, #width / UBFM Xd, Xn, #lsb, #(lsb+width-1)
+|0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0|imm16                          |  % UDF #imm
+|s|0|0|1 1 0 1 0 1 1 0|Rm       |0 0 0 0 1|0|Rn       |Rd       |  % UDIV Wd, Wn, Wm / UDIV Xd, Xn, Xm
+|1|0 0|1 1 0 1 1|1|0 1|Rm       |0|Ra       |Rn       |Rd       |  % UMADDL Xd, Wn, Wm, Xa
+|1|0 0|1 1 0 1 1|1|0 1|Rm       |1|1 1 1 1 1|Rn       |Rd       |  % UMNEGL Xd, Wn, Wm / UMSUBL Xd, Wn, Wm, XZR
+|1|0 0|1 1 0 1 1|1|0 1|Rm       |1|Ra       |Rn       |Rd       |  % UMSUBL Xd, Wn, Wm, Xa
+|1|0 0|1 1 0 1 1|1|1 0|Rm       |0|(1) (1) (|Rn       |Rd       |  % UMULH Xd, Xn, Xm
+|1|0 0|1 1 0 1 1|1|0 1|Rm       |0|1 1 1 1 1|Rn       |Rd       |  % UMULL Xd, Wn, Wm / UMADDL Xd, Wn, Wm, XZR
+|0|1 0|1 0 0 1 1 0|0|0 0 0 0 0 0|0 0 0 1 1 1|Rn       |Rd       |  % UXTB Wd, Wn / UBFM Wd, Wn, #0, #7
+|0|1 0|1 0 0 1 1 0|0|0 0 0 0 0 0|0 0 1 1 1 1|Rn       |Rd       |  % UXTH Wd, Wn / UBFM Wd, Wn, #0, #15
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 0 0|0 1 0|1 1 1 1 1|  % WFE
+|1 1 0 1 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 1|0 0 0 0|0 0 0|Rd       |  % WFET Xt
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 0 0|0 1 1|1 1 1 1 1|  % WFI
+|1 1 0 1 0 1 0 1 0 0 0 0 0 0 1 1 0 0 0 1|0 0 0 0|0 0 1|Rd       |  % WFIT Xt
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 0 0|0 1 0 0|(0) (0)|0 0 1|1 1 1 1 1|  % XAFLAG
+|1|1|0|1 1 0 1 0 1 1 0|0 0 0 0 1|0|1|0 0 0|D|1 1 1 1 1|Rd       |  % XPACD Xd / XPACI Xd
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 0 0|1 1 1|1 1 1 1 1|  % XPACLRI
+|1 1 0 1 0 1 0 1 0 0|0|0 0|0 1 1|0 0 1 0|0 0 0 0|0 0 1|1 1 1 1 1|  % YIELD

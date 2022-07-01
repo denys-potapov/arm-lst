@@ -1,0 +1,642 @@
+|0 1|0|1 1 1 1 0|siz|1 0 0 0 0|0 1 0 1 1|1 0|Rn       |Rd       |  % ABS Vd, Vn
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 1 0 1 1|1 0|Rn       |Rd       |  % ABS Vd.T, Vn.T
+|0 1|0|1 1 1 1 0|siz|1|Rm       |1 0 0 0 0|1|Rn       |Rd       |  % ADD Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0 0 0 0|1|Rn       |Rd       |  % ADD Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1|0|0|0 0|Rn       |Rd       |  % ADDHN{2} Vd.Tb, Vn.Ta, Vm.Ta
+|0 1|0|1 1 1 1 0|siz|1 1 0 0 0|1 1 0 1 1|1 0|Rn       |Rd       |  % ADDP Vd, Vn.T
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0 1 1 1|1|Rn       |Rd       |  % ADDP Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1 1 0 0 0|1 1 0 1 1|1 0|Rn       |Rd       |  % ADDV Vd, Vn.T
+|0 1 0 0 1 1 1 0|0 0|1 0 1 0 0|0 0 1 0|1|1 0|Rn       |Rd       |  % AESD Vd.16B, Vn.16B
+|0 1 0 0 1 1 1 0|0 0|1 0 1 0 0|0 0 1 0|0|1 0|Rn       |Rd       |  % AESE Vd.16B, Vn.16B
+|0 1 0 0 1 1 1 0|0 0|1 0 1 0 0|0 0 1 1|1|1 0|Rn       |Rd       |  % AESIMC Vd.16B, Vn.16B
+|0 1 0 0 1 1 1 0|0 0|1 0 1 0 0|0 0 1 1|0|1 0|Rn       |Rd       |  % AESMC Vd.16B, Vn.16B
+|0|Q|0|0 1 1 1 0|0 0|1|Rm       |0 0 0 1 1|1|Rn       |Rd       |  % AND Vd.T, Vn.T, Vm.T
+|1 1 0 0 1 1 1 0 0|0 1|Rm       |0|Ra       |Rn       |Rd       |  % BCAX Vd.16B, Vn.16B, Vm.16B, Va.16B
+|0|0|0|1 1 1 1 0|0 1|1|0 0 0 1 1 0|1 0 0 0 0|Rn       |Rd       |  % BFCVT Hd, Sn
+|0|Q|0|0 1 1 1 0|1 0|1 0 0 0 0|1 0 1 1 0|1 0|Rn       |Rd       |  % BFCVTN{2} Vd.Ta, Vn.4S
+|0|Q|0|0 1 1 1 1|0 1|L|M|Rm     |1 1 1 1|H|0|Rn       |Rd       |  % BFDOT Vd.Ta, Vn.Tb, Vm.2H[index]
+|0|Q|1|0 1 1 1 0|0 1|0|Rm       |1|1 1 1 1|1|Rn       |Rd       |  % BFDOT Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|0|0 1 1 1 1|1 1|L|M|Rm     |1|1|1 1|H|0|Rn       |Rd       |  % BFMLALbt Vd.4S, Vn.8H, Vm.H[index]
+|0|Q|1|0 1 1 1 0|1 1|0|Rm       |1|1 1|1|1|1|Rn       |Rd       |  % BFMLALbt Vd.4S, Vn.8H, Vm.8H
+|0|1|1|0 1 1 1 0|0 1|0|Rm       |1|1 1 0 1|1|Rn       |Rd       |  % BFMMLA Vd.4S, Vn.8H, Vm.8H
+|0|Q|1|0 1 1 1 1 0 0 0 0 0|a|b|c|x x x 1|0|1|d|e|f|g|h|Rd       |  % BIC Vd.T, #imm8{, LSL #amount} / BIC Vd.T, #imm8{, LSL #amount}
+|0|Q|0|0 1 1 1 0|0 1|1|Rm       |0 0 0 1 1|1|Rn       |Rd       |  % BIC Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|1 1|1|Rm       |0 0 0 1 1|1|Rn       |Rd       |  % BIF Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|1 0|1|Rm       |0 0 0 1 1|1|Rn       |Rd       |  % BIT Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|0 1|1|Rm       |0 0 0 1 1|1|Rn       |Rd       |  % BSL Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 0 1 0 0|1 0|Rn       |Rd       |  % CLS Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|0 0 1 0 0|1 0|Rn       |Rd       |  % CLZ Vd.T, Vn.T
+|0 1|1|1 1 1 1 0|siz|1|Rm       |1 0 0 0 1|1|Rn       |Rd       |  % CMEQ Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |1 0 0 0 1|1|Rn       |Rd       |  % CMEQ Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 0|siz|1 0 0 0 0|0 1 0 0|1|1 0|Rn       |Rd       |  % CMEQ Vd, Vn, #0
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 1 0 0|1|1 0|Rn       |Rd       |  % CMEQ Vd.T, Vn.T, #0
+|0 1|0|1 1 1 1 0|siz|1|Rm       |0 0 1 1|1|1|Rn       |Rd       |  % CMGE Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 0 1 1|1|1|Rn       |Rd       |  % CMGE Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 0|siz|1 0 0 0 0|0 1 0 0|0|1 0|Rn       |Rd       |  % CMGE Vd, Vn, #0
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|0 1 0 0|0|1 0|Rn       |Rd       |  % CMGE Vd.T, Vn.T, #0
+|0 1|0|1 1 1 1 0|siz|1|Rm       |0 0 1 1|0|1|Rn       |Rd       |  % CMGT Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 0 1 1|0|1|Rn       |Rd       |  % CMGT Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 0|siz|1 0 0 0 0|0 1 0 0|0|1 0|Rn       |Rd       |  % CMGT Vd, Vn, #0
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 1 0 0|0|1 0|Rn       |Rd       |  % CMGT Vd.T, Vn.T, #0
+|0 1|1|1 1 1 1 0|siz|1|Rm       |0 0 1 1|0|1|Rn       |Rd       |  % CMHI Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 0 1 1|0|1|Rn       |Rd       |  % CMHI Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 0|siz|1|Rm       |0 0 1 1|1|1|Rn       |Rd       |  % CMHS Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 0 1 1|1|1|Rn       |Rd       |  % CMHS Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 0|siz|1 0 0 0 0|0 1 0 0|1|1 0|Rn       |Rd       |  % CMLE Vd, Vn, #0
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|0 1 0 0|1|1 0|Rn       |Rd       |  % CMLE Vd.T, Vn.T, #0
+|0 1|0|1 1 1 1 0|siz|1 0 0 0 0|0 1 0 1 0|1 0|Rn       |Rd       |  % CMLT Vd, Vn, #0
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 1 0 1 0|1 0|Rn       |Rd       |  % CMLT Vd.T, Vn.T, #0
+|0 1|0|1 1 1 1 0|siz|1|Rm       |1 0 0 0 1|1|Rn       |Rd       |  % CMTST Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0 0 0 1|1|Rn       |Rd       |  % CMTST Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 0 1 0 1|1 0|Rn       |Rd       |  % CNT Vd.T, Vn.T
+|0 1|0|1 1 1 1 0 0 0 0|imm5     |0|0 0 0 0|1|Rn       |Rd       |  % DUP Vd, Vn.T[index]
+|0|Q|0|0 1 1 1 0 0 0 0|imm5     |0|0 0 0 0|1|Rn       |Rd       |  % DUP Vd.T, Vn.Ts[index]
+|0|Q|0|0 1 1 1 0 0 0 0|imm5     |0|0 0 0 1|1|Rn       |Rd       |  % DUP Vd.T, Rn
+|0|Q|1|0 1 1 1 0|0 0|1|Rm       |0 0 0 1 1|1|Rn       |Rd       |  % EOR Vd.T, Vn.T, Vm.T
+|1 1 0 0 1 1 1 0 0|0 0|Rm       |0|Ra       |Rn       |Rd       |  % EOR3 Vd.16B, Vn.16B, Vm.16B, Va.16B
+|0|Q|1 0 1 1 1 0|0 0|0|Rm       |0|imm4   |0|Rn       |Rd       |  % EXT Vd.T, Vn.T, Vm.T, #index
+|0 1|1|1 1 1 1 0|1|1 0|Rm       |0 0|0 1 0|1|Rn       |Rd       |  % FABD Hd, Hn, Hm
+|0 1|1|1 1 1 1 0|1|s|1|Rm       |1 1 0 1 0|1|Rn       |Rd       |  % FABD Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|1|1 0|Rm       |0 0|0 1 0|1|Rn       |Rd       |  % FABD Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|1|s|1|Rm       |1 1 0 1 0|1|Rn       |Rd       |  % FABD Vd.T, Vn.T, Vm.T
+|0|0|0|1 1 1 1 0|fty|1|0 0 0 0|0 1|1 0 0 0 0|Rn       |Rd       |  % FABS Hd, Hn / FABS Sd, Sn / FABS Dd, Dn
+|0|Q|0|0 1 1 1 0|1|1 1 1 1 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FABS Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|1|s|1 0 0 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FABS Vd.T, Vn.T
+|0 1|1|1 1 1 1 0|0|1 0|Rm       |0 0|1 0|1|1|Rn       |Rd       |  % FACGE Hd, Hn, Hm
+|0 1|1|1 1 1 1 0|0|s|1|Rm       |1 1 1 0|1|1|Rn       |Rd       |  % FACGE Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|0|1 0|Rm       |0 0|1 0|1|1|Rn       |Rd       |  % FACGE Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|0|s|1|Rm       |1 1 1 0|1|1|Rn       |Rd       |  % FACGE Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 0|1|1 0|Rm       |0 0|1 0|1|1|Rn       |Rd       |  % FACGT Hd, Hn, Hm
+|0 1|1|1 1 1 1 0|1|s|1|Rm       |1 1 1 0|1|1|Rn       |Rd       |  % FACGT Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|1|1 0|Rm       |0 0|1 0|1|1|Rn       |Rd       |  % FACGT Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|1|s|1|Rm       |1 1 1 0|1|1|Rn       |Rd       |  % FACGT Vd.T, Vn.T, Vm.T
+|0|0|0|1 1 1 1 0|fty|1|Rm       |0 0 1|0|1 0|Rn       |Rd       |  % FADD Hd, Hn, Hm / FADD Sd, Sn, Sm / FADD Dd, Dn, Dm
+|0|Q|0|0 1 1 1 0|0|1 0|Rm       |0 0|0 1 0|1|Rn       |Rd       |  % FADD Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|0|s|1|Rm       |1 1 0 1 0|1|Rn       |Rd       |  % FADD Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 0|0|s|1 1 0 0 0|0 1 1 0 1|1 0|Rn       |Rd       |  % FADDP Vd, Vn.T
+|0 1|1|1 1 1 1 0|0|s|1 1 0 0 0|0 1 1 0 1|1 0|Rn       |Rd       |  % FADDP Vd, Vn.T
+|0|Q|1|0 1 1 1 0|0|1 0|Rm       |0 0|0 1 0|1|Rn       |Rd       |  % FADDP Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|0|s|1|Rm       |1 1 0 1 0|1|Rn       |Rd       |  % FADDP Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|siz|0|Rm       |1|1 1|r|0|1|Rn       |Rd       |  % FCADD Vd.T, Vn.T, Vm.T, #rotate
+|0|0|0|1 1 1 1 0|fty|1|Rm       |cond   |0 1|Rn       |0|nzcv   |  % FCCMP Hn, Hm, #nzcv, cond / FCCMP Sn, Sm, #nzcv, cond / FCCMP Dn, Dm, #nzcv, cond
+|0|0|0|1 1 1 1 0|fty|1|Rm       |cond   |0 1|Rn       |1|nzcv   |  % FCCMPE Hn, Hm, #nzcv, cond / FCCMPE Sn, Sm, #nzcv, cond / FCCMPE Dn, Dm, #nzcv, cond
+|0 1|0|1 1 1 1 0|0|1 0|Rm       |0 0|1 0|0|1|Rn       |Rd       |  % FCMEQ Hd, Hn, Hm
+|0 1|0|1 1 1 1 0|0|s|1|Rm       |1 1 1 0|0|1|Rn       |Rd       |  % FCMEQ Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|0|1 0|Rm       |0 0|1 0|0|1|Rn       |Rd       |  % FCMEQ Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|0|s|1|Rm       |1 1 1 0|0|1|Rn       |Rd       |  % FCMEQ Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 0|1|1 1 1 1 0 0|0 1 1 0|1|1 0|Rn       |Rd       |  % FCMEQ Hd, Hn, #0.0
+|0 1|0|1 1 1 1 0|1|s|1 0 0 0 0|0 1 1 0|1|1 0|Rn       |Rd       |  % FCMEQ Vd, Vn, #0.0
+|0|Q|0|0 1 1 1 0|1|1 1 1 1 0 0|0 1 1 0|1|1 0|Rn       |Rd       |  % FCMEQ Vd.T, Vn.T, #0.0
+|0|Q|0|0 1 1 1 0|1|s|1 0 0 0 0|0 1 1 0|1|1 0|Rn       |Rd       |  % FCMEQ Vd.T, Vn.T, #0.0
+|0 1|1|1 1 1 1 0|0|1 0|Rm       |0 0|1 0|0|1|Rn       |Rd       |  % FCMGE Hd, Hn, Hm
+|0 1|1|1 1 1 1 0|0|s|1|Rm       |1 1 1 0|0|1|Rn       |Rd       |  % FCMGE Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|0|1 0|Rm       |0 0|1 0|0|1|Rn       |Rd       |  % FCMGE Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|0|s|1|Rm       |1 1 1 0|0|1|Rn       |Rd       |  % FCMGE Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 0|1|1 1 1 1 0 0|0 1 1 0|0|1 0|Rn       |Rd       |  % FCMGE Hd, Hn, #0.0
+|0 1|1|1 1 1 1 0|1|s|1 0 0 0 0|0 1 1 0|0|1 0|Rn       |Rd       |  % FCMGE Vd, Vn, #0.0
+|0|Q|1|0 1 1 1 0|1|1 1 1 1 0 0|0 1 1 0|0|1 0|Rn       |Rd       |  % FCMGE Vd.T, Vn.T, #0.0
+|0|Q|1|0 1 1 1 0|1|s|1 0 0 0 0|0 1 1 0|0|1 0|Rn       |Rd       |  % FCMGE Vd.T, Vn.T, #0.0
+|0 1|1|1 1 1 1 0|1|1 0|Rm       |0 0|1 0|0|1|Rn       |Rd       |  % FCMGT Hd, Hn, Hm
+|0 1|1|1 1 1 1 0|1|s|1|Rm       |1 1 1 0|0|1|Rn       |Rd       |  % FCMGT Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|1|1 0|Rm       |0 0|1 0|0|1|Rn       |Rd       |  % FCMGT Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|1|s|1|Rm       |1 1 1 0|0|1|Rn       |Rd       |  % FCMGT Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 0|1|1 1 1 1 0 0|0 1 1 0|0|1 0|Rn       |Rd       |  % FCMGT Hd, Hn, #0.0
+|0 1|0|1 1 1 1 0|1|s|1 0 0 0 0|0 1 1 0|0|1 0|Rn       |Rd       |  % FCMGT Vd, Vn, #0.0
+|0|Q|0|0 1 1 1 0|1|1 1 1 1 0 0|0 1 1 0|0|1 0|Rn       |Rd       |  % FCMGT Vd.T, Vn.T, #0.0
+|0|Q|0|0 1 1 1 0|1|s|1 0 0 0 0|0 1 1 0|0|1 0|Rn       |Rd       |  % FCMGT Vd.T, Vn.T, #0.0
+|0|Q|1|0 1 1 1 0|siz|0|Rm       |1|1 0|rot|1|Rn       |Rd       |  % FCMLA Vd.T, Vn.T, Vm.T, #rotate
+|0|Q|1|0 1 1 1 1|siz|L|M|Rm     |0|rot|1|H|0|Rn       |Rd       |  % FCMLA Vd.T, Vn.T, Vm.Ts[index], #rotate / FCMLA Vd.T, Vn.T, Vm.Ts[index], #rotate
+|0 1|1|1 1 1 1 0|1|1 1 1 1 0 0|0 1 1 0|1|1 0|Rn       |Rd       |  % FCMLE Hd, Hn, #0.0
+|0 1|1|1 1 1 1 0|1|s|1 0 0 0 0|0 1 1 0|1|1 0|Rn       |Rd       |  % FCMLE Vd, Vn, #0.0
+|0|Q|1|0 1 1 1 0|1|1 1 1 1 0 0|0 1 1 0|1|1 0|Rn       |Rd       |  % FCMLE Vd.T, Vn.T, #0.0
+|0|Q|1|0 1 1 1 0|1|s|1 0 0 0 0|0 1 1 0|1|1 0|Rn       |Rd       |  % FCMLE Vd.T, Vn.T, #0.0
+|0 1|0|1 1 1 1 0|1|1 1 1 1 0 0|0 1 1 1 0|1 0|Rn       |Rd       |  % FCMLT Hd, Hn, #0.0
+|0 1|0|1 1 1 1 0|1|s|1 0 0 0 0|0 1 1 1 0|1 0|Rn       |Rd       |  % FCMLT Vd, Vn, #0.0
+|0|Q|0|0 1 1 1 0|1|1 1 1 1 0 0|0 1 1 1 0|1 0|Rn       |Rd       |  % FCMLT Vd.T, Vn.T, #0.0
+|0|Q|0|0 1 1 1 0|1|s|1 0 0 0 0|0 1 1 1 0|1 0|Rn       |Rd       |  % FCMLT Vd.T, Vn.T, #0.0
+|0|0|0|1 1 1 1 0|fty|1|Rm       |0 0|1 0 0 0|Rn       |0 x|0 0 0|  % FCMP Hn, Hm / FCMP Hn, #0.0 / FCMP Sn, Sm / FCMP Sn, #0.0 / FCMP Dn, Dm / FCMP Dn, #0.0
+|0|0|0|1 1 1 1 0|fty|1|Rm       |0 0|1 0 0 0|Rn       |1 x|0 0 0|  % FCMPE Hn, Hm / FCMPE Hn, #0.0 / FCMPE Sn, Sm / FCMPE Sn, #0.0 / FCMPE Dn, Dm / FCMPE Dn, #0.0
+|0|0|0|1 1 1 1 0|fty|1|Rm       |cond   |1 1|Rn       |Rd       |  % FCSEL Hd, Hn, Hm, cond / FCSEL Sd, Sn, Sm, cond / FCSEL Dd, Dn, Dm, cond
+|0|0|0|1 1 1 1 0|fty|1|0 0 0 1|opc|1 0 0 0 0|Rn       |Rd       |  % FCVT Sd, Hn / FCVT Dd, Hn / FCVT Hd, Sn / FCVT Dd, Sn / FCVT Hd, Dn / FCVT Sd, Dn
+|s|0|0|1 1 1 1 0|fty|1|0 0|1 0 0|0 0 0 0 0 0|Rn       |Rd       |  % FCVTAS Wd, Hn / FCVTAS Xd, Hn / FCVTAS Wd, Sn / FCVTAS Xd, Sn / FCVTAS Wd, Dn / FCVTAS Xd, Dn
+|0 1|0|1 1 1 1 0|0|1 1 1 1 0 0|1 1 1 0 0|1 0|Rn       |Rd       |  % FCVTAS Hd, Hn
+|0 1|0|1 1 1 1 0|0|s|1 0 0 0 0|1 1 1 0 0|1 0|Rn       |Rd       |  % FCVTAS Vd, Vn
+|0|Q|0|0 1 1 1 0|0|1 1 1 1 0 0|1 1 1 0 0|1 0|Rn       |Rd       |  % FCVTAS Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|0|s|1 0 0 0 0|1 1 1 0 0|1 0|Rn       |Rd       |  % FCVTAS Vd.T, Vn.T
+|s|0|0|1 1 1 1 0|fty|1|0 0|1 0 1|0 0 0 0 0 0|Rn       |Rd       |  % FCVTAU Wd, Hn / FCVTAU Xd, Hn / FCVTAU Wd, Sn / FCVTAU Xd, Sn / FCVTAU Wd, Dn / FCVTAU Xd, Dn
+|0 1|1|1 1 1 1 0|0|1 1 1 1 0 0|1 1 1 0 0|1 0|Rn       |Rd       |  % FCVTAU Hd, Hn
+|0 1|1|1 1 1 1 0|0|s|1 0 0 0 0|1 1 1 0 0|1 0|Rn       |Rd       |  % FCVTAU Vd, Vn
+|0|Q|1|0 1 1 1 0|0|1 1 1 1 0 0|1 1 1 0 0|1 0|Rn       |Rd       |  % FCVTAU Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|0|s|1 0 0 0 0|1 1 1 0 0|1 0|Rn       |Rd       |  % FCVTAU Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|0|s|1 0 0 0 0|1 0 1 1 1|1 0|Rn       |Rd       |  % FCVTL{2} Vd.Ta, Vn.Tb
+|s|0|0|1 1 1 1 0|fty|1|1 0|0 0 0|0 0 0 0 0 0|Rn       |Rd       |  % FCVTMS Wd, Hn / FCVTMS Xd, Hn / FCVTMS Wd, Sn / FCVTMS Xd, Sn / FCVTMS Wd, Dn / FCVTMS Xd, Dn
+|0 1|0|1 1 1 1 0|0|1 1 1 1 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTMS Hd, Hn
+|0 1|0|1 1 1 1 0|0|s|1 0 0 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTMS Vd, Vn
+|0|Q|0|0 1 1 1 0|0|1 1 1 1 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTMS Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|0|s|1 0 0 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTMS Vd.T, Vn.T
+|s|0|0|1 1 1 1 0|fty|1|1 0|0 0 1|0 0 0 0 0 0|Rn       |Rd       |  % FCVTMU Wd, Hn / FCVTMU Xd, Hn / FCVTMU Wd, Sn / FCVTMU Xd, Sn / FCVTMU Wd, Dn / FCVTMU Xd, Dn
+|0 1|1|1 1 1 1 0|0|1 1 1 1 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTMU Hd, Hn
+|0 1|1|1 1 1 1 0|0|s|1 0 0 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTMU Vd, Vn
+|0|Q|1|0 1 1 1 0|0|1 1 1 1 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTMU Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|0|s|1 0 0 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTMU Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|0|s|1 0 0 0 0|1 0 1 1 0|1 0|Rn       |Rd       |  % FCVTN{2} Vd.Tb, Vn.Ta
+|s|0|0|1 1 1 1 0|fty|1|0 0|0 0 0|0 0 0 0 0 0|Rn       |Rd       |  % FCVTNS Wd, Hn / FCVTNS Xd, Hn / FCVTNS Wd, Sn / FCVTNS Xd, Sn / FCVTNS Wd, Dn / FCVTNS Xd, Dn
+|0 1|0|1 1 1 1 0|0|1 1 1 1 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTNS Hd, Hn
+|0 1|0|1 1 1 1 0|0|s|1 0 0 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTNS Vd, Vn
+|0|Q|0|0 1 1 1 0|0|1 1 1 1 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTNS Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|0|s|1 0 0 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTNS Vd.T, Vn.T
+|s|0|0|1 1 1 1 0|fty|1|0 0|0 0 1|0 0 0 0 0 0|Rn       |Rd       |  % FCVTNU Wd, Hn / FCVTNU Xd, Hn / FCVTNU Wd, Sn / FCVTNU Xd, Sn / FCVTNU Wd, Dn / FCVTNU Xd, Dn
+|0 1|1|1 1 1 1 0|0|1 1 1 1 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTNU Hd, Hn
+|0 1|1|1 1 1 1 0|0|s|1 0 0 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTNU Vd, Vn
+|0|Q|1|0 1 1 1 0|0|1 1 1 1 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTNU Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|0|s|1 0 0 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTNU Vd.T, Vn.T
+|s|0|0|1 1 1 1 0|fty|1|0 1|0 0 0|0 0 0 0 0 0|Rn       |Rd       |  % FCVTPS Wd, Hn / FCVTPS Xd, Hn / FCVTPS Wd, Sn / FCVTPS Xd, Sn / FCVTPS Wd, Dn / FCVTPS Xd, Dn
+|0 1|0|1 1 1 1 0|1|1 1 1 1 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTPS Hd, Hn
+|0 1|0|1 1 1 1 0|1|s|1 0 0 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTPS Vd, Vn
+|0|Q|0|0 1 1 1 0|1|1 1 1 1 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTPS Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|1|s|1 0 0 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTPS Vd.T, Vn.T
+|s|0|0|1 1 1 1 0|fty|1|0 1|0 0 1|0 0 0 0 0 0|Rn       |Rd       |  % FCVTPU Wd, Hn / FCVTPU Xd, Hn / FCVTPU Wd, Sn / FCVTPU Xd, Sn / FCVTPU Wd, Dn / FCVTPU Xd, Dn
+|0 1|1|1 1 1 1 0|1|1 1 1 1 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTPU Hd, Hn
+|0 1|1|1 1 1 1 0|1|s|1 0 0 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTPU Vd, Vn
+|0|Q|1|0 1 1 1 0|1|1 1 1 1 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTPU Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|1|s|1 0 0 0 0|1 1 0 1|0|1 0|Rn       |Rd       |  % FCVTPU Vd.T, Vn.T
+|0 1|1|1 1 1 1 0|0|s|1 0 0 0 0|1 0 1 1 0|1 0|Rn       |Rd       |  % FCVTXN Vbd, Van
+|0|Q|1|0 1 1 1 0|0|s|1 0 0 0 0|1 0 1 1 0|1 0|Rn       |Rd       |  % FCVTXN{2} Vd.Tb, Vn.Ta
+|s|0|0|1 1 1 1 0|fty|0|1 1|0 0 0|scale      |Rn       |Rd       |  % FCVTZS Wd, Hn, #fbits / FCVTZS Xd, Hn, #fbits / FCVTZS Wd, Sn, #fbits / FCVTZS Xd, Sn, #fbits / FCVTZS Wd, Dn, #fbits / FCVTZS Xd, Dn, #fbits
+|s|0|0|1 1 1 1 0|fty|1|1 1|0 0 0|0 0 0 0 0 0|Rn       |Rd       |  % FCVTZS Wd, Hn / FCVTZS Xd, Hn / FCVTZS Wd, Sn / FCVTZS Xd, Sn / FCVTZS Wd, Dn / FCVTZS Xd, Dn
+|0 1|0|1 1 1 1 1 0|!= 0000|immb |1 1 1 1 1|1|Rn       |Rd       |  % FCVTZS Vd, Vn, #fbits
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |1 1 1 1 1|1|Rn       |Rd       |  % FCVTZS Vd.T, Vn.T, #fbits
+|0 1|0|1 1 1 1 0|1|1 1 1 1 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTZS Hd, Hn
+|0 1|0|1 1 1 1 0|1|s|1 0 0 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTZS Vd, Vn
+|0|Q|0|0 1 1 1 0|1|1 1 1 1 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTZS Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|1|s|1 0 0 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTZS Vd.T, Vn.T
+|s|0|0|1 1 1 1 0|fty|0|1 1|0 0 1|scale      |Rn       |Rd       |  % FCVTZU Wd, Hn, #fbits / FCVTZU Xd, Hn, #fbits / FCVTZU Wd, Sn, #fbits / FCVTZU Xd, Sn, #fbits / FCVTZU Wd, Dn, #fbits / FCVTZU Xd, Dn, #fbits
+|s|0|0|1 1 1 1 0|fty|1|1 1|0 0 1|0 0 0 0 0 0|Rn       |Rd       |  % FCVTZU Wd, Hn / FCVTZU Xd, Hn / FCVTZU Wd, Sn / FCVTZU Xd, Sn / FCVTZU Wd, Dn / FCVTZU Xd, Dn
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |1 1 1 1 1|1|Rn       |Rd       |  % FCVTZU Vd, Vn, #fbits
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |1 1 1 1 1|1|Rn       |Rd       |  % FCVTZU Vd.T, Vn.T, #fbits
+|0 1|1|1 1 1 1 0|1|1 1 1 1 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTZU Hd, Hn
+|0 1|1|1 1 1 1 0|1|s|1 0 0 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTZU Vd, Vn
+|0|Q|1|0 1 1 1 0|1|1 1 1 1 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTZU Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|1|s|1 0 0 0 0|1 1 0 1|1|1 0|Rn       |Rd       |  % FCVTZU Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|fty|1|Rm       |0 0 0 1|1 0|Rn       |Rd       |  % FDIV Hd, Hn, Hm / FDIV Sd, Sn, Sm / FDIV Dd, Dn, Dm
+|0|Q|1|0 1 1 1 0|0|1 0|Rm       |0 0|1 1 1|1|Rn       |Rd       |  % FDIV Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|0|s|1|Rm       |1 1 1 1 1|1|Rn       |Rd       |  % FDIV Vd.T, Vn.T, Vm.T
+|0|0|0|1 1 1 1 0|0 1|1|1 1|1 1 0|0 0 0 0 0 0|Rn       |Rd       |  % FJCVTZS Wd, Dn
+|0|0|0|1 1 1 1 1|fty|0|Rm       |0|Ra       |Rn       |Rd       |  % FMADD Hd, Hn, Hm, Ha / FMADD Sd, Sn, Sm, Sa / FMADD Dd, Dn, Dm, Da
+|0|0|0|1 1 1 1 0|fty|1|Rm       |0 1|0 0|1 0|Rn       |Rd       |  % FMAX Hd, Hn, Hm / FMAX Sd, Sn, Sm / FMAX Dd, Dn, Dm
+|0|Q|0|0 1 1 1 0|0|1 0|Rm       |0 0|1 1 0|1|Rn       |Rd       |  % FMAX Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|0|s|1|Rm       |1 1 1 1 0|1|Rn       |Rd       |  % FMAX Vd.T, Vn.T, Vm.T
+|0|0|0|1 1 1 1 0|fty|1|Rm       |0 1|1 0|1 0|Rn       |Rd       |  % FMAXNM Hd, Hn, Hm / FMAXNM Sd, Sn, Sm / FMAXNM Dd, Dn, Dm
+|0|Q|0|0 1 1 1 0|0|1 0|Rm       |0 0|0 0 0|1|Rn       |Rd       |  % FMAXNM Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|0|s|1|Rm       |1 1 0 0 0|1|Rn       |Rd       |  % FMAXNM Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 0|0|s|1 1 0 0 0|0 1 1 0 0|1 0|Rn       |Rd       |  % FMAXNMP Vd, Vn.T
+|0 1|1|1 1 1 1 0|0|s|1 1 0 0 0|0 1 1 0 0|1 0|Rn       |Rd       |  % FMAXNMP Vd, Vn.T
+|0|Q|1|0 1 1 1 0|0|1 0|Rm       |0 0|0 0 0|1|Rn       |Rd       |  % FMAXNMP Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|0|s|1|Rm       |1 1 0 0 0|1|Rn       |Rd       |  % FMAXNMP Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|0|0|1 1 0 0 0|0 1 1 0 0|1 0|Rn       |Rd       |  % FMAXNMV Vd, Vn.T
+|0|Q|1|0 1 1 1 0|0|s|1 1 0 0 0|0 1 1 0 0|1 0|Rn       |Rd       |  % FMAXNMV Vd, Vn.T
+|0 1|0|1 1 1 1 0|0|s|1 1 0 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FMAXP Vd, Vn.T
+|0 1|1|1 1 1 1 0|0|s|1 1 0 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FMAXP Vd, Vn.T
+|0|Q|1|0 1 1 1 0|0|1 0|Rm       |0 0|1 1 0|1|Rn       |Rd       |  % FMAXP Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|0|s|1|Rm       |1 1 1 1 0|1|Rn       |Rd       |  % FMAXP Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|0|0|1 1 0 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FMAXV Vd, Vn.T
+|0|Q|1|0 1 1 1 0|0|s|1 1 0 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FMAXV Vd, Vn.T
+|0|0|0|1 1 1 1 0|fty|1|Rm       |0 1|0 1|1 0|Rn       |Rd       |  % FMIN Hd, Hn, Hm / FMIN Sd, Sn, Sm / FMIN Dd, Dn, Dm
+|0|Q|0|0 1 1 1 0|1|1 0|Rm       |0 0|1 1 0|1|Rn       |Rd       |  % FMIN Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|1|s|1|Rm       |1 1 1 1 0|1|Rn       |Rd       |  % FMIN Vd.T, Vn.T, Vm.T
+|0|0|0|1 1 1 1 0|fty|1|Rm       |0 1|1 1|1 0|Rn       |Rd       |  % FMINNM Hd, Hn, Hm / FMINNM Sd, Sn, Sm / FMINNM Dd, Dn, Dm
+|0|Q|0|0 1 1 1 0|1|1 0|Rm       |0 0|0 0 0|1|Rn       |Rd       |  % FMINNM Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|1|s|1|Rm       |1 1 0 0 0|1|Rn       |Rd       |  % FMINNM Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 0|1|s|1 1 0 0 0|0 1 1 0 0|1 0|Rn       |Rd       |  % FMINNMP Vd, Vn.T
+|0 1|1|1 1 1 1 0|1|s|1 1 0 0 0|0 1 1 0 0|1 0|Rn       |Rd       |  % FMINNMP Vd, Vn.T
+|0|Q|1|0 1 1 1 0|1|1 0|Rm       |0 0|0 0 0|1|Rn       |Rd       |  % FMINNMP Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|1|s|1|Rm       |1 1 0 0 0|1|Rn       |Rd       |  % FMINNMP Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|1|0|1 1 0 0 0|0 1 1 0 0|1 0|Rn       |Rd       |  % FMINNMV Vd, Vn.T
+|0|Q|1|0 1 1 1 0|1|s|1 1 0 0 0|0 1 1 0 0|1 0|Rn       |Rd       |  % FMINNMV Vd, Vn.T
+|0 1|0|1 1 1 1 0|1|s|1 1 0 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FMINP Vd, Vn.T
+|0 1|1|1 1 1 1 0|1|s|1 1 0 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FMINP Vd, Vn.T
+|0|Q|1|0 1 1 1 0|1|1 0|Rm       |0 0|1 1 0|1|Rn       |Rd       |  % FMINP Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|1|s|1|Rm       |1 1 1 1 0|1|Rn       |Rd       |  % FMINP Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|1|0|1 1 0 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FMINV Vd, Vn.T
+|0|Q|1|0 1 1 1 0|1|s|1 1 0 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FMINV Vd, Vn.T
+|0 1|0|1 1 1 1 1|0 0|L|M|Rm     |0|0|0 1|H|0|Rn       |Rd       |  % FMLA Hd, Hn, Vm.H[index]
+|0 1|0|1 1 1 1 1|1|s|L|M|Rm     |0|0|0 1|H|0|Rn       |Rd       |  % FMLA Vd, Vn, Vm.Ts[index]
+|0|Q|0|0 1 1 1 1|0 0|L|M|Rm     |0|0|0 1|H|0|Rn       |Rd       |  % FMLA Vd.T, Vn.T, Vm.H[index]
+|0|Q|0|0 1 1 1 1|1|s|L|M|Rm     |0|0|0 1|H|0|Rn       |Rd       |  % FMLA Vd.T, Vn.T, Vm.Ts[index]
+|0|Q|0|0 1 1 1 0|0|1 0|Rm       |0 0|0 0 1|1|Rn       |Rd       |  % FMLA Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|0|s|1|Rm       |1 1 0 0 1|1|Rn       |Rd       |  % FMLA Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 1|1|0|L|M|Rm     |0|0|0 0|H|0|Rn       |Rd       |  % FMLAL Vd.Ta, Vn.Tb, Vm.H[index]
+|0|Q|1|0 1 1 1 1|1|0|L|M|Rm     |1|0|0 0|H|0|Rn       |Rd       |  % FMLAL2 Vd.Ta, Vn.Tb, Vm.H[index]
+|0|Q|0|0 1 1 1 0|0|0|1|Rm       |1|1 1 0 1|1|Rn       |Rd       |  % FMLAL Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|1|0 1 1 1 0|0|0|1|Rm       |1|1 0 0 1|1|Rn       |Rd       |  % FMLAL2 Vd.Ta, Vn.Tb, Vm.Tb
+|0 1|0|1 1 1 1 1|0 0|L|M|Rm     |0|1|0 1|H|0|Rn       |Rd       |  % FMLS Hd, Hn, Vm.H[index]
+|0 1|0|1 1 1 1 1|1|s|L|M|Rm     |0|1|0 1|H|0|Rn       |Rd       |  % FMLS Vd, Vn, Vm.Ts[index]
+|0|Q|0|0 1 1 1 1|0 0|L|M|Rm     |0|1|0 1|H|0|Rn       |Rd       |  % FMLS Vd.T, Vn.T, Vm.H[index]
+|0|Q|0|0 1 1 1 1|1|s|L|M|Rm     |0|1|0 1|H|0|Rn       |Rd       |  % FMLS Vd.T, Vn.T, Vm.Ts[index]
+|0|Q|0|0 1 1 1 0|1|1 0|Rm       |0 0|0 0 1|1|Rn       |Rd       |  % FMLS Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|1|s|1|Rm       |1 1 0 0 1|1|Rn       |Rd       |  % FMLS Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 1|1|0|L|M|Rm     |0|1|0 0|H|0|Rn       |Rd       |  % FMLSL Vd.Ta, Vn.Tb, Vm.H[index]
+|0|Q|1|0 1 1 1 1|1|0|L|M|Rm     |1|1|0 0|H|0|Rn       |Rd       |  % FMLSL2 Vd.Ta, Vn.Tb, Vm.H[index]
+|0|Q|0|0 1 1 1 0|1|0|1|Rm       |1|1 1 0 1|1|Rn       |Rd       |  % FMLSL Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|1|0 1 1 1 0|1|0|1|Rm       |1|1 0 0 1|1|Rn       |Rd       |  % FMLSL2 Vd.Ta, Vn.Tb, Vm.Tb
+|s|0|0|1 1 1 1 0|fty|1|0 x|1 1 x|0 0 0 0 0 0|Rn       |Rd       |  % FMOV Wd, Hn / FMOV Xd, Hn / FMOV Hd, Wn / FMOV Sd, Wn / FMOV Wd, Sn / FMOV Hd, Xn / FMOV Dd, Xn / FMOV Vd.D[1], Xn / FMOV Xd, Dn / FMOV Xd, Vn.D[1]
+|0|0|0|1 1 1 1 0|fty|1|0 0 0 0|0 0|1 0 0 0 0|Rn       |Rd       |  % FMOV Hd, Hn / FMOV Sd, Sn / FMOV Dd, Dn
+|0|0|0|1 1 1 1 0|fty|1|imm8           |1 0 0|0 0 0 0 0|Rd       |  % FMOV Hd, #imm / FMOV Sd, #imm / FMOV Dd, #imm
+|0|Q|0|0 1 1 1 1 0 0 0 0 0|a|b|c|1 1 1 1|1|1|d|e|f|g|h|Rd       |  % FMOV Vd.T, #imm
+|0|Q|o|0 1 1 1 1 0 0 0 0 0|a|b|c|1 1 1 1|0|1|d|e|f|g|h|Rd       |  % FMOV Vd.T, #imm / FMOV Vd.2D, #imm
+|0|0|0|1 1 1 1 1|fty|0|Rm       |1|Ra       |Rn       |Rd       |  % FMSUB Hd, Hn, Hm, Ha / FMSUB Sd, Sn, Sm, Sa / FMSUB Dd, Dn, Dm, Da
+|0 1|0|1 1 1 1 1|0 0|L|M|Rm     |1 0 0 1|H|0|Rn       |Rd       |  % FMUL Hd, Hn, Vm.H[index]
+|0 1|0|1 1 1 1 1|1|s|L|M|Rm     |1 0 0 1|H|0|Rn       |Rd       |  % FMUL Vd, Vn, Vm.Ts[index]
+|0|Q|0|0 1 1 1 1|0 0|L|M|Rm     |1 0 0 1|H|0|Rn       |Rd       |  % FMUL Vd.T, Vn.T, Vm.H[index]
+|0|Q|0|0 1 1 1 1|1|s|L|M|Rm     |1 0 0 1|H|0|Rn       |Rd       |  % FMUL Vd.T, Vn.T, Vm.Ts[index]
+|0|0|0|1 1 1 1 0|fty|1|Rm       |0|0 0 0|1 0|Rn       |Rd       |  % FMUL Hd, Hn, Hm / FMUL Sd, Sn, Sm / FMUL Dd, Dn, Dm
+|0|Q|1|0 1 1 1 0|0|1 0|Rm       |0 0|0 1 1|1|Rn       |Rd       |  % FMUL Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|0|s|1|Rm       |1 1 0 1 1|1|Rn       |Rd       |  % FMUL Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 0|0|1 0|Rm       |0 0|0 1 1|1|Rn       |Rd       |  % FMULX Hd, Hn, Hm
+|0 1|0|1 1 1 1 0|0|s|1|Rm       |1 1 0 1 1|1|Rn       |Rd       |  % FMULX Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|0|1 0|Rm       |0 0|0 1 1|1|Rn       |Rd       |  % FMULX Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|0|s|1|Rm       |1 1 0 1 1|1|Rn       |Rd       |  % FMULX Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 1|0 0|L|M|Rm     |1 0 0 1|H|0|Rn       |Rd       |  % FMULX Hd, Hn, Vm.H[index]
+|0 1|1|1 1 1 1 1|1|s|L|M|Rm     |1 0 0 1|H|0|Rn       |Rd       |  % FMULX Vd, Vn, Vm.Ts[index]
+|0|Q|1|0 1 1 1 1|0 0|L|M|Rm     |1 0 0 1|H|0|Rn       |Rd       |  % FMULX Vd.T, Vn.T, Vm.H[index]
+|0|Q|1|0 1 1 1 1|1|s|L|M|Rm     |1 0 0 1|H|0|Rn       |Rd       |  % FMULX Vd.T, Vn.T, Vm.Ts[index]
+|0|0|0|1 1 1 1 0|fty|1|0 0 0 0|1 0|1 0 0 0 0|Rn       |Rd       |  % FNEG Hd, Hn / FNEG Sd, Sn / FNEG Dd, Dn
+|0|Q|1|0 1 1 1 0|1|1 1 1 1 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FNEG Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|1|s|1 0 0 0 0|0 1 1 1 1|1 0|Rn       |Rd       |  % FNEG Vd.T, Vn.T
+|0|0|0|1 1 1 1 1|fty|1|Rm       |0|Ra       |Rn       |Rd       |  % FNMADD Hd, Hn, Hm, Ha / FNMADD Sd, Sn, Sm, Sa / FNMADD Dd, Dn, Dm, Da
+|0|0|0|1 1 1 1 1|fty|1|Rm       |1|Ra       |Rn       |Rd       |  % FNMSUB Hd, Hn, Hm, Ha / FNMSUB Sd, Sn, Sm, Sa / FNMSUB Dd, Dn, Dm, Da
+|0|0|0|1 1 1 1 0|fty|1|Rm       |1|0 0 0|1 0|Rn       |Rd       |  % FNMUL Hd, Hn, Hm / FNMUL Sd, Sn, Sm / FNMUL Dd, Dn, Dm
+|0 1|0|1 1 1 1 0|1|1 1 1 1 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % FRECPE Hd, Hn
+|0 1|0|1 1 1 1 0|1|s|1 0 0 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % FRECPE Vd, Vn
+|0|Q|0|0 1 1 1 0|1|1 1 1 1 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % FRECPE Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|1|s|1 0 0 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % FRECPE Vd.T, Vn.T
+|0 1|0|1 1 1 1 0|0|1 0|Rm       |0 0|1 1 1|1|Rn       |Rd       |  % FRECPS Hd, Hn, Hm
+|0 1|0|1 1 1 1 0|0|s|1|Rm       |1 1 1 1 1|1|Rn       |Rd       |  % FRECPS Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|0|1 0|Rm       |0 0|1 1 1|1|Rn       |Rd       |  % FRECPS Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|0|s|1|Rm       |1 1 1 1 1|1|Rn       |Rd       |  % FRECPS Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 0|1|1 1 1 1 0 0|1 1 1 1 1|1 0|Rn       |Rd       |  % FRECPX Hd, Hn
+|0 1|0|1 1 1 1 0|1|s|1 0 0 0 0|1 1 1 1 1|1 0|Rn       |Rd       |  % FRECPX Vd, Vn
+|0|0|0|1 1 1 1 0|0 x|1|0 1 0 0|0 1|1 0 0 0 0|Rn       |Rd       |  % FRINT32X Sd, Sn / FRINT32X Dd, Dn
+|0|Q|1|0 1 1 1 0|0|s|1 0 0 0 0|1 1 1 1|0|1 0|Rn       |Rd       |  % FRINT32X Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|0 x|1|0 1 0 0|0 0|1 0 0 0 0|Rn       |Rd       |  % FRINT32Z Sd, Sn / FRINT32Z Dd, Dn
+|0|Q|0|0 1 1 1 0|0|s|1 0 0 0 0|1 1 1 1|0|1 0|Rn       |Rd       |  % FRINT32Z Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|0 x|1|0 1 0 0|1 1|1 0 0 0 0|Rn       |Rd       |  % FRINT64X Sd, Sn / FRINT64X Dd, Dn
+|0|Q|1|0 1 1 1 0|0|s|1 0 0 0 0|1 1 1 1|1|1 0|Rn       |Rd       |  % FRINT64X Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|0 x|1|0 1 0 0|1 0|1 0 0 0 0|Rn       |Rd       |  % FRINT64Z Sd, Sn / FRINT64Z Dd, Dn
+|0|Q|0|0 1 1 1 0|0|s|1 0 0 0 0|1 1 1 1|1|1 0|Rn       |Rd       |  % FRINT64Z Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|fty|1|0 0 1|1 0 0|1 0 0 0 0|Rn       |Rd       |  % FRINTA Hd, Hn / FRINTA Sd, Sn / FRINTA Dd, Dn
+|0|Q|1|0 1 1 1 0|0|1 1 1 1 0 0|1 1 0 0|0|1 0|Rn       |Rd       |  % FRINTA Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|0|s|1 0 0 0 0|1 1 0 0|0|1 0|Rn       |Rd       |  % FRINTA Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|fty|1|0 0 1|1 1 1|1 0 0 0 0|Rn       |Rd       |  % FRINTI Hd, Hn / FRINTI Sd, Sn / FRINTI Dd, Dn
+|0|Q|1|0 1 1 1 0|1|1 1 1 1 0 0|1 1 0 0|1|1 0|Rn       |Rd       |  % FRINTI Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|1|s|1 0 0 0 0|1 1 0 0|1|1 0|Rn       |Rd       |  % FRINTI Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|fty|1|0 0 1|0 1 0|1 0 0 0 0|Rn       |Rd       |  % FRINTM Hd, Hn / FRINTM Sd, Sn / FRINTM Dd, Dn
+|0|Q|0|0 1 1 1 0|0|1 1 1 1 0 0|1 1 0 0|1|1 0|Rn       |Rd       |  % FRINTM Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|0|s|1 0 0 0 0|1 1 0 0|1|1 0|Rn       |Rd       |  % FRINTM Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|fty|1|0 0 1|0 0 0|1 0 0 0 0|Rn       |Rd       |  % FRINTN Hd, Hn / FRINTN Sd, Sn / FRINTN Dd, Dn
+|0|Q|0|0 1 1 1 0|0|1 1 1 1 0 0|1 1 0 0|0|1 0|Rn       |Rd       |  % FRINTN Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|0|s|1 0 0 0 0|1 1 0 0|0|1 0|Rn       |Rd       |  % FRINTN Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|fty|1|0 0 1|0 0 1|1 0 0 0 0|Rn       |Rd       |  % FRINTP Hd, Hn / FRINTP Sd, Sn / FRINTP Dd, Dn
+|0|Q|0|0 1 1 1 0|1|1 1 1 1 0 0|1 1 0 0|0|1 0|Rn       |Rd       |  % FRINTP Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|1|s|1 0 0 0 0|1 1 0 0|0|1 0|Rn       |Rd       |  % FRINTP Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|fty|1|0 0 1|1 1 0|1 0 0 0 0|Rn       |Rd       |  % FRINTX Hd, Hn / FRINTX Sd, Sn / FRINTX Dd, Dn
+|0|Q|1|0 1 1 1 0|0|1 1 1 1 0 0|1 1 0 0|1|1 0|Rn       |Rd       |  % FRINTX Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|0|s|1 0 0 0 0|1 1 0 0|1|1 0|Rn       |Rd       |  % FRINTX Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|fty|1|0 0 1|0 1 1|1 0 0 0 0|Rn       |Rd       |  % FRINTZ Hd, Hn / FRINTZ Sd, Sn / FRINTZ Dd, Dn
+|0|Q|0|0 1 1 1 0|1|1 1 1 1 0 0|1 1 0 0|1|1 0|Rn       |Rd       |  % FRINTZ Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|1|s|1 0 0 0 0|1 1 0 0|1|1 0|Rn       |Rd       |  % FRINTZ Vd.T, Vn.T
+|0 1|1|1 1 1 1 0|1|1 1 1 1 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % FRSQRTE Hd, Hn
+|0 1|1|1 1 1 1 0|1|s|1 0 0 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % FRSQRTE Vd, Vn
+|0|Q|1|0 1 1 1 0|1|1 1 1 1 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % FRSQRTE Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|1|s|1 0 0 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % FRSQRTE Vd.T, Vn.T
+|0 1|0|1 1 1 1 0|1|1 0|Rm       |0 0|1 1 1|1|Rn       |Rd       |  % FRSQRTS Hd, Hn, Hm
+|0 1|0|1 1 1 1 0|1|s|1|Rm       |1 1 1 1 1|1|Rn       |Rd       |  % FRSQRTS Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|1|1 0|Rm       |0 0|1 1 1|1|Rn       |Rd       |  % FRSQRTS Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|1|s|1|Rm       |1 1 1 1 1|1|Rn       |Rd       |  % FRSQRTS Vd.T, Vn.T, Vm.T
+|0|0|0|1 1 1 1 0|fty|1|0 0 0 0|1 1|1 0 0 0 0|Rn       |Rd       |  % FSQRT Hd, Hn / FSQRT Sd, Sn / FSQRT Dd, Dn
+|0|Q|1|0 1 1 1 0|1|1 1 1 1 0 0|1 1 1 1 1|1 0|Rn       |Rd       |  % FSQRT Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|1|s|1 0 0 0 0|1 1 1 1 1|1 0|Rn       |Rd       |  % FSQRT Vd.T, Vn.T
+|0|0|0|1 1 1 1 0|fty|1|Rm       |0 0 1|1|1 0|Rn       |Rd       |  % FSUB Hd, Hn, Hm / FSUB Sd, Sn, Sm / FSUB Dd, Dn, Dm
+|0|Q|0|0 1 1 1 0|1|1 0|Rm       |0 0|0 1 0|1|Rn       |Rd       |  % FSUB Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|1|s|1|Rm       |1 1 0 1 0|1|Rn       |Rd       |  % FSUB Vd.T, Vn.T, Vm.T
+|0|1|1|0 1 1 1 0 0 0 0|imm5     |0|imm4   |1|Rn       |Rd       |  % INS Vd.Ts[index1], Vn.Ts[index2]
+|0|1|0|0 1 1 1 0 0 0 0|imm5     |0|0 0 1 1|1|Rn       |Rd       |  % INS Vd.Ts[index], Rn
+|0|Q|0 0 1 1 0 0 0|1|0 0 0 0 0 0|x x 1 x|siz|Rn       |Rt       |  % LD1 { Vt.T }, [Xn|SP] / LD1 { Vt.T, Vt2.T }, [Xn|SP] / LD1 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP] / LD1 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 0 1|1|0|Rm       |x x 1 x|siz|Rn       |Rt       |  % LD1 { Vt.T }, [Xn|SP], imm / LD1 { Vt.T }, [Xn|SP], Xm / LD1 { Vt.T, Vt2.T }, [Xn|SP], imm / LD1 { Vt.T, Vt2.T }, [Xn|SP], Xm / LD1 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP], imm / LD1 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP], Xm / LD1 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP], imm / LD1 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|1|0|0 0 0 0 0|x x 0|S|siz|Rn       |Rt       |  % LD1 { Vt.B }[index], [Xn|SP] / LD1 { Vt.H }[index], [Xn|SP] / LD1 { Vt.S }[index], [Xn|SP] / LD1 { Vt.D }[index], [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|1|0|Rm       |x x 0|S|siz|Rn       |Rt       |  % LD1 { Vt.B }[index], [Xn|SP], #1 / LD1 { Vt.B }[index], [Xn|SP], Xm / LD1 { Vt.H }[index], [Xn|SP], #2 / LD1 { Vt.H }[index], [Xn|SP], Xm / LD1 { Vt.S }[index], [Xn|SP], #4 / LD1 { Vt.S }[index], [Xn|SP], Xm / LD1 { Vt.D }[index], [Xn|SP], #8 / LD1 { Vt.D }[index], [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|1|0|0 0 0 0 0|1 1 0|0|siz|Rn       |Rt       |  % LD1R { Vt.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|1|0|Rm       |1 1 0|0|siz|Rn       |Rt       |  % LD1R { Vt.T }, [Xn|SP], imm / LD1R { Vt.T }, [Xn|SP], Xm
+|0|Q|0 0 1 1 0 0 0|1|0 0 0 0 0 0|1 0 0 0|siz|Rn       |Rt       |  % LD2 { Vt.T, Vt2.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 0 1|1|0|Rm       |1 0 0 0|siz|Rn       |Rt       |  % LD2 { Vt.T, Vt2.T }, [Xn|SP], imm / LD2 { Vt.T, Vt2.T }, [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|1|1|0 0 0 0 0|x x 0|S|siz|Rn       |Rt       |  % LD2 { Vt.B, Vt2.B }[index], [Xn|SP] / LD2 { Vt.H, Vt2.H }[index], [Xn|SP] / LD2 { Vt.S, Vt2.S }[index], [Xn|SP] / LD2 { Vt.D, Vt2.D }[index], [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|1|1|Rm       |x x 0|S|siz|Rn       |Rt       |  % LD2 { Vt.B, Vt2.B }[index], [Xn|SP], #2 / LD2 { Vt.B, Vt2.B }[index], [Xn|SP], Xm / LD2 { Vt.H, Vt2.H }[index], [Xn|SP], #4 / LD2 { Vt.H, Vt2.H }[index], [Xn|SP], Xm / LD2 { Vt.S, Vt2.S }[index], [Xn|SP], #8 / LD2 { Vt.S, Vt2.S }[index], [Xn|SP], Xm / LD2 { Vt.D, Vt2.D }[index], [Xn|SP], #16 / LD2 { Vt.D, Vt2.D }[index], [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|1|1|0 0 0 0 0|1 1 0|0|siz|Rn       |Rt       |  % LD2R { Vt.T, Vt2.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|1|1|Rm       |1 1 0|0|siz|Rn       |Rt       |  % LD2R { Vt.T, Vt2.T }, [Xn|SP], imm / LD2R { Vt.T, Vt2.T }, [Xn|SP], Xm
+|0|Q|0 0 1 1 0 0 0|1|0 0 0 0 0 0|0 1 0 0|siz|Rn       |Rt       |  % LD3 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 0 1|1|0|Rm       |0 1 0 0|siz|Rn       |Rt       |  % LD3 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP], imm / LD3 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|1|0|0 0 0 0 0|x x 1|S|siz|Rn       |Rt       |  % LD3 { Vt.B, Vt2.B, Vt3.B }[index], [Xn|SP] / LD3 { Vt.H, Vt2.H, Vt3.H }[index], [Xn|SP] / LD3 { Vt.S, Vt2.S, Vt3.S }[index], [Xn|SP] / LD3 { Vt.D, Vt2.D, Vt3.D }[index], [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|1|0|Rm       |x x 1|S|siz|Rn       |Rt       |  % LD3 { Vt.B, Vt2.B, Vt3.B }[index], [Xn|SP], #3 / LD3 { Vt.B, Vt2.B, Vt3.B }[index], [Xn|SP], Xm / LD3 { Vt.H, Vt2.H, Vt3.H }[index], [Xn|SP], #6 / LD3 { Vt.H, Vt2.H, Vt3.H }[index], [Xn|SP], Xm / LD3 { Vt.S, Vt2.S, Vt3.S }[index], [Xn|SP], #12 / LD3 { Vt.S, Vt2.S, Vt3.S }[index], [Xn|SP], Xm / LD3 { Vt.D, Vt2.D, Vt3.D }[index], [Xn|SP], #24 / LD3 { Vt.D, Vt2.D, Vt3.D }[index], [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|1|0|0 0 0 0 0|1 1 1|0|siz|Rn       |Rt       |  % LD3R { Vt.T, Vt2.T, Vt3.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|1|0|Rm       |1 1 1|0|siz|Rn       |Rt       |  % LD3R { Vt.T, Vt2.T, Vt3.T }, [Xn|SP], imm / LD3R { Vt.T, Vt2.T, Vt3.T }, [Xn|SP], Xm
+|0|Q|0 0 1 1 0 0 0|1|0 0 0 0 0 0|0 0 0 0|siz|Rn       |Rt       |  % LD4 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 0 1|1|0|Rm       |0 0 0 0|siz|Rn       |Rt       |  % LD4 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP], imm / LD4 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|1|1|0 0 0 0 0|x x 1|S|siz|Rn       |Rt       |  % LD4 { Vt.B, Vt2.B, Vt3.B, Vt4.B }[index], [Xn|SP] / LD4 { Vt.H, Vt2.H, Vt3.H, Vt4.H }[index], [Xn|SP] / LD4 { Vt.S, Vt2.S, Vt3.S, Vt4.S }[index], [Xn|SP] / LD4 { Vt.D, Vt2.D, Vt3.D, Vt4.D }[index], [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|1|1|Rm       |x x 1|S|siz|Rn       |Rt       |  % LD4 { Vt.B, Vt2.B, Vt3.B, Vt4.B }[index], [Xn|SP], #4 / LD4 { Vt.B, Vt2.B, Vt3.B, Vt4.B }[index], [Xn|SP], Xm / LD4 { Vt.H, Vt2.H, Vt3.H, Vt4.H }[index], [Xn|SP], #8 / LD4 { Vt.H, Vt2.H, Vt3.H, Vt4.H }[index], [Xn|SP], Xm / LD4 { Vt.S, Vt2.S, Vt3.S, Vt4.S }[index], [Xn|SP], #16 / LD4 { Vt.S, Vt2.S, Vt3.S, Vt4.S }[index], [Xn|SP], Xm / LD4 { Vt.D, Vt2.D, Vt3.D, Vt4.D }[index], [Xn|SP], #32 / LD4 { Vt.D, Vt2.D, Vt3.D, Vt4.D }[index], [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|1|1|0 0 0 0 0|1 1 1|0|siz|Rn       |Rt       |  % LD4R { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|1|1|Rm       |1 1 1|0|siz|Rn       |Rt       |  % LD4R { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP], imm / LD4R { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP], Xm
+|opc|1 0 1|1|0 0 0|1|imm7         |Rt2      |Rn       |Rt       |  % LDNP St1, St2, [Xn|SP{, #imm}] / LDNP Dt1, Dt2, [Xn|SP{, #imm}] / LDNP Qt1, Qt2, [Xn|SP{, #imm}]
+|opc|1 0 1|1|0 0 1|1|imm7         |Rt2      |Rn       |Rt       |  % LDP St1, St2, [Xn|SP], #imm / LDP Dt1, Dt2, [Xn|SP], #imm / LDP Qt1, Qt2, [Xn|SP], #imm
+|opc|1 0 1|1|0 1 1|1|imm7         |Rt2      |Rn       |Rt       |  % LDP St1, St2, [Xn|SP, #imm]! / LDP Dt1, Dt2, [Xn|SP, #imm]! / LDP Qt1, Qt2, [Xn|SP, #imm]!
+|opc|1 0 1|1|0 1 0|1|imm7         |Rt2      |Rn       |Rt       |  % LDP St1, St2, [Xn|SP{, #imm}] / LDP Dt1, Dt2, [Xn|SP{, #imm}] / LDP Qt1, Qt2, [Xn|SP{, #imm}]
+|siz|1 1 1|1|0 0|x 1|0|imm9             |0 1|Rn       |Rt       |  % LDR Bt, [Xn|SP], #simm / LDR Ht, [Xn|SP], #simm / LDR St, [Xn|SP], #simm / LDR Dt, [Xn|SP], #simm / LDR Qt, [Xn|SP], #simm
+|siz|1 1 1|1|0 0|x 1|0|imm9             |1 1|Rn       |Rt       |  % LDR Bt, [Xn|SP, #simm]! / LDR Ht, [Xn|SP, #simm]! / LDR St, [Xn|SP, #simm]! / LDR Dt, [Xn|SP, #simm]! / LDR Qt, [Xn|SP, #simm]!
+|siz|1 1 1|1|0 1|x 1|imm12                  |Rn       |Rt       |  % LDR Bt, [Xn|SP{, #pimm}] / LDR Ht, [Xn|SP{, #pimm}] / LDR St, [Xn|SP{, #pimm}] / LDR Dt, [Xn|SP{, #pimm}] / LDR Qt, [Xn|SP{, #pimm}]
+|opc|0 1 1|1|0 0|imm19                                |Rt       |  % LDR St, label / LDR Dt, label / LDR Qt, label
+|siz|1 1 1|1|0 0|x 1|1|Rm       |optio|S|1 0|Rn       |Rt       |  % LDR Bt, [Xn|SP, (Wm|Xm), extend {amount}] / LDR Bt, [Xn|SP, Xm{, LSL amount}] / LDR Ht, [Xn|SP, (Wm|Xm){, extend {amount}}] / LDR St, [Xn|SP, (Wm|Xm){, extend {amount}}] / LDR Dt, [Xn|SP, (Wm|Xm){, extend {amount}}] / LDR Qt, [Xn|SP, (Wm|Xm){, extend {amount}}]
+|siz|1 1 1|1|0 0|x 1|0|imm9             |0 0|Rn       |Rt       |  % LDUR Bt, [Xn|SP{, #simm}] / LDUR Ht, [Xn|SP{, #simm}] / LDUR St, [Xn|SP{, #simm}] / LDUR Dt, [Xn|SP{, #simm}] / LDUR Qt, [Xn|SP{, #simm}]
+|0|Q|1|0 1 1 1 1|siz|L|M|Rm     |0|0|0 0|H|0|Rn       |Rd       |  % MLA Vd.T, Vn.T, Vm.Ts[index]
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0 0 1 0|1|Rn       |Rd       |  % MLA Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 1|siz|L|M|Rm     |0|1|0 0|H|0|Rn       |Rd       |  % MLS Vd.T, Vn.T, Vm.Ts[index]
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |1 0 0 1 0|1|Rn       |Rd       |  % MLS Vd.T, Vn.T, Vm.T
+|0|1|1|0 1 1 1 0 0 0 0|imm5     |0|imm4   |1|Rn       |Rd       |  % MOV Vd.Ts[index1], Vn.Ts[index2] / INS Vd.Ts[index1], Vn.Ts[index2]
+|0|1|0|0 1 1 1 0 0 0 0|imm5     |0|0 0 1 1|1|Rn       |Rd       |  % MOV Vd.Ts[index], Rn / INS Vd.Ts[index], Rn
+|0 1|0|1 1 1 1 0 0 0 0|imm5     |0|0 0 0 0|1|Rn       |Rd       |  % MOV Vd, Vn.T[index] / DUP Vd, Vn.T[index]
+|0|Q|0|0 1 1 1 0 0 0 0|x x x 0 0|0|0 1|1|1|1|Rn       |Rd       |  % MOV Wd, Vn.S[index] / UMOV Wd, Vn.S[index] / MOV Xd, Vn.D[index] / UMOV Xd, Vn.D[index]
+|0|Q|0|0 1 1 1 0|1 0|1|Rm       |0 0 0 1 1|1|Rn       |Rd       |  % MOV Vd.T, Vn.T / ORR Vd.T, Vn.T, Vn.T
+|0|Q|o|0 1 1 1 1 0 0 0 0 0|a|b|c|cmode  |0|1|d|e|f|g|h|Rd       |  % MOVI Vd.T, #imm8{, LSL #0} / MOVI Vd.T, #imm8{, LSL #amount} / MOVI Vd.T, #imm8{, LSL #amount} / MOVI Vd.T, #imm8, MSL #amount / MOVI Dd, #imm / MOVI Vd.2D, #imm
+|0|Q|0|0 1 1 1 1|siz|L|M|Rm     |1 0 0 0|H|0|Rn       |Rd       |  % MUL Vd.T, Vn.T, Vm.Ts[index]
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0 0 1 1|1|Rn       |Rd       |  % MUL Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|0 0|1 0 0 0 0|0 0 1 0 1|1 0|Rn       |Rd       |  % MVN Vd.T, Vn.T / NOT Vd.T, Vn.T
+|0|Q|1|0 1 1 1 1 0 0 0 0 0|a|b|c|cmode  |0|1|d|e|f|g|h|Rd       |  % MVNI Vd.T, #imm8{, LSL #amount} / MVNI Vd.T, #imm8{, LSL #amount} / MVNI Vd.T, #imm8, MSL #amount
+|0 1|1|1 1 1 1 0|siz|1 0 0 0 0|0 1 0 1 1|1 0|Rn       |Rd       |  % NEG Vd, Vn
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|0 1 0 1 1|1 0|Rn       |Rd       |  % NEG Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|0 0|1 0 0 0 0|0 0 1 0 1|1 0|Rn       |Rd       |  % NOT Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|1 1|1|Rm       |0 0 0 1 1|1|Rn       |Rd       |  % ORN Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 1 0 0 0 0 0|a|b|c|x x x 1|0|1|d|e|f|g|h|Rd       |  % ORR Vd.T, #imm8{, LSL #amount} / ORR Vd.T, #imm8{, LSL #amount}
+|0|Q|0|0 1 1 1 0|1 0|1|Rm       |0 0 0 1 1|1|Rn       |Rd       |  % ORR Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |1 0 0 1 1|1|Rn       |Rd       |  % PMUL Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 1 1 0|0 0|Rn       |Rd       |  % PMULL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1|0|0|0 0|Rn       |Rd       |  % RADDHN{2} Vd.Tb, Vn.Ta, Vm.Ta
+|1 1 0 0 1 1 1 0 0 1 1|Rm       |1|0|0 0|1 1|Rn       |Rd       |  % RAX1 Vd.2D, Vn.2D, Vm.2D
+|0|Q|1|0 1 1 1 0|0 1|1 0 0 0 0|0 0 1 0 1|1 0|Rn       |Rd       |  % RBIT Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 0 0 0|1|1 0|Rn       |Rd       |  % REV16 Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|0 0 0 0|0|1 0|Rn       |Rd       |  % REV32 Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 0 0 0|0|1 0|Rn       |Rd       |  % REV64 Vd.T, Vn.T
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |1 0 0 0|1|1|Rn       |Rd       |  % RSHRN{2} Vd.Tb, Vn.Ta, #shift
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1|1|0|0 0|Rn       |Rd       |  % RSUBHN{2} Vd.Tb, Vn.Ta, Vm.Ta
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1 1 1|1|1|Rn       |Rd       |  % SABA Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1|0|1|0 0|Rn       |Rd       |  % SABAL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1 1 1|0|1|Rn       |Rd       |  % SABD Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1|1|1|0 0|Rn       |Rd       |  % SABDL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 0|1|1 0|1 0|Rn       |Rd       |  % SADALP Vd.Ta, Vn.Tb
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 0|0|0|0 0|Rn       |Rd       |  % SADDL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 0|0|1 0|1 0|Rn       |Rd       |  % SADDLP Vd.Ta, Vn.Tb
+|0|Q|0|0 1 1 1 0|siz|1 1 0 0 0|0 0 0 1 1|1 0|Rn       |Rd       |  % SADDLV Vd, Vn.T
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 0|0|1|0 0|Rn       |Rd       |  % SADDW{2} Vd.Ta, Vn.Ta, Vm.Tb
+|s|0|0|1 1 1 1 0|fty|0|0 0|0 1 0|scale      |Rn       |Rd       |  % SCVTF Hd, Wn, #fbits / SCVTF Sd, Wn, #fbits / SCVTF Dd, Wn, #fbits / SCVTF Hd, Xn, #fbits / SCVTF Sd, Xn, #fbits / SCVTF Dd, Xn, #fbits
+|s|0|0|1 1 1 1 0|fty|1|0 0|0 1 0|0 0 0 0 0 0|Rn       |Rd       |  % SCVTF Hd, Wn / SCVTF Sd, Wn / SCVTF Dd, Wn / SCVTF Hd, Xn / SCVTF Sd, Xn / SCVTF Dd, Xn
+|0 1|0|1 1 1 1 1 0|!= 0000|immb |1 1 1 0 0|1|Rn       |Rd       |  % SCVTF Vd, Vn, #fbits
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |1 1 1 0 0|1|Rn       |Rd       |  % SCVTF Vd.T, Vn.T, #fbits
+|0 1|0|1 1 1 1 0|0|1 1 1 1 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % SCVTF Hd, Hn
+|0 1|0|1 1 1 1 0|0|s|1 0 0 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % SCVTF Vd, Vn
+|0|Q|0|0 1 1 1 0|0|1 1 1 1 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % SCVTF Vd.T, Vn.T
+|0|Q|0|0 1 1 1 0|0|s|1 0 0 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % SCVTF Vd.T, Vn.T
+|0|Q|0|0 1 1 1 1|siz|L|M|Rm     |1 1 1 0|H|0|Rn       |Rd       |  % SDOT Vd.Ta, Vn.Tb, Vm.4B[index]
+|0|Q|0|0 1 1 1 0|siz|0|Rm       |1|0 0 1 0|1|Rn       |Rd       |  % SDOT Vd.Ta, Vn.Tb, Vm.Tb
+|0 1 0 1 1 1 1 0|0 0|0|Rm       |0|0 0 0|0 0|Rn       |Rd       |  % SHA1C Qd, Sn, Vm.4S
+|0 1 0 1 1 1 1 0|0 0|1 0 1 0 0|0 0 0 0 0|1 0|Rn       |Rd       |  % SHA1H Sd, Sn
+|0 1 0 1 1 1 1 0|0 0|0|Rm       |0|0 1 0|0 0|Rn       |Rd       |  % SHA1M Qd, Sn, Vm.4S
+|0 1 0 1 1 1 1 0|0 0|0|Rm       |0|0 0 1|0 0|Rn       |Rd       |  % SHA1P Qd, Sn, Vm.4S
+|0 1 0 1 1 1 1 0|0 0|0|Rm       |0|0 1 1|0 0|Rn       |Rd       |  % SHA1SU0 Vd.4S, Vn.4S, Vm.4S
+|0 1 0 1 1 1 1 0|0 0|1 0 1 0 0|0 0 0 0 1|1 0|Rn       |Rd       |  % SHA1SU1 Vd.4S, Vn.4S
+|0 1 0 1 1 1 1 0|0 0|0|Rm       |0|1 0|0|0 0|Rn       |Rd       |  % SHA256H Qd, Qn, Vm.4S
+|0 1 0 1 1 1 1 0|0 0|0|Rm       |0|1 0|1|0 0|Rn       |Rd       |  % SHA256H2 Qd, Qn, Vm.4S
+|0 1 0 1 1 1 1 0|0 0|1 0 1 0 0|0 0 0 1 0|1 0|Rn       |Rd       |  % SHA256SU0 Vd.4S, Vn.4S
+|0 1 0 1 1 1 1 0|0 0|0|Rm       |0|1 1 0|0 0|Rn       |Rd       |  % SHA256SU1 Vd.4S, Vn.4S, Vm.4S
+|1 1 0 0 1 1 1 0 0 1 1|Rm       |1|0|0 0|0 0|Rn       |Rd       |  % SHA512H Qd, Qn, Vm.2D
+|1 1 0 0 1 1 1 0 0 1 1|Rm       |1|0|0 0|0 1|Rn       |Rd       |  % SHA512H2 Qd, Qn, Vm.2D
+|1 1 0 0 1 1 1 0 1 1 0 0 0 0 0 0 1 0 0 0|0 0|Rn       |Rd       |  % SHA512SU0 Vd.2D, Vn.2D
+|1 1 0 0 1 1 1 0 0 1 1|Rm       |1|0|0 0|1 0|Rn       |Rd       |  % SHA512SU1 Vd.2D, Vn.2D, Vm.2D
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 0 0 0 0|1|Rn       |Rd       |  % SHADD Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 1 0|!= 0000|immb |0 1 0 1 0|1|Rn       |Rd       |  % SHL Vd, Vn, #shift
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |0 1 0 1 0|1|Rn       |Rd       |  % SHL Vd.T, Vn.T, #shift
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|1 0 0 1 1|1 0|Rn       |Rd       |  % SHLL{2} Vd.Ta, Vn.Tb, #shift
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |1 0 0 0|0|1|Rn       |Rd       |  % SHRN{2} Vd.Tb, Vn.Ta, #shift
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 0 1 0 0|1|Rn       |Rd       |  % SHSUB Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |0 1 0 1 0|1|Rn       |Rd       |  % SLI Vd, Vn, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |0 1 0 1 0|1|Rn       |Rd       |  % SLI Vd.T, Vn.T, #shift
+|1 1 0 0 1 1 1 0 0 1 1|Rm       |1|1|0 0|0 0|Rn       |Rd       |  % SM3PARTW1 Vd.4S, Vn.4S, Vm.4S
+|1 1 0 0 1 1 1 0 0 1 1|Rm       |1|1|0 0|0 1|Rn       |Rd       |  % SM3PARTW2 Vd.4S, Vn.4S, Vm.4S
+|1 1 0 0 1 1 1 0 0|1 0|Rm       |0|Ra       |Rn       |Rd       |  % SM3SS1 Vd.4S, Vn.4S, Vm.4S, Va.4S
+|1 1 0 0 1 1 1 0 0 1 0|Rm       |1 0|imm|0 0|Rn       |Rd       |  % SM3TT1A Vd.4S, Vn.4S, Vm.S[imm2]
+|1 1 0 0 1 1 1 0 0 1 0|Rm       |1 0|imm|0 1|Rn       |Rd       |  % SM3TT1B Vd.4S, Vn.4S, Vm.S[imm2]
+|1 1 0 0 1 1 1 0 0 1 0|Rm       |1 0|imm|1 0|Rn       |Rd       |  % SM3TT2A Vd.4S, Vn.4S, Vm.S[imm2]
+|1 1 0 0 1 1 1 0 0 1 0|Rm       |1 0|imm|1 1|Rn       |Rd       |  % SM3TT2B Vd.4S, Vn.4S, Vm.S[imm2]
+|1 1 0 0 1 1 1 0 1 1 0 0 0 0 0 0 1 0 0 0|0 1|Rn       |Rd       |  % SM4E Vd.4S, Vn.4S
+|1 1 0 0 1 1 1 0 0 1 1|Rm       |1|1|0 0|1 0|Rn       |Rd       |  % SM4EKEY Vd.4S, Vn.4S, Vm.4S
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1 1 0|0|1|Rn       |Rd       |  % SMAX Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0 1 0|0|1|Rn       |Rd       |  % SMAXP Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1 1 0 0 0|0|1 0 1 0|1 0|Rn       |Rd       |  % SMAXV Vd, Vn.T
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1 1 0|1|1|Rn       |Rd       |  % SMIN Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0 1 0|1|1|Rn       |Rd       |  % SMINP Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1 1 0 0 0|1|1 0 1 0|1 0|Rn       |Rd       |  % SMINV Vd, Vn.T
+|0|Q|0|0 1 1 1 1|siz|L|M|Rm     |0|0|1 0|H|0|Rn       |Rd       |  % SMLAL{2} Vd.Ta, Vn.Tb, Vm.Ts[index]
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0|0|0|0 0|Rn       |Rd       |  % SMLAL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|0|0 1 1 1 1|siz|L|M|Rm     |0|1|1 0|H|0|Rn       |Rd       |  % SMLSL{2} Vd.Ta, Vn.Tb, Vm.Ts[index]
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0|1|0|0 0|Rn       |Rd       |  % SMLSL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|1|0|0 1 1 1 0|1 0|0|Rm       |1|0 1 0|0|1|Rn       |Rd       |  % SMMLA Vd.4S, Vn.16B, Vm.16B
+|0|Q|0|0 1 1 1 0 0 0 0|imm5     |0|0 1|0|1|1|Rn       |Rd       |  % SMOV Wd, Vn.Ts[index] / SMOV Xd, Vn.Ts[index]
+|0|Q|0|0 1 1 1 1|siz|L|M|Rm     |1 0 1 0|H|0|Rn       |Rd       |  % SMULL{2} Vd.Ta, Vn.Tb, Vm.Ts[index]
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1|1|0|0|0 0|Rn       |Rd       |  % SMULL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0 1|0|1 1 1 1 0|siz|1 0 0 0 0|0 0 1 1 1|1 0|Rn       |Rd       |  % SQABS Vd, Vn
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 0 1 1 1|1 0|Rn       |Rd       |  % SQABS Vd.T, Vn.T
+|0 1|0|1 1 1 1 0|siz|1|Rm       |0 0 0 0 1|1|Rn       |Rd       |  % SQADD Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 0 0 0 1|1|Rn       |Rd       |  % SQADD Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 1|siz|L|M|Rm     |0|0|1 1|H|0|Rn       |Rd       |  % SQDMLAL Vad, Vbn, Vm.Ts[index]
+|0|Q|0|0 1 1 1 1|siz|L|M|Rm     |0|0|1 1|H|0|Rn       |Rd       |  % SQDMLAL{2} Vd.Ta, Vn.Tb, Vm.Ts[index]
+|0 1|0|1 1 1 1 0|siz|1|Rm       |1 0|0|1|0 0|Rn       |Rd       |  % SQDMLAL Vad, Vbn, Vbm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0|0|1|0 0|Rn       |Rd       |  % SQDMLAL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0 1|0|1 1 1 1 1|siz|L|M|Rm     |0|1|1 1|H|0|Rn       |Rd       |  % SQDMLSL Vad, Vbn, Vm.Ts[index]
+|0|Q|0|0 1 1 1 1|siz|L|M|Rm     |0|1|1 1|H|0|Rn       |Rd       |  % SQDMLSL{2} Vd.Ta, Vn.Tb, Vm.Ts[index]
+|0 1|0|1 1 1 1 0|siz|1|Rm       |1 0|1|1|0 0|Rn       |Rd       |  % SQDMLSL Vad, Vbn, Vbm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0|1|1|0 0|Rn       |Rd       |  % SQDMLSL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0 1|0|1 1 1 1 1|siz|L|M|Rm     |1 1 0|0|H|0|Rn       |Rd       |  % SQDMULH Vd, Vn, Vm.Ts[index]
+|0|Q|0|0 1 1 1 1|siz|L|M|Rm     |1 1 0|0|H|0|Rn       |Rd       |  % SQDMULH Vd.T, Vn.T, Vm.Ts[index]
+|0 1|0|1 1 1 1 0|siz|1|Rm       |1 0 1 1 0|1|Rn       |Rd       |  % SQDMULH Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 0 1 1 0|1|Rn       |Rd       |  % SQDMULH Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 1|siz|L|M|Rm     |1 0 1 1|H|0|Rn       |Rd       |  % SQDMULL Vad, Vbn, Vm.Ts[index]
+|0|Q|0|0 1 1 1 1|siz|L|M|Rm     |1 0 1 1|H|0|Rn       |Rd       |  % SQDMULL{2} Vd.Ta, Vn.Tb, Vm.Ts[index]
+|0 1|0|1 1 1 1 0|siz|1|Rm       |1 1 0 1|0 0|Rn       |Rd       |  % SQDMULL Vad, Vbn, Vbm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |1 1 0 1|0 0|Rn       |Rd       |  % SQDMULL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0 1|1|1 1 1 1 0|siz|1 0 0 0 0|0 0 1 1 1|1 0|Rn       |Rd       |  % SQNEG Vd, Vn
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|0 0 1 1 1|1 0|Rn       |Rd       |  % SQNEG Vd.T, Vn.T
+|0 1|1|1 1 1 1 1|siz|L|M|Rm     |1 1|0|1|H|0|Rn       |Rd       |  % SQRDMLAH Vd, Vn, Vm.Ts[index]
+|0|Q|1|0 1 1 1 1|siz|L|M|Rm     |1 1|0|1|H|0|Rn       |Rd       |  % SQRDMLAH Vd.T, Vn.T, Vm.Ts[index]
+|0 1|1|1 1 1 1 0|siz|0|Rm       |1|0 0 0|0|1|Rn       |Rd       |  % SQRDMLAH Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|0|Rm       |1|0 0 0|0|1|Rn       |Rd       |  % SQRDMLAH Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 1|siz|L|M|Rm     |1 1|1|1|H|0|Rn       |Rd       |  % SQRDMLSH Vd, Vn, Vm.Ts[index]
+|0|Q|1|0 1 1 1 1|siz|L|M|Rm     |1 1|1|1|H|0|Rn       |Rd       |  % SQRDMLSH Vd.T, Vn.T, Vm.Ts[index]
+|0 1|1|1 1 1 1 0|siz|0|Rm       |1|0 0 0|1|1|Rn       |Rd       |  % SQRDMLSH Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|0|Rm       |1|0 0 0|1|1|Rn       |Rd       |  % SQRDMLSH Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 1|siz|L|M|Rm     |1 1 0|1|H|0|Rn       |Rd       |  % SQRDMULH Vd, Vn, Vm.Ts[index]
+|0|Q|0|0 1 1 1 1|siz|L|M|Rm     |1 1 0|1|H|0|Rn       |Rd       |  % SQRDMULH Vd.T, Vn.T, Vm.Ts[index]
+|0 1|1|1 1 1 1 0|siz|1|Rm       |1 0 1 1 0|1|Rn       |Rd       |  % SQRDMULH Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |1 0 1 1 0|1|Rn       |Rd       |  % SQRDMULH Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 0|siz|1|Rm       |0 1 0|1|1|1|Rn       |Rd       |  % SQRSHL Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1 0|1|1|1|Rn       |Rd       |  % SQRSHL Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 1 0|!= 0000|immb |1 0 0 1|1|1|Rn       |Rd       |  % SQRSHRN Vbd, Van, #shift
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |1 0 0 1|1|1|Rn       |Rd       |  % SQRSHRN{2} Vd.Tb, Vn.Ta, #shift
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |1 0 0 0|1|1|Rn       |Rd       |  % SQRSHRUN Vbd, Van, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |1 0 0 0|1|1|Rn       |Rd       |  % SQRSHRUN{2} Vd.Tb, Vn.Ta, #shift
+|0 1|0|1 1 1 1 1 0|!= 0000|immb |0 1 1|1|0|1|Rn       |Rd       |  % SQSHL Vd, Vn, #shift
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |0 1 1|1|0|1|Rn       |Rd       |  % SQSHL Vd.T, Vn.T, #shift
+|0 1|0|1 1 1 1 0|siz|1|Rm       |0 1 0|0|1|1|Rn       |Rd       |  % SQSHL Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1 0|0|1|1|Rn       |Rd       |  % SQSHL Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |0 1 1|0|0|1|Rn       |Rd       |  % SQSHLU Vd, Vn, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |0 1 1|0|0|1|Rn       |Rd       |  % SQSHLU Vd.T, Vn.T, #shift
+|0 1|0|1 1 1 1 1 0|!= 0000|immb |1 0 0 1|0|1|Rn       |Rd       |  % SQSHRN Vbd, Van, #shift
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |1 0 0 1|0|1|Rn       |Rd       |  % SQSHRN{2} Vd.Tb, Vn.Ta, #shift
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |1 0 0 0|0|1|Rn       |Rd       |  % SQSHRUN Vbd, Van, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |1 0 0 0|0|1|Rn       |Rd       |  % SQSHRUN{2} Vd.Tb, Vn.Ta, #shift
+|0 1|0|1 1 1 1 0|siz|1|Rm       |0 0 1 0 1|1|Rn       |Rd       |  % SQSUB Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 0 1 0 1|1|Rn       |Rd       |  % SQSUB Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 0|siz|1 0 0 0 0|1 0 1 0 0|1 0|Rn       |Rd       |  % SQXTN Vbd, Van
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|1 0 1 0 0|1 0|Rn       |Rd       |  % SQXTN{2} Vd.Tb, Vn.Ta
+|0 1|1|1 1 1 1 0|siz|1 0 0 0 0|1 0 0 1 0|1 0|Rn       |Rd       |  % SQXTUN Vbd, Van
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|1 0 0 1 0|1 0|Rn       |Rd       |  % SQXTUN{2} Vd.Tb, Vn.Ta
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 0 0 1 0|1|Rn       |Rd       |  % SRHADD Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |0 1 0 0 0|1|Rn       |Rd       |  % SRI Vd, Vn, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |0 1 0 0 0|1|Rn       |Rd       |  % SRI Vd.T, Vn.T, #shift
+|0 1|0|1 1 1 1 0|siz|1|Rm       |0 1 0|1|0|1|Rn       |Rd       |  % SRSHL Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1 0|1|0|1|Rn       |Rd       |  % SRSHL Vd.T, Vn.T, Vm.T
+|0 1|0|1 1 1 1 1 0|!= 0000|immb |0 0|1|0|0|1|Rn       |Rd       |  % SRSHR Vd, Vn, #shift
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |0 0|1|0|0|1|Rn       |Rd       |  % SRSHR Vd.T, Vn.T, #shift
+|0 1|0|1 1 1 1 1 0|!= 0000|immb |0 0|1|1|0|1|Rn       |Rd       |  % SRSRA Vd, Vn, #shift
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |0 0|1|1|0|1|Rn       |Rd       |  % SRSRA Vd.T, Vn.T, #shift
+|0 1|0|1 1 1 1 0|siz|1|Rm       |0 1 0|0|0|1|Rn       |Rd       |  % SSHL Vd, Vn, Vm
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1 0|0|0|1|Rn       |Rd       |  % SSHL Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |1 0 1 0 0|1|Rn       |Rd       |  % SSHLL{2} Vd.Ta, Vn.Tb, #shift
+|0 1|0|1 1 1 1 1 0|!= 0000|immb |0 0|0|0|0|1|Rn       |Rd       |  % SSHR Vd, Vn, #shift
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |0 0|0|0|0|1|Rn       |Rd       |  % SSHR Vd.T, Vn.T, #shift
+|0 1|0|1 1 1 1 1 0|!= 0000|immb |0 0|0|1|0|1|Rn       |Rd       |  % SSRA Vd, Vn, #shift
+|0|Q|0|0 1 1 1 1 0|!= 0000|immb |0 0|0|1|0|1|Rn       |Rd       |  % SSRA Vd.T, Vn.T, #shift
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 0|1|0|0 0|Rn       |Rd       |  % SSUBL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 0|1|1|0 0|Rn       |Rd       |  % SSUBW{2} Vd.Ta, Vn.Ta, Vm.Tb
+|0|Q|0 0 1 1 0 0 0|0|0 0 0 0 0 0|x x 1 x|siz|Rn       |Rt       |  % ST1 { Vt.T }, [Xn|SP] / ST1 { Vt.T, Vt2.T }, [Xn|SP] / ST1 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP] / ST1 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 0 1|0|0|Rm       |x x 1 x|siz|Rn       |Rt       |  % ST1 { Vt.T }, [Xn|SP], imm / ST1 { Vt.T }, [Xn|SP], Xm / ST1 { Vt.T, Vt2.T }, [Xn|SP], imm / ST1 { Vt.T, Vt2.T }, [Xn|SP], Xm / ST1 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP], imm / ST1 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP], Xm / ST1 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP], imm / ST1 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|0|0|0 0 0 0 0|x x 0|S|siz|Rn       |Rt       |  % ST1 { Vt.B }[index], [Xn|SP] / ST1 { Vt.H }[index], [Xn|SP] / ST1 { Vt.S }[index], [Xn|SP] / ST1 { Vt.D }[index], [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|0|0|Rm       |x x 0|S|siz|Rn       |Rt       |  % ST1 { Vt.B }[index], [Xn|SP], #1 / ST1 { Vt.B }[index], [Xn|SP], Xm / ST1 { Vt.H }[index], [Xn|SP], #2 / ST1 { Vt.H }[index], [Xn|SP], Xm / ST1 { Vt.S }[index], [Xn|SP], #4 / ST1 { Vt.S }[index], [Xn|SP], Xm / ST1 { Vt.D }[index], [Xn|SP], #8 / ST1 { Vt.D }[index], [Xn|SP], Xm
+|0|Q|0 0 1 1 0 0 0|0|0 0 0 0 0 0|1 0 0 0|siz|Rn       |Rt       |  % ST2 { Vt.T, Vt2.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 0 1|0|0|Rm       |1 0 0 0|siz|Rn       |Rt       |  % ST2 { Vt.T, Vt2.T }, [Xn|SP], imm / ST2 { Vt.T, Vt2.T }, [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|0|1|0 0 0 0 0|x x 0|S|siz|Rn       |Rt       |  % ST2 { Vt.B, Vt2.B }[index], [Xn|SP] / ST2 { Vt.H, Vt2.H }[index], [Xn|SP] / ST2 { Vt.S, Vt2.S }[index], [Xn|SP] / ST2 { Vt.D, Vt2.D }[index], [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|0|1|Rm       |x x 0|S|siz|Rn       |Rt       |  % ST2 { Vt.B, Vt2.B }[index], [Xn|SP], #2 / ST2 { Vt.B, Vt2.B }[index], [Xn|SP], Xm / ST2 { Vt.H, Vt2.H }[index], [Xn|SP], #4 / ST2 { Vt.H, Vt2.H }[index], [Xn|SP], Xm / ST2 { Vt.S, Vt2.S }[index], [Xn|SP], #8 / ST2 { Vt.S, Vt2.S }[index], [Xn|SP], Xm / ST2 { Vt.D, Vt2.D }[index], [Xn|SP], #16 / ST2 { Vt.D, Vt2.D }[index], [Xn|SP], Xm
+|0|Q|0 0 1 1 0 0 0|0|0 0 0 0 0 0|0 1 0 0|siz|Rn       |Rt       |  % ST3 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 0 1|0|0|Rm       |0 1 0 0|siz|Rn       |Rt       |  % ST3 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP], imm / ST3 { Vt.T, Vt2.T, Vt3.T }, [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|0|0|0 0 0 0 0|x x 1|S|siz|Rn       |Rt       |  % ST3 { Vt.B, Vt2.B, Vt3.B }[index], [Xn|SP] / ST3 { Vt.H, Vt2.H, Vt3.H }[index], [Xn|SP] / ST3 { Vt.S, Vt2.S, Vt3.S }[index], [Xn|SP] / ST3 { Vt.D, Vt2.D, Vt3.D }[index], [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|0|0|Rm       |x x 1|S|siz|Rn       |Rt       |  % ST3 { Vt.B, Vt2.B, Vt3.B }[index], [Xn|SP], #3 / ST3 { Vt.B, Vt2.B, Vt3.B }[index], [Xn|SP], Xm / ST3 { Vt.H, Vt2.H, Vt3.H }[index], [Xn|SP], #6 / ST3 { Vt.H, Vt2.H, Vt3.H }[index], [Xn|SP], Xm / ST3 { Vt.S, Vt2.S, Vt3.S }[index], [Xn|SP], #12 / ST3 { Vt.S, Vt2.S, Vt3.S }[index], [Xn|SP], Xm / ST3 { Vt.D, Vt2.D, Vt3.D }[index], [Xn|SP], #24 / ST3 { Vt.D, Vt2.D, Vt3.D }[index], [Xn|SP], Xm
+|0|Q|0 0 1 1 0 0 0|0|0 0 0 0 0 0|0 0 0 0|siz|Rn       |Rt       |  % ST4 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP]
+|0|Q|0 0 1 1 0 0 1|0|0|Rm       |0 0 0 0|siz|Rn       |Rt       |  % ST4 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP], imm / ST4 { Vt.T, Vt2.T, Vt3.T, Vt4.T }, [Xn|SP], Xm
+|0|Q|0 0 1 1 0 1 0|0|1|0 0 0 0 0|x x 1|S|siz|Rn       |Rt       |  % ST4 { Vt.B, Vt2.B, Vt3.B, Vt4.B }[index], [Xn|SP] / ST4 { Vt.H, Vt2.H, Vt3.H, Vt4.H }[index], [Xn|SP] / ST4 { Vt.S, Vt2.S, Vt3.S, Vt4.S }[index], [Xn|SP] / ST4 { Vt.D, Vt2.D, Vt3.D, Vt4.D }[index], [Xn|SP]
+|0|Q|0 0 1 1 0 1 1|0|1|Rm       |x x 1|S|siz|Rn       |Rt       |  % ST4 { Vt.B, Vt2.B, Vt3.B, Vt4.B }[index], [Xn|SP], #4 / ST4 { Vt.B, Vt2.B, Vt3.B, Vt4.B }[index], [Xn|SP], Xm / ST4 { Vt.H, Vt2.H, Vt3.H, Vt4.H }[index], [Xn|SP], #8 / ST4 { Vt.H, Vt2.H, Vt3.H, Vt4.H }[index], [Xn|SP], Xm / ST4 { Vt.S, Vt2.S, Vt3.S, Vt4.S }[index], [Xn|SP], #16 / ST4 { Vt.S, Vt2.S, Vt3.S, Vt4.S }[index], [Xn|SP], Xm / ST4 { Vt.D, Vt2.D, Vt3.D, Vt4.D }[index], [Xn|SP], #32 / ST4 { Vt.D, Vt2.D, Vt3.D, Vt4.D }[index], [Xn|SP], Xm
+|opc|1 0 1|1|0 0 0|0|imm7         |Rt2      |Rn       |Rt       |  % STNP St1, St2, [Xn|SP{, #imm}] / STNP Dt1, Dt2, [Xn|SP{, #imm}] / STNP Qt1, Qt2, [Xn|SP{, #imm}]
+|opc|1 0 1|1|0 0 1|0|imm7         |Rt2      |Rn       |Rt       |  % STP St1, St2, [Xn|SP], #imm / STP Dt1, Dt2, [Xn|SP], #imm / STP Qt1, Qt2, [Xn|SP], #imm
+|opc|1 0 1|1|0 1 1|0|imm7         |Rt2      |Rn       |Rt       |  % STP St1, St2, [Xn|SP, #imm]! / STP Dt1, Dt2, [Xn|SP, #imm]! / STP Qt1, Qt2, [Xn|SP, #imm]!
+|opc|1 0 1|1|0 1 0|0|imm7         |Rt2      |Rn       |Rt       |  % STP St1, St2, [Xn|SP{, #imm}] / STP Dt1, Dt2, [Xn|SP{, #imm}] / STP Qt1, Qt2, [Xn|SP{, #imm}]
+|siz|1 1 1|1|0 0|x 0|0|imm9             |0 1|Rn       |Rt       |  % STR Bt, [Xn|SP], #simm / STR Ht, [Xn|SP], #simm / STR St, [Xn|SP], #simm / STR Dt, [Xn|SP], #simm / STR Qt, [Xn|SP], #simm
+|siz|1 1 1|1|0 0|x 0|0|imm9             |1 1|Rn       |Rt       |  % STR Bt, [Xn|SP, #simm]! / STR Ht, [Xn|SP, #simm]! / STR St, [Xn|SP, #simm]! / STR Dt, [Xn|SP, #simm]! / STR Qt, [Xn|SP, #simm]!
+|siz|1 1 1|1|0 1|x 0|imm12                  |Rn       |Rt       |  % STR Bt, [Xn|SP{, #pimm}] / STR Ht, [Xn|SP{, #pimm}] / STR St, [Xn|SP{, #pimm}] / STR Dt, [Xn|SP{, #pimm}] / STR Qt, [Xn|SP{, #pimm}]
+|siz|1 1 1|1|0 0|x 0|1|Rm       |optio|S|1 0|Rn       |Rt       |  % STR Bt, [Xn|SP, (Wm|Xm), extend {amount}] / STR Bt, [Xn|SP, Xm{, LSL amount}] / STR Ht, [Xn|SP, (Wm|Xm){, extend {amount}}] / STR St, [Xn|SP, (Wm|Xm){, extend {amount}}] / STR Dt, [Xn|SP, (Wm|Xm){, extend {amount}}] / STR Qt, [Xn|SP, (Wm|Xm){, extend {amount}}]
+|siz|1 1 1|1|0 0|x 0|0|imm9             |0 0|Rn       |Rt       |  % STUR Bt, [Xn|SP{, #simm}] / STUR Ht, [Xn|SP{, #simm}] / STUR St, [Xn|SP{, #simm}] / STUR Dt, [Xn|SP{, #simm}] / STUR Qt, [Xn|SP{, #simm}]
+|0 1|1|1 1 1 1 0|siz|1|Rm       |1 0 0 0 0|1|Rn       |Rd       |  % SUB Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |1 0 0 0 0|1|Rn       |Rd       |  % SUB Vd.T, Vn.T, Vm.T
+|0|Q|0|0 1 1 1 0|siz|1|Rm       |0 1|1|0|0 0|Rn       |Rd       |  % SUBHN{2} Vd.Tb, Vn.Ta, Vm.Ta
+|0|Q|0|0 1 1 1 1|0|0|L|M|Rm     |1 1 1 1|H|0|Rn       |Rd       |  % SUDOT Vd.Ta, Vn.Tb, Vm.4B[index]
+|0 1|0|1 1 1 1 0|siz|1 0 0 0 0|0 0 0 1 1|1 0|Rn       |Rd       |  % SUQADD Vd, Vn
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|0 0 0 1 1|1 0|Rn       |Rd       |  % SUQADD Vd.T, Vn.T
+|0|Q|0|0 1 1 1 1 0|!= 0000|0 0 0|1 0 1 0 0|1|Rn       |Rd       |  % SXTL{2} Vd.Ta, Vn.Tb / SSHLL{2} Vd.Ta, Vn.Tb, #0
+|0|Q|0 0 1 1 1 0|0 0|0|Rm       |0|len|0|0 0|Rn       |Rd       |  % TBL Vd.Ta, { Vn.16B, Vn+1.16B }, Vm.Ta / TBL Vd.Ta, { Vn.16B, Vn+1.16B, Vn+2.16B }, Vm.Ta / TBL Vd.Ta, { Vn.16B, Vn+1.16B, Vn+2.16B, Vn+3.16B }, Vm.Ta / TBL Vd.Ta, { Vn.16B }, Vm.Ta
+|0|Q|0 0 1 1 1 0|0 0|0|Rm       |0|len|1|0 0|Rn       |Rd       |  % TBX Vd.Ta, { Vn.16B, Vn+1.16B }, Vm.Ta / TBX Vd.Ta, { Vn.16B, Vn+1.16B, Vn+2.16B }, Vm.Ta / TBX Vd.Ta, { Vn.16B, Vn+1.16B, Vn+2.16B, Vn+3.16B }, Vm.Ta / TBX Vd.Ta, { Vn.16B }, Vm.Ta
+|0|Q|0 0 1 1 1 0|siz|0|Rm       |0|0|1 0|1 0|Rn       |Rd       |  % TRN1 Vd.T, Vn.T, Vm.T
+|0|Q|0 0 1 1 1 0|siz|0|Rm       |0|1|1 0|1 0|Rn       |Rd       |  % TRN2 Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1 1 1|1|1|Rn       |Rd       |  % UABA Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1|0|1|0 0|Rn       |Rd       |  % UABAL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1 1 1|0|1|Rn       |Rd       |  % UABD Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1|1|1|0 0|Rn       |Rd       |  % UABDL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|0 0|1|1 0|1 0|Rn       |Rd       |  % UADALP Vd.Ta, Vn.Tb
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 0|0|0|0 0|Rn       |Rd       |  % UADDL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|0 0|0|1 0|1 0|Rn       |Rd       |  % UADDLP Vd.Ta, Vn.Tb
+|0|Q|1|0 1 1 1 0|siz|1 1 0 0 0|0 0 0 1 1|1 0|Rn       |Rd       |  % UADDLV Vd, Vn.T
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 0|0|1|0 0|Rn       |Rd       |  % UADDW{2} Vd.Ta, Vn.Ta, Vm.Tb
+|s|0|0|1 1 1 1 0|fty|0|0 0|0 1 1|scale      |Rn       |Rd       |  % UCVTF Hd, Wn, #fbits / UCVTF Sd, Wn, #fbits / UCVTF Dd, Wn, #fbits / UCVTF Hd, Xn, #fbits / UCVTF Sd, Xn, #fbits / UCVTF Dd, Xn, #fbits
+|s|0|0|1 1 1 1 0|fty|1|0 0|0 1 1|0 0 0 0 0 0|Rn       |Rd       |  % UCVTF Hd, Wn / UCVTF Sd, Wn / UCVTF Dd, Wn / UCVTF Hd, Xn / UCVTF Sd, Xn / UCVTF Dd, Xn
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |1 1 1 0 0|1|Rn       |Rd       |  % UCVTF Vd, Vn, #fbits
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |1 1 1 0 0|1|Rn       |Rd       |  % UCVTF Vd.T, Vn.T, #fbits
+|0 1|1|1 1 1 1 0|0|1 1 1 1 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % UCVTF Hd, Hn
+|0 1|1|1 1 1 1 0|0|s|1 0 0 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % UCVTF Vd, Vn
+|0|Q|1|0 1 1 1 0|0|1 1 1 1 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % UCVTF Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|0|s|1 0 0 0 0|1 1 1 0 1|1 0|Rn       |Rd       |  % UCVTF Vd.T, Vn.T
+|0|Q|1|0 1 1 1 1|siz|L|M|Rm     |1 1 1 0|H|0|Rn       |Rd       |  % UDOT Vd.Ta, Vn.Tb, Vm.4B[index]
+|0|Q|1|0 1 1 1 0|siz|0|Rm       |1|0 0 1 0|1|Rn       |Rd       |  % UDOT Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 0 0 0 0|1|Rn       |Rd       |  % UHADD Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 0 1 0 0|1|Rn       |Rd       |  % UHSUB Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1 1 0|0|1|Rn       |Rd       |  % UMAX Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |1 0 1 0|0|1|Rn       |Rd       |  % UMAXP Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|siz|1 1 0 0 0|0|1 0 1 0|1 0|Rn       |Rd       |  % UMAXV Vd, Vn.T
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1 1 0|1|1|Rn       |Rd       |  % UMIN Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |1 0 1 0|1|1|Rn       |Rd       |  % UMINP Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 0|siz|1 1 0 0 0|1|1 0 1 0|1 0|Rn       |Rd       |  % UMINV Vd, Vn.T
+|0|Q|1|0 1 1 1 1|siz|L|M|Rm     |0|0|1 0|H|0|Rn       |Rd       |  % UMLAL{2} Vd.Ta, Vn.Tb, Vm.Ts[index]
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |1 0|0|0|0 0|Rn       |Rd       |  % UMLAL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|1|0 1 1 1 1|siz|L|M|Rm     |0|1|1 0|H|0|Rn       |Rd       |  % UMLSL{2} Vd.Ta, Vn.Tb, Vm.Ts[index]
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |1 0|1|0|0 0|Rn       |Rd       |  % UMLSL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|1|1|0 1 1 1 0|1 0|0|Rm       |1|0 1 0|0|1|Rn       |Rd       |  % UMMLA Vd.4S, Vn.16B, Vm.16B
+|0|Q|0|0 1 1 1 0 0 0 0|imm5     |0|0 1|1|1|1|Rn       |Rd       |  % UMOV Wd, Vn.Ts[index] / UMOV Xd, Vn.Ts[index]
+|0|Q|1|0 1 1 1 1|siz|L|M|Rm     |1 0 1 0|H|0|Rn       |Rd       |  % UMULL{2} Vd.Ta, Vn.Tb, Vm.Ts[index]
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |1|1|0|0|0 0|Rn       |Rd       |  % UMULL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0 1|1|1 1 1 1 0|siz|1|Rm       |0 0 0 0 1|1|Rn       |Rd       |  % UQADD Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 0 0 0 1|1|Rn       |Rd       |  % UQADD Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 0|siz|1|Rm       |0 1 0|1|1|1|Rn       |Rd       |  % UQRSHL Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1 0|1|1|1|Rn       |Rd       |  % UQRSHL Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |1 0 0 1|1|1|Rn       |Rd       |  % UQRSHRN Vbd, Van, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |1 0 0 1|1|1|Rn       |Rd       |  % UQRSHRN{2} Vd.Tb, Vn.Ta, #shift
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |0 1 1|1|0|1|Rn       |Rd       |  % UQSHL Vd, Vn, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |0 1 1|1|0|1|Rn       |Rd       |  % UQSHL Vd.T, Vn.T, #shift
+|0 1|1|1 1 1 1 0|siz|1|Rm       |0 1 0|0|1|1|Rn       |Rd       |  % UQSHL Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1 0|0|1|1|Rn       |Rd       |  % UQSHL Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |1 0 0 1|0|1|Rn       |Rd       |  % UQSHRN Vbd, Van, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |1 0 0 1|0|1|Rn       |Rd       |  % UQSHRN{2} Vd.Tb, Vn.Ta, #shift
+|0 1|1|1 1 1 1 0|siz|1|Rm       |0 0 1 0 1|1|Rn       |Rd       |  % UQSUB Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 0 1 0 1|1|Rn       |Rd       |  % UQSUB Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 0|siz|1 0 0 0 0|1 0 1 0 0|1 0|Rn       |Rd       |  % UQXTN Vbd, Van
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|1 0 1 0 0|1 0|Rn       |Rd       |  % UQXTN{2} Vd.Tb, Vn.Ta
+|0|Q|0|0 1 1 1 0|1|s|1 0 0 0 0|1 1 1 0 0|1 0|Rn       |Rd       |  % URECPE Vd.T, Vn.T
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 0 0 1 0|1|Rn       |Rd       |  % URHADD Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 0|siz|1|Rm       |0 1 0|1|0|1|Rn       |Rd       |  % URSHL Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1 0|1|0|1|Rn       |Rd       |  % URSHL Vd.T, Vn.T, Vm.T
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |0 0|1|0|0|1|Rn       |Rd       |  % URSHR Vd, Vn, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |0 0|1|0|0|1|Rn       |Rd       |  % URSHR Vd.T, Vn.T, #shift
+|0|Q|1|0 1 1 1 0|1|s|1 0 0 0 0|1 1 1 0 0|1 0|Rn       |Rd       |  % URSQRTE Vd.T, Vn.T
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |0 0|1|1|0|1|Rn       |Rd       |  % URSRA Vd, Vn, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |0 0|1|1|0|1|Rn       |Rd       |  % URSRA Vd.T, Vn.T, #shift
+|0|Q|0|0 1 1 1 1|1|0|L|M|Rm     |1 1 1 1|H|0|Rn       |Rd       |  % USDOT Vd.Ta, Vn.Tb, Vm.4B[index]
+|0|Q|0|0 1 1 1 0|1 0|0|Rm       |1|0 0 1 1|1|Rn       |Rd       |  % USDOT Vd.Ta, Vn.Tb, Vm.Tb
+|0 1|1|1 1 1 1 0|siz|1|Rm       |0 1 0|0|0|1|Rn       |Rd       |  % USHL Vd, Vn, Vm
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 1 0|0|0|1|Rn       |Rd       |  % USHL Vd.T, Vn.T, Vm.T
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |1 0 1 0 0|1|Rn       |Rd       |  % USHLL{2} Vd.Ta, Vn.Tb, #shift
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |0 0|0|0|0|1|Rn       |Rd       |  % USHR Vd, Vn, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |0 0|0|0|0|1|Rn       |Rd       |  % USHR Vd.T, Vn.T, #shift
+|0|1|0|0 1 1 1 0|1 0|0|Rm       |1|0 1 0|1|1|Rn       |Rd       |  % USMMLA Vd.4S, Vn.16B, Vm.16B
+|0 1|1|1 1 1 1 0|siz|1 0 0 0 0|0 0 0 1 1|1 0|Rn       |Rd       |  % USQADD Vd, Vn
+|0|Q|1|0 1 1 1 0|siz|1 0 0 0 0|0 0 0 1 1|1 0|Rn       |Rd       |  % USQADD Vd.T, Vn.T
+|0 1|1|1 1 1 1 1 0|!= 0000|immb |0 0|0|1|0|1|Rn       |Rd       |  % USRA Vd, Vn, #shift
+|0|Q|1|0 1 1 1 1 0|!= 0000|immb |0 0|0|1|0|1|Rn       |Rd       |  % USRA Vd.T, Vn.T, #shift
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 0|1|0|0 0|Rn       |Rd       |  % USUBL{2} Vd.Ta, Vn.Tb, Vm.Tb
+|0|Q|1|0 1 1 1 0|siz|1|Rm       |0 0|1|1|0 0|Rn       |Rd       |  % USUBW{2} Vd.Ta, Vn.Ta, Vm.Tb
+|0|Q|1|0 1 1 1 1 0|!= 0000|0 0 0|1 0 1 0 0|1|Rn       |Rd       |  % UXTL{2} Vd.Ta, Vn.Tb / USHLL{2} Vd.Ta, Vn.Tb, #0
+|0|Q|0 0 1 1 1 0|siz|0|Rm       |0|0|0 1|1 0|Rn       |Rd       |  % UZP1 Vd.T, Vn.T, Vm.T
+|0|Q|0 0 1 1 1 0|siz|0|Rm       |0|1|0 1|1 0|Rn       |Rd       |  % UZP2 Vd.T, Vn.T, Vm.T
+|1 1 0 0 1 1 1 0 1 0 0|Rm       |imm6       |Rn       |Rd       |  % XAR Vd.2D, Vn.2D, Vm.2D, #imm6
+|0|Q|0|0 1 1 1 0|siz|1 0 0 0 0|1 0 0 1 0|1 0|Rn       |Rd       |  % XTN{2} Vd.Tb, Vn.Ta
+|0|Q|0 0 1 1 1 0|siz|0|Rm       |0|0|1 1|1 0|Rn       |Rd       |  % ZIP1 Vd.T, Vn.T, Vm.T
+|0|Q|0 0 1 1 1 0|siz|0|Rm       |0|1|1 1|1 0|Rn       |Rd       |  % ZIP2 Vd.T, Vn.T, Vm.T

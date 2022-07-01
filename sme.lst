@@ -1,0 +1,64 @@
+|1 1|0 0 0 0 0 0 1|0|0 1|0 0 0|0|Pm   |Pn   |Zn       |0|0|0|ZAd|  % ADDHA ZAda.S, Pn/M, Pm/M, Zn.S
+|1 1|0 0 0 0 0 0 1|1|0 1 0 0 0|0|Pm   |Pn   |Zn       |0|0|ZAda |  % ADDHA ZAda.D, Pn/M, Pm/M, Zn.D
+|0 0 0 0 0 1 0 0 0|1|1|Rn       |0 1 0 1 1|imm6       |Rd       |  % ADDSPL Xd|SP, Xn|SP, #imm
+|0 0 0 0 0 1 0 0 0|0|1|Rn       |0 1 0 1 1|imm6       |Rd       |  % ADDSVL Xd|SP, Xn|SP, #imm
+|1 1|0 0 0 0 0 0 1|0|0 1|0 0 0|1|Pm   |Pn   |Zn       |0|0|0|ZAd|  % ADDVA ZAda.S, Pn/M, Pm/M, Zn.S
+|1 1|0 0 0 0 0 0 1|1|0 1 0 0 0|1|Pm   |Pn   |Zn       |0|0|ZAda |  % ADDVA ZAda.D, Pn/M, Pm/M, Zn.D
+|1 0|0 0 0 0 0 1 1 0 0|Zm       |Pm   |Pn   |Zn       |0|0|0|ZAd|  % BFMOPA ZAda.S, Pn/M, Pm/M, Zn.H, Zm.H
+|1 0|0 0 0 0 0 1 1 0 0|Zm       |Pm   |Pn   |Zn       |1|0|0|ZAd|  % BFMOPS ZAda.S, Pn/M, Pm/M, Zn.H, Zm.H
+|1 0|0 0 0 0 0 0 1 0 0|Zm       |Pm   |Pn   |Zn       |0|0|0|ZAd|  % FMOPA ZAda.S, Pn/M, Pm/M, Zn.S, Zm.S
+|1 0|0 0 0 0 0 0 1 1 0|Zm       |Pm   |Pn   |Zn       |0|0|ZAda |  % FMOPA ZAda.D, Pn/M, Pm/M, Zn.D, Zm.D
+|1 0|0 0 0 0 0 1 1 0 1|Zm       |Pm   |Pn   |Zn       |0|0|0|ZAd|  % FMOPA ZAda.S, Pn/M, Pm/M, Zn.H, Zm.H
+|1 0|0 0 0 0 0 0 1 0 0|Zm       |Pm   |Pn   |Zn       |1|0|0|ZAd|  % FMOPS ZAda.S, Pn/M, Pm/M, Zn.S, Zm.S
+|1 0|0 0 0 0 0 0 1 1 0|Zm       |Pm   |Pn   |Zn       |1|0|ZAda |  % FMOPS ZAda.D, Pn/M, Pm/M, Zn.D, Zm.D
+|1 0|0 0 0 0 0 1 1 0 1|Zm       |Pm   |Pn   |Zn       |1|0|0|ZAd|  % FMOPS ZAda.S, Pn/M, Pm/M, Zn.H, Zm.H
+|1 1 1 0 0 0 0 0|0|0|0|Rm       |V|Rs |Pg   |Rn       |0|imm4   |  % LD1B { ZA0HV.B[Ws, imm] }, Pg/Z, [Xn|SP{, Xm}]
+|1 1 1 0 0 0 0 0|1|1|0|Rm       |V|Rs |Pg   |Rn       |0|ZAt  |i|  % LD1D { ZAtHV.D[Ws, imm] }, Pg/Z, [Xn|SP{, Xm, LSL #3}]
+|1 1 1 0 0 0 0 0|0|1|0|Rm       |V|Rs |Pg   |Rn       |0|Z|imm3 |  % LD1H { ZAtHV.H[Ws, imm] }, Pg/Z, [Xn|SP{, Xm, LSL #1}]
+|1 1 1 0 0 0 0 1 1 1 0|Rm       |V|Rs |Pg   |Rn       |0|ZAt    |  % LD1Q { ZAtHV.Q[Ws, imm] }, Pg/Z, [Xn|SP{, Xm, LSL #4}]
+|1 1 1 0 0 0 0 0|1|0|0|Rm       |V|Rs |Pg   |Rn       |0|ZAt|imm|  % LD1W { ZAtHV.S[Ws, imm] }, Pg/Z, [Xn|SP{, Xm, LSL #2}]
+|1 1 1 0 0 0 0 1 0 0|0|0 0 0 0 0 0|Rv |0 0 0|Rn       |0|imm4   |  % LDR ZA[Wv, imm], [Xn|SP{, #imm, MUL VL}]
+|1 1 0 0 0 0 0 0|0|0|0 0 0 0 1|0|V|Rs |Pg   |0|imm4   |Zd       |  % MOV Zd.B, Pg/M, ZA0HV.B[Ws, imm] / MOVA Zd.B, Pg/M, ZA0HV.B[Ws, imm]
+|1 1 0 0 0 0 0 0|0|1|0 0 0 0 1|0|V|Rs |Pg   |0|Z|imm3 |Zd       |  % MOV Zd.H, Pg/M, ZAnHV.H[Ws, imm] / MOVA Zd.H, Pg/M, ZAnHV.H[Ws, imm]
+|1 1 0 0 0 0 0 0|1|0|0 0 0 0 1|0|V|Rs |Pg   |0|ZAn|imm|Zd       |  % MOV Zd.S, Pg/M, ZAnHV.S[Ws, imm] / MOVA Zd.S, Pg/M, ZAnHV.S[Ws, imm]
+|1 1 0 0 0 0 0 0|1|1|0 0 0 0 1|0|V|Rs |Pg   |0|ZAn  |i|Zd       |  % MOV Zd.D, Pg/M, ZAnHV.D[Ws, imm] / MOVA Zd.D, Pg/M, ZAnHV.D[Ws, imm]
+|1 1 0 0 0 0 0 0|1|1|0 0 0 0 1|1|V|Rs |Pg   |0|ZAn    |Zd       |  % MOV Zd.Q, Pg/M, ZAnHV.Q[Ws, imm] / MOVA Zd.Q, Pg/M, ZAnHV.Q[Ws, imm]
+|1 1 0 0 0 0 0 0|0|0|0 0 0 0 0|0|V|Rs |Pg   |Zn       |0|imm4   |  % MOV ZA0HV.B[Ws, imm], Pg/M, Zn.B / MOVA ZA0HV.B[Ws, imm], Pg/M, Zn.B
+|1 1 0 0 0 0 0 0|0|1|0 0 0 0 0|0|V|Rs |Pg   |Zn       |0|Z|imm3 |  % MOV ZAdHV.H[Ws, imm], Pg/M, Zn.H / MOVA ZAdHV.H[Ws, imm], Pg/M, Zn.H
+|1 1 0 0 0 0 0 0|1|0|0 0 0 0 0|0|V|Rs |Pg   |Zn       |0|ZAd|imm|  % MOV ZAdHV.S[Ws, imm], Pg/M, Zn.S / MOVA ZAdHV.S[Ws, imm], Pg/M, Zn.S
+|1 1 0 0 0 0 0 0|1|1|0 0 0 0 0|0|V|Rs |Pg   |Zn       |0|ZAd  |i|  % MOV ZAdHV.D[Ws, imm], Pg/M, Zn.D / MOVA ZAdHV.D[Ws, imm], Pg/M, Zn.D
+|1 1 0 0 0 0 0 0|1|1|0 0 0 0 0|1|V|Rs |Pg   |Zn       |0|ZAd    |  % MOV ZAdHV.Q[Ws, imm], Pg/M, Zn.Q / MOVA ZAdHV.Q[Ws, imm], Pg/M, Zn.Q
+|1 1 0 0 0 0 0 0|0|0|0 0 0 0 1|0|V|Rs |Pg   |0|imm4   |Zd       |  % MOVA Zd.B, Pg/M, ZA0HV.B[Ws, imm]
+|1 1 0 0 0 0 0 0|0|1|0 0 0 0 1|0|V|Rs |Pg   |0|Z|imm3 |Zd       |  % MOVA Zd.H, Pg/M, ZAnHV.H[Ws, imm]
+|1 1 0 0 0 0 0 0|1|0|0 0 0 0 1|0|V|Rs |Pg   |0|ZAn|imm|Zd       |  % MOVA Zd.S, Pg/M, ZAnHV.S[Ws, imm]
+|1 1 0 0 0 0 0 0|1|1|0 0 0 0 1|0|V|Rs |Pg   |0|ZAn  |i|Zd       |  % MOVA Zd.D, Pg/M, ZAnHV.D[Ws, imm]
+|1 1 0 0 0 0 0 0|1|1|0 0 0 0 1|1|V|Rs |Pg   |0|ZAn    |Zd       |  % MOVA Zd.Q, Pg/M, ZAnHV.Q[Ws, imm]
+|1 1 0 0 0 0 0 0|0|0|0 0 0 0 0|0|V|Rs |Pg   |Zn       |0|imm4   |  % MOVA ZA0HV.B[Ws, imm], Pg/M, Zn.B
+|1 1 0 0 0 0 0 0|0|1|0 0 0 0 0|0|V|Rs |Pg   |Zn       |0|Z|imm3 |  % MOVA ZAdHV.H[Ws, imm], Pg/M, Zn.H
+|1 1 0 0 0 0 0 0|1|0|0 0 0 0 0|0|V|Rs |Pg   |Zn       |0|ZAd|imm|  % MOVA ZAdHV.S[Ws, imm], Pg/M, Zn.S
+|1 1 0 0 0 0 0 0|1|1|0 0 0 0 0|0|V|Rs |Pg   |Zn       |0|ZAd  |i|  % MOVA ZAdHV.D[Ws, imm], Pg/M, Zn.D
+|1 1 0 0 0 0 0 0|1|1|0 0 0 0 0|1|V|Rs |Pg   |Zn       |0|ZAd    |  % MOVA ZAdHV.Q[Ws, imm], Pg/M, Zn.Q
+|0 0 0 0 0 1 0 0 1|0|1|1 1 1 1|1|0 1 0 1 1|imm6       |Rd       |  % RDSVL Xd, #imm
+|1 0|1 0 0 0 0|0|1 0|0|Zm       |Pm   |Pn   |Zn       |0|0|0|ZAd|  % SMOPA ZAda.S, Pn/M, Pm/M, Zn.B, Zm.B
+|1 0|1 0 0 0 0|0|1 1|0|Zm       |Pm   |Pn   |Zn       |0|0|ZAda |  % SMOPA ZAda.D, Pn/M, Pm/M, Zn.H, Zm.H
+|1 0|1 0 0 0 0|0|1 0|0|Zm       |Pm   |Pn   |Zn       |1|0|0|ZAd|  % SMOPS ZAda.S, Pn/M, Pm/M, Zn.B, Zm.B
+|1 0|1 0 0 0 0|0|1 1|0|Zm       |Pm   |Pn   |Zn       |1|0|ZAda |  % SMOPS ZAda.D, Pn/M, Pm/M, Zn.H, Zm.H
+|1 1 1 0 0 0 0 0|0|0|1|Rm       |V|Rs |Pg   |Rn       |0|imm4   |  % ST1B { ZA0HV.B[Ws, imm] }, Pg, [Xn|SP{, Xm}]
+|1 1 1 0 0 0 0 0|1|1|1|Rm       |V|Rs |Pg   |Rn       |0|ZAt  |i|  % ST1D { ZAtHV.D[Ws, imm] }, Pg, [Xn|SP{, Xm, LSL #3}]
+|1 1 1 0 0 0 0 0|0|1|1|Rm       |V|Rs |Pg   |Rn       |0|Z|imm3 |  % ST1H { ZAtHV.H[Ws, imm] }, Pg, [Xn|SP{, Xm, LSL #1}]
+|1 1 1 0 0 0 0 1 1 1 1|Rm       |V|Rs |Pg   |Rn       |0|ZAt    |  % ST1Q { ZAtHV.Q[Ws, imm] }, Pg, [Xn|SP{, Xm, LSL #4}]
+|1 1 1 0 0 0 0 0|1|0|1|Rm       |V|Rs |Pg   |Rn       |0|ZAt|imm|  % ST1W { ZAtHV.S[Ws, imm] }, Pg, [Xn|SP{, Xm, LSL #2}]
+|1 1 1 0 0 0 0 1 0 0|1|0 0 0 0 0 0|Rv |0 0 0|Rn       |0|imm4   |  % STR ZA[Wv, imm], [Xn|SP{, #imm, MUL VL}]
+|1 0|1 0 0 0 0|0|1 0|1|Zm       |Pm   |Pn   |Zn       |0|0|0|ZAd|  % SUMOPA ZAda.S, Pn/M, Pm/M, Zn.B, Zm.B
+|1 0|1 0 0 0 0|0|1 1|1|Zm       |Pm   |Pn   |Zn       |0|0|ZAda |  % SUMOPA ZAda.D, Pn/M, Pm/M, Zn.H, Zm.H
+|1 0|1 0 0 0 0|0|1 0|1|Zm       |Pm   |Pn   |Zn       |1|0|0|ZAd|  % SUMOPS ZAda.S, Pn/M, Pm/M, Zn.B, Zm.B
+|1 0|1 0 0 0 0|0|1 1|1|Zm       |Pm   |Pn   |Zn       |1|0|ZAda |  % SUMOPS ZAda.D, Pn/M, Pm/M, Zn.H, Zm.H
+|1 0|1 0 0 0 0|1|1 0|1|Zm       |Pm   |Pn   |Zn       |0|0|0|ZAd|  % UMOPA ZAda.S, Pn/M, Pm/M, Zn.B, Zm.B
+|1 0|1 0 0 0 0|1|1 1|1|Zm       |Pm   |Pn   |Zn       |0|0|ZAda |  % UMOPA ZAda.D, Pn/M, Pm/M, Zn.H, Zm.H
+|1 0|1 0 0 0 0|1|1 0|1|Zm       |Pm   |Pn   |Zn       |1|0|0|ZAd|  % UMOPS ZAda.S, Pn/M, Pm/M, Zn.B, Zm.B
+|1 0|1 0 0 0 0|1|1 1|1|Zm       |Pm   |Pn   |Zn       |1|0|ZAda |  % UMOPS ZAda.D, Pn/M, Pm/M, Zn.H, Zm.H
+|1 0|1 0 0 0 0|1|1 0|0|Zm       |Pm   |Pn   |Zn       |0|0|0|ZAd|  % USMOPA ZAda.S, Pn/M, Pm/M, Zn.B, Zm.B
+|1 0|1 0 0 0 0|1|1 1|0|Zm       |Pm   |Pn   |Zn       |0|0|ZAda |  % USMOPA ZAda.D, Pn/M, Pm/M, Zn.H, Zm.H
+|1 0|1 0 0 0 0|1|1 0|0|Zm       |Pm   |Pn   |Zn       |1|0|0|ZAd|  % USMOPS ZAda.S, Pn/M, Pm/M, Zn.B, Zm.B
+|1 0|1 0 0 0 0|1|1 1|0|Zm       |Pm   |Pn   |Zn       |1|0|ZAda |  % USMOPS ZAda.D, Pn/M, Pm/M, Zn.H, Zm.H
+|1 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0|0 0|imm8           |  % ZERO { mask }
